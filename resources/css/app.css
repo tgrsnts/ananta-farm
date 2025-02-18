@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@source "../views";
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+@theme {
+    --font-poppins: 'Poppins', 'sans-serif';
+
+    --color-primary: #157D75;
+    --color-secondary: #FFED9E;
+    --color-bermuda: #78dcca;
+  }
