@@ -1,4 +1,4 @@
-<footer class="px-4 lg:px-36 py-8 bg-primary text-white">
+<footer class="px-4 lg:px-36 py-8 bg-green-normal text-white">
     <div class="container mx-auto flex flex-wrap">
         <!-- Kolom Pertama -->
         <div class="w-full lg:w-1/2 lg:pr-4">

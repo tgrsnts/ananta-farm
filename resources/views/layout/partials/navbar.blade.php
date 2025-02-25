@@ -1,6 +1,6 @@
-<header class="shadow fixed top-0 w-full z-10 h-20 bg-primary">
+<header class="shadow fixed top-0 w-full z-10 h-20 bg-green-normal">
     <div
-        class="bg-primary relative flex justify-between lg:justify-start flex-col lg:flex-row lg:h-20 overflow-hidden px-4 py-4 md:px-36 md:mx-auto md:flex-wrap md:items-center">
+        class="bg-green-normal relative flex justify-between lg:justify-start flex-col lg:flex-row lg:h-20 overflow-hidden px-4 py-4 md:px-36 md:mx-auto md:flex-wrap md:items-center">
         <a href="index.html" class="flex items-center whitespace-nowrap text-2xl">
             <img class="h-8" src="{{ asset('assets/image/logo-ananta-farm-putih.png') }}" alt="">
         </a>
@@ -17,20 +17,20 @@
             class="peer-checked:max-h-60 max-h-0 w-full lg:w-auto flex-col flex lg:flex-row lg:max-h-full overflow-hidden transition-all duration-300 lg:items-center lg:ml-auto">
             <ul
                 class="flex flex-col lg:flex-row lg:space-y-0 space-y-4 items-center lg:ml-auto font-poppins font-semibold">
-                <li class="text-white border-b-2 border-primary md:mr-12 hover:border-white">
+                <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="#hero">Home</a>
                 </li>
-                <li class="text-white border-b-2 border-primary md:mr-12 hover:border-white">
+                <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="#tentang">Tentang Kami</a>
                 </li>
-                <li class="text-white border-b-2 border-primary md:mr-12 hover:border-white">
+                <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="#our-products">Magang</a>
                 </li>
                 <button
-                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-[#035700] hover:border-primary focus:bg-[#035700] focus:border-primary"
+                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal"
                     onclick="modal_login.showModal()">Masuk</button>
                 <li
-                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-[#035700] hover:border-primary focus:bg-[#035700] focus:border-primary">
+                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal">
                     <a href="dashboard.html">Dashboard</a>
                 </li>
             </ul>
@@ -41,7 +41,7 @@
 <!-- Modal Login  -->
 <dialog id="modal_login" class="modal backdrop-blur-lg">
     <div class="modal-box font-poppins p-0 w-76 lg:w-96 flex flex-col">
-        <div class="flex items-center bg-primary rounded-t-lg h-24 lg:h-40">
+        <div class="flex items-center bg-green-normal rounded-t-lg h-24 lg:h-40">
             <h2 class="text-2xl lg:text-5xl font-bold text-center text-white w-full">Login</h2>
         </div>
         <div class="px-8 pt-4 pb-12">
@@ -49,7 +49,7 @@
                 <div class="flex flex-col">
                     <label for="username">Username</label>
                     <input type="text" id="username" placeholder="Masukkan username"
-                        class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-primary focus-border-primary">
+                        class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                 </div>
                 <div class="flex flex-col">
                     <label for="password">Password</label>
@@ -61,15 +61,15 @@
                                 for="toggle"><i class="fa-solid fa-eye"></i></label>
                         </div>
                         <input type="password" id="password" placeholder="Masukkan password"
-                            class="js-password w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-primary focus-border-primary">
+                            class="js-password w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                     </div>
                     <a href=""
-                        class="mt-1 text-sm text-primary hover:text-additional2 hover:underline hover:underline-additional2 hover:underline-offset-4">Lupa
+                        class="mt-1 text-sm text-green-normal hover:text-additional2 hover:underline hover:underline-additional2 hover:underline-offset-4">Lupa
                         password?</a>
                 </div>
                 <div class="flex flex-col mt-2">
                     <button type="submit"
-                        class="p-2 rounded-md bg-primary text-white hover:bg-additional2">Login</button>
+                        class="p-2 rounded-md bg-green-normal text-white hover:bg-additional2">Login</button>
                 </div>
             </form>
             <div class="divider">atau masuk dengan</div>
@@ -286,7 +286,7 @@
             <div class="mt-2 text-center">
                 Belum punya akun? <form method="dialog" class="inline">
                     <button
-                        class="buttonSwitchToLoginOrRegister text-primary hover:text-additional2 hover:underline hover:underline-additional2 hover:underline-offset-4"
+                        class="buttonSwitchToLoginOrRegister text-green-normal hover:text-additional2 hover:underline hover:underline-additional2 hover:underline-offset-4"
                         onclick="modal_register.showModal()">Daftar!</button>
                 </form>
             </div>
@@ -300,7 +300,7 @@
 <!-- Modal Register  -->
 <dialog id="modal_register" class="modal backdrop-blur-lg">
     <div class="modal-box font-poppins p-0 w-76 lg:w-96 flex flex-col">
-        <div class="flex items-center bg-primary rounded-t-lg h-24 lg:h-40">
+        <div class="flex items-center bg-green-normal rounded-t-lg h-24 lg:h-40">
             <h2 class="text-2xl lg:text-5xl font-bold text-center text-white w-full">Daftar</h2>
         </div>
         <div class="px-8 pt-4 pb-12">
@@ -308,12 +308,12 @@
                 <div class="flex flex-col">
                     <label for="namaRegister">Nama</label>
                     <input type="text" id="namaRegister" placeholder="Masukkan nama"
-                        class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-primary focus-border-primary">
+                        class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                 </div>
                 <div class="flex flex-col">
                     <label for="username-register">Username</label>
                     <input type="text" id="username-register" placeholder="Masukkan username"
-                        class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-primary focus-border-primary">
+                        class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                 </div>
                 <div class="flex flex-col">
                     <label for="password-register">Password</label>
@@ -325,12 +325,12 @@
                                 for="toggle-register"><i class="fa-solid fa-eye"></i></label>
                         </div>
                         <input type="password" id="password-register" placeholder="Masukkan password"
-                            class="js-password w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-primary focus-border-primary">
+                            class="js-password w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                     </div>
                 </div>
                 <div class="flex flex-col mt-4">
                     <button type="submit"
-                        class="p-2 rounded-md bg-primary text-white hover:bg-additional2">Daftar</button>
+                        class="p-2 rounded-md bg-green-normal text-white hover:bg-additional2">Daftar</button>
                 </div>
             </form>
             <div class="divider">atau daftar dengan</div>
@@ -547,7 +547,7 @@
             <div class="mt-2 text-center">
                 Sudah punya akun? <form method="dialog" class="inline">
                     <button
-                        class="buttonSwitchToLoginOrRegister text-primary hover:text-additional2 hover:underline hover:underline-additional2 hover:underline-offset-4"
+                        class="buttonSwitchToLoginOrRegister text-green-normal hover:text-additional2 hover:underline hover:underline-additional2 hover:underline-offset-4"
                         onclick="modal_login.showModal()">Login!</button>
                 </form>
             </div>

@@ -15,29 +15,29 @@
 <!-- Know About Us -->
 <section class="px-4 lg:px-40 py-20 bg-white">
     <div class="container mx-auto flex flex-col gap-5 items-center justify-center">
-        <h1 class="text-primary text-center text-xl lg:text-5xl font-poppins font-bold mb-2 lg:mb-6">
-            Prolog<span class="text-secondary">.</span>
+        <h1 class="text-green-normal text-center text-xl lg:text-5xl font-poppins font-bold mb-2 lg:mb-6">
+            Prolog<span class="text-yellow-normal">.</span>
         </h1>
         <div class="flex flex-col gap-24 items-center">
             <div class="flex flex-col gap-8 items-center">
-                <h2 class="text-primary text-center text-xl lg:text-4xl font-poppins font-bold"><span
-                        class="text-secondary">i.</span> Identitas Peternakan</h2>
+                <h2 class="text-green-normal text-center text-xl lg:text-4xl font-poppins font-bold"><span
+                        class="text-yellow-normal">i.</span> Identitas Peternakan</h2>
                 <img src="{{ asset('assets/image/logo-ananta-farm.png') }}" class="w-40" alt="">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full lg:w-3/4">
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">Ananta
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">Ananta
                             Farm
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Nama peternakan yang
                             berasal dari nama keluarga
                         </p>
                     </div>
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">Gambar
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">Gambar
                             Domba
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Menggambarkan peternakan
                             yg dimulai dengan beternak
                             domba. jendela di kepala
@@ -45,19 +45,19 @@
                         </p>
                     </div>
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">Kandang
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">Kandang
                             & Dapoer
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Bahwa peternakan ini berfokus pada kegiatan di seputar kandang, dan juga menyediakan
                             kebutuhan
                             di dapur.
                         </p>
                     </div>
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">Daun
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">Daun
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Simbol keseriusan peternakan
                             untuk memajukan industri ini
                             sebagai tempat berbagi ilmu
@@ -67,34 +67,34 @@
                 </div>
             </div>
             <div class="flex flex-col gap-8 items-center bg-[#B6FFF9] p-8 lg:p-20 rounded-3xl w-full lg:w-3/4">
-                <h2 class="text-primary text-center text-xl lg:text-4xl font-poppins font-bold mb-2 lg:mb-6">
+                <h2 class="text-green-normal text-center text-xl lg:text-4xl font-poppins font-bold mb-2 lg:mb-6">
                     ii. Sejarah Peternakan</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2016
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2016
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Pertanian, lalu beralih ke peternakan.
                         </p>
                     </div>
 
                     <div class="flex justify-center items-center">
-                        <i class="fa-solid fa-chevron-right text-5xl text-primary rotate-90 lg:rotate-0"></i>
+                        <i class="fa-solid fa-chevron-right text-5xl text-green-normal rotate-90 lg:rotate-0"></i>
                     </div>
 
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2017
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2017
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Domba Garut 27 ekor
                             secara tradisional
                         </p>
                     </div>
 
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2018
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2018
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Investasi kandang,
                             penggemukan
                             300 ekor domba
@@ -102,22 +102,22 @@
                     </div>
 
                     <div class="flex justify-center items-center">
-                        <i class="fa-solid fa-chevron-right text-5xl text-primary rotate-90 lg:rotate-0"></i>
+                        <i class="fa-solid fa-chevron-right text-5xl text-green-normal rotate-90 lg:rotate-0"></i>
                     </div>
 
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2019
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2019
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Mulai pembibitan
                             Domba Garut 60 ekor
                         </p>
                     </div>
 
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2021
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2021
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Investasi kandang,
                             penggemukan
                             sapi 30 ekor
@@ -125,13 +125,13 @@
                     </div>
 
                     <div class="flex justify-center items-center">
-                        <i class="fa-solid fa-chevron-right text-5xl text-primary rotate-90 lg:rotate-0"></i>
+                        <i class="fa-solid fa-chevron-right text-5xl text-green-normal rotate-90 lg:rotate-0"></i>
                     </div>
 
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2022
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2022
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Investasi kandang,
                             pembibitan
                             domba 100 ekor
@@ -139,29 +139,29 @@
                     </div>
 
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2023
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2023
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Pertanian, lalu beralih ke peternakan.
                         </p>
                     </div>
 
                     <div class="flex justify-center items-center">
-                        <i class="fa-solid fa-chevron-right text-5xl text-primary rotate-90 lg:rotate-0"></i>
+                        <i class="fa-solid fa-chevron-right text-5xl text-green-normal rotate-90 lg:rotate-0"></i>
                     </div>
 
                     <div class="flex flex-col gap-4 items-center">
-                        <h2 class="text-primary text-center text-xl lg:text-3xl font-poppins font-bold">2024
+                        <h2 class="text-green-normal text-center text-xl lg:text-3xl font-poppins font-bold">2024
                         </h2>
-                        <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                        <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                             Sapi perah, dan lainnya!
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-col gap-8 items-center bg-secondary p-8 lg:p-20 rounded-3xl w-full lg:w-3/4">
-                <h2 class="text-primary text-center text-xl lg:text-4xl font-poppins font-bold mb-2 lg:mb-6">
+            <div class="flex flex-col gap-8 items-center bg-yellow-normal p-8 lg:p-20 rounded-3xl w-full lg:w-3/4">
+                <h2 class="text-green-normal text-center text-xl lg:text-4xl font-poppins font-bold mb-2 lg:mb-6">
                     iii. Komoditas Peternakan</h2>
 
                 <div class="flex flex-col gap-16">
@@ -173,10 +173,10 @@
                                 fill="#157D75" />
                         </svg>
                         <div class="flex flex-col gap-2">
-                            <p class="text-primary text-center text-xl lg:text-2xl font-poppins font-medium">
+                            <p class="text-green-normal text-center text-xl lg:text-2xl font-poppins font-medium">
                                 Domba Pembibitan
                             </p>
-                            <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                            <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                                 1500 ekor (Kapasitas kandang)
                             </p>
                         </div>
@@ -189,10 +189,10 @@
                                 fill="#157D75" />
                         </svg>
                         <div class="flex flex-col gap-2">
-                            <p class="text-primary text-center text-xl lg:text-2xl font-poppins font-medium">
+                            <p class="text-green-normal text-center text-xl lg:text-2xl font-poppins font-medium">
                                 Sapi Pembibitan
                             </p>
-                            <p class="text-primary text-center text-md lg:text-xl font-poppins font-medium">
+                            <p class="text-green-normal text-center text-md lg:text-xl font-poppins font-medium">
                                 75 ekor (Kapasitas kandang)
                             </p>
                         </div>
