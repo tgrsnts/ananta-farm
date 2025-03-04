@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="font-poppins">
     <!-- Navbar -->
     @include('layout.partials.navbar')
 
