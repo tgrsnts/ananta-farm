@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hewan', function (Blueprint $table) {
-            $table->id('id_hewan');
-            $table->foreignId('kandang_id')
-                ->constrained('kandang','id_kandang')
+        Schema::create('rekam_bobot', function (Blueprint $table) {
+            $table->id('id_rekamBobot');
+            $table->foreignId('hewan_id')
+                ->constrained('hewan', 'id_hewan')
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
-            $table->string('jenis_hewan');
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->date('tanggal_lahir');
-            $table->text('keterangan');
-            $table->string('foto')->nullable();
+            $table->foreignId('user_id')
+                ->constrained('users', 'id_user')
+                ->noActionOnUpdate()
+                ->noActionOnDelete();
+            $table->integer('bobot');
             $table->timestamps();
         });
     }
