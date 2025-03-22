@@ -8,17 +8,22 @@
 
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="font-poppins">
     <!-- Navbar -->
-    @include('layout.partials.navbar')
+    @include('admin.layout.partials.navbar')
 
-    <main>
-        @yield('content')
-    </main>
+    <div class="flex">
+        @include('admin.layout.partials.sidebar')
+        <div class="mt-12 flex flex-col w-full">
+            @yield('content')
+        </div>
+    </div>
 
-    @include('layout.partials.footer')
+    @include('admin.layout.partials.footer')
 
     <!-- Main JS  -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
