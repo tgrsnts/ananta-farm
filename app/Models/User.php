@@ -3,9 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Kandang;
+use App\Models\RekamBobot;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -17,10 +21,14 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $table = 'users';
+    protected $primaryKey = 'id_user';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'kandang_id'
     ];
 
     /**
@@ -44,5 +52,14 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function kandang(): BelongsTo
+    {
+        return $this->belongsTo(Kandang::class, 'kandang_id', 'id_kandang');
+    }
+    public function rekam_bobot(): HasMany
+    {
+        return $this->hasMany(RekamBobot::class, 'user_id', 'id_user');
     }
 }
