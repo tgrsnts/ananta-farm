@@ -13,10 +13,10 @@
                         Tambah Data
                     </button>
 
-                    <!-- Modal Tambah Produk -->
+                    <!-- Modal Tambah Kandang -->
                     <dialog id="addKandangModal" class="modal">
                         <div class="modal-box">
-                            <h2 class="font-bold text-lg">Tambah Produk</h2>
+                            <h2 class="font-bold text-lg">Tambah Kandang</h2>
                             <form action="{{ route('admin.kandang.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <label class="block mt-5">Nama Kandang</label>
