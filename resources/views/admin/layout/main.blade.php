@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    @include('admin.layout.partials.footer')
+    {{-- @include('admin.layout.partials.footer') --}}
 
     <!-- Main JS  -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
