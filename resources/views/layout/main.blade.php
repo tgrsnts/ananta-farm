@@ -14,7 +14,7 @@
     <!-- Navbar -->
     @include('layout.partials.navbar')
 
-    <main>
+    <main class="mt-20">
         @yield('content')
     </main>
 
