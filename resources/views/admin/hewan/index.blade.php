@@ -19,29 +19,13 @@
                             <h2 class="font-bold text-lg">Tambah Produk</h2>
                             <form action="{{ route('admin.kandang.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <label class="block">Nama Produk</label>
-                                <input type="text" name="nama" class="input input-bordered w-full mb-2" required>
-
-                                <label class="block">Kategori</label>
-                                <input type="text" name="kategori" class="input input-bordered w-full mb-2" required>
-
-                                <label class="block">Deskripsi</label>
-                                <textarea name="deskripsi" class="textarea textarea-bordered w-full mb-2"></textarea>
-
-                                <label class="block">Harga</label>
-                                <input type="number" name="harga" class="input input-bordered w-full mb-2" required>
-
-                                <label class="block">Stok</label>
-                                <input type="number" name="stok" class="input input-bordered w-full mb-2" required>
-
-                                <label class="block">Gambar</label>
-                                <input type="file" name="gambar" class="file-input file-input-bordered w-full mb-2"
-                                    required>
+                                <label class="block mt-5">Nama Kandang</label>
+                                <input type="text" name="nama_kandang" class="input input-bordered w-full mb-5" required>
 
                                 <button type="submit" class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>
                             <button class="btn btn-ghost mt-2 w-full"
-                                onclick="document.getElementById('addProductModal').close()">Batal</button>
+                                onclick="document.getElementById('addKandangModal').close()">Batal</button>
                         </div>
                     </dialog>
                 </div>
@@ -52,26 +36,20 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Kode Kandang</th>
-                            <th>Nama Kebun</th>
-                            <th>Luas Kebun</th>
-                            <th>Lokasi Kebun</th>
+                            <th>Nama Kandang</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($kandangs as $index => $kandang)
+                        @foreach ($kandang as $kandang)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $kandang->kandang_id }}</td>
-                                <td>{{ $kandang->kebun->nama_kebun ?? 'Tidak ada nama kebun' }}</td>
-                                <td>{{ $kandang->kebun->luas_lahan ?? 'Tidak tersedia' }}</td>
-                                <td>{{ $kandang->kebun->lokasi_kebun ?? 'Tidak tersedia' }}</td>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $kandang->nama_kandang }}</td>
+                                <td>
+                                    <a href="{{ route('admin.kandang.destroy', $kandang->id_kandang) }}">Hapus</a>
+                                </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="text-center">Tidak ada kandang.</td>
-                            </tr>
-                        @endforelse --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
