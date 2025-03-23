@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\HewanController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HewanController;
 
 Route::get('/', function () {
     return view('index');
@@ -21,3 +22,5 @@ Route::prefix('/admin')->group(function() {
     Route::post('kandang', [HewanController::class, 'store'])->name('admin.kandang.store');
     Route::get('kandang/{id}', [HewanController::class, 'destroy'])->name('admin.kandang.destroy');
 });
+
+Route::post('/authenticate', [AuthController::class, 'login'])->name('admin.login');

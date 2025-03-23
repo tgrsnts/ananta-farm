@@ -45,10 +45,11 @@
             <h2 class="text-2xl lg:text-5xl font-bold text-center text-white w-full">Login</h2>
         </div>
         <div class="px-8 pt-4 pb-12">
-            <form id="loginForm" action="" class="flex flex-col gap-2">
+            <form id="loginForm" action="{{ route('admin.login') }}" method="POST" class="flex flex-col gap-2">
+                @csrf
                 <div class="flex flex-col">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="Masukkan username"
+                    <label for="username">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Masukkan email"
                         class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                 </div>
                 <div class="flex flex-col">
@@ -60,7 +61,7 @@
                                 class="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label"
                                 for="toggle"><i class="fa-solid fa-eye"></i></label>
                         </div>
-                        <input type="password" id="password" placeholder="Masukkan password"
+                        <input type="password" id="password" name="password" placeholder="Masukkan password"
                             class="js-password w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                     </div>
                     <a href=""
