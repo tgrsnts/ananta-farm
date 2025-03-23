@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Kandang;
 use Illuminate\Http\Request;
 
-class HewanController extends Controller
+class KandangController extends Controller
 {
     public function index() {
         $kandang = Kandang::all();
-        return view('admin.hewan.index', ['kandang' => $kandang]);
+        return view('admin.kandang.index', ['kandang' => $kandang]);
     }
 
     public function create() {
-        return view('admin.hewan.create');
+        return view('admin.kandang.create');
     }
 
     public function store(Request $request) {

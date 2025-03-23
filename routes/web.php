@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HewanController;
+use App\Http\Controllers\KandangController;
 
 Route::get('/', function () {
     return view('index');
@@ -21,10 +21,10 @@ Route::get('/staycation', function () {
 });
 
 Route::prefix('/admin')->group(function() {
-    Route::get('kandang', [HewanController::class, 'index'])->name('admin.kandang.index');
-    Route::get('kandang/create', [HewanController::class, 'create'])->name('admin.kandang.create');
-    Route::post('kandang', [HewanController::class, 'store'])->name('admin.kandang.store');
-    Route::get('kandang/{id}', [HewanController::class, 'destroy'])->name('admin.kandang.destroy');
+    Route::get('kandang', [KandangController::class, 'index'])->name('admin.kandang.index');
+    Route::get('kandang/create', [KandangController::class, 'create'])->name('admin.kandang.create');
+    Route::post('kandang', [KandangController::class, 'store'])->name('admin.kandang.store');
+    Route::get('kandang/{id}', [KandangController::class, 'destroy'])->name('admin.kandang.destroy');
 });
 
 Route::post('/authenticate', [AuthController::class, 'login'])->name('admin.login');
