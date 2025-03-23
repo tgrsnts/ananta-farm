@@ -26,9 +26,12 @@
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="#our-products">Magang</a>
                 </li>
-                <button
+                {{-- <button
                     class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal"
-                    onclick="modal_login.showModal()">Masuk</button>
+                    onclick="modal_login.showModal()">Masuk</button> --}}
+                    <a href="/login"
+                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal"
+                    >Masuk</a>
                 <li
                     class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal">
                     <a href="dashboard.html">Dashboard</a>

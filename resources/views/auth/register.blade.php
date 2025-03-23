@@ -18,15 +18,19 @@
                 <div class="flex flex-col w-1/2 p-8 gap-8">
                     <div class="flex flex-col">
                         <h1 class="text-green-normal text-xl lg:text-5xl font-bold mb-2 lg:mb-6">
-                            Masuk
+                            Daftar Akun
                         </h1>
                         <p class="text-xl">Selamat datang di Ananta Farm</p>
                     </div>
-                    <form id="registerForm" action="{{ route('admin.login') }}" method="POST" class="flex flex-col gap-2 w-full"> 
-                        @csrf                       
+                    <form id="registerForm" action="" class="flex flex-col gap-2 w-full">
                         <div class="flex flex-col">
-                            <label for="username-register">Email</label>
-                            <input name="email" type="text" id="username-register" placeholder="Masukkan username"
+                            <label for="namaRegister" class="text-xl">Nama</label>
+                            <input type="text" id="namaRegister" placeholder="Masukkan nama"
+                                class="w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="username-register">Username</label>
+                            <input type="text" id="username-register" placeholder="Masukkan username"
                                 class="w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                         </div>
                         <div class="flex flex-col">
@@ -38,15 +42,15 @@
                                         class="bg-gray-300 hover:bg-gray-400 rounded px-4 py-2 text-sm text-gray-600 font-mono cursor-pointer js-password-label"
                                         for="toggle-register"><i class="fa-solid fa-eye"></i></label>
                                 </div>
-                                <input name="password" type="password" id="password-register" placeholder="Masukkan password"
+                                <input type="password" id="password-register" placeholder="Masukkan password"
                                     class="js-password w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                             </div>
                         </div>
                         <div class="flex flex-col mt-4 text-2xl">
                             <button type="submit"
-                                class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white hover:cursor-pointer">Masuk</button>
+                                class="p-2 rounded-md bg-green-normal text-white hover:cursor-pointer">Daftar</button>
                         </div>
-                        <div class="divider">atau masuk dengan</div>
+                        <div class="divider">atau daftar dengan</div>
                         <button
                             class="mt-2 flex justify-center items-center gap-2 w-full border-2 border-green-normal rounded-md py-1 text-green-normal hover:bg-gray-100 hover:text-green-normal-hover"
                             onclick="modal_register.showModal()">
@@ -258,10 +262,10 @@
                             </svg> Google
                         </button>
                         <div class="mt-2 text-center">
-                            Belum punya akun? <form method="dialog" class="inline">
-                                <a href="/register"
+                            Sudah punya akun? <form method="dialog" class="inline">
+                                <a href="/login"
                                     class="buttonSwitchToLoginOrRegister text-green-normal hover:text-green-normal-hover hover:underline hover:underline-green-normal-hover hover:underline-offset-4"
-                                    >Daftar!</a>
+                                    >Masuk!</button>
                             </form>
                         </div>
                     </form>
