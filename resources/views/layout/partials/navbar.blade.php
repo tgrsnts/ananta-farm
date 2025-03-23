@@ -1,7 +1,7 @@
 <header class="shadow fixed top-0 w-full z-10 h-20 bg-green-normal">
     <div
         class="bg-green-normal relative flex justify-between lg:justify-start flex-col lg:flex-row lg:h-20 overflow-hidden px-4 py-4 md:px-36 md:mx-auto md:flex-wrap md:items-center">
-        <a href="index.html" class="flex items-center whitespace-nowrap text-2xl">
+        <a href="/" class="flex items-center whitespace-nowrap text-2xl">
             <img class="h-8" src="{{ asset('assets/image/logo-ananta-farm-putih.png') }}" alt="">
         </a>
 
@@ -26,15 +26,12 @@
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="#our-products">Magang</a>
                 </li>
-                {{-- <button
-                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal"
-                    onclick="modal_login.showModal()">Masuk</button> --}}
-                    <a href="/login"
-                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal"
-                    >Masuk</a>
+                <a
+                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
+                    href="/login">Masuk</a>
                 <li
-                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal">
-                    <a href="dashboard.html">Dashboard</a>
+                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal">
+                    <a href="/admin">Dashboard</a>
                 </li>
             </ul>
         </nav>
@@ -48,11 +45,10 @@
             <h2 class="text-2xl lg:text-5xl font-bold text-center text-white w-full">Login</h2>
         </div>
         <div class="px-8 pt-4 pb-12">
-            <form id="loginForm" action="{{ route('admin.login') }}" method="POST" class="flex flex-col gap-2">
-                @csrf
+            <form id="loginForm" action="" class="flex flex-col gap-2">
                 <div class="flex flex-col">
-                    <label for="username">Email</label>
-                    <input type="text" id="email" name="email" placeholder="Masukkan email"
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Masukkan username"
                         class="w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                 </div>
                 <div class="flex flex-col">
@@ -64,7 +60,7 @@
                                 class="bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label"
                                 for="toggle"><i class="fa-solid fa-eye"></i></label>
                         </div>
-                        <input type="password" id="password" name="password" placeholder="Masukkan password"
+                        <input type="password" id="password" placeholder="Masukkan password"
                             class="js-password w-full p-2 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
                     </div>
                     <a href=""

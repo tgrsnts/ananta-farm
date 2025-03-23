@@ -1,7 +1,7 @@
 <header class="shadow fixed top-0 w-full z-10 h-20 bg-green-normal">
     <div
         class="bg-green-normal relative flex justify-between lg:justify-start flex-col lg:flex-row lg:h-20 overflow-hidden px-4 py-4 md:px-36 md:mx-auto md:flex-wrap md:items-center">
-        <a href="index.html" class="flex items-center whitespace-nowrap text-2xl">
+        <a href="/" class="flex items-center whitespace-nowrap text-2xl">
             <img class="h-8" src="{{ asset('assets/image/logo-ananta-farm-putih.png') }}" alt="">
         </a>
 
@@ -26,12 +26,12 @@
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="#our-products">Magang</a>
                 </li>
-                <button
-                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal"
-                    onclick="modal_login.showModal()">Masuk</button>
+                <a
+                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
+                    href="/login">Masuk</a>
                 <li
-                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-[#035700] hover:border-green-normal focus:bg-[#035700] focus:border-green-normal">
-                    <a href="dashboard.html">Dashboard</a>
+                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal">
+                    <a href="/admin">Dashboard</a>
                 </li>
             </ul>
         </nav>
