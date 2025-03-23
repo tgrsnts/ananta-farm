@@ -18,7 +18,7 @@
 
     <div class="flex">
         @include('admin.layout.partials.sidebar')
-        <div class="mt-12 flex flex-col w-full">
+        <div class="mt-20 ml-64 flex flex-col w-full">
             @yield('content')
         </div>
     </div>

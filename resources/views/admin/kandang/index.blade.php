@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 
 @section('content')
-    <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col mt-2 pt-10 px-4 pb-20 bg-slate-50">
+    <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col p-4 pb-20 bg-slate-50">
         <div class="flex flex-col gap-4 bg-white p-4 w-full rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="font-semibold">Data Kandang</div>

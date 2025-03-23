@@ -1,4 +1,4 @@
-<nav class="mt-12 flex flex-col gap-1 pr-12 font-sans text-base font-normal text-blue-gray-700 bg-green-normal">
+<nav class="fixed top-0 left-0 h-full w-64 bg-green-normal mt-0 flex flex-col gap-1 pr-12 font-sans text-base font-normal text-blue-gray-700">
     @php
         $currentRoute = Request::path();
     @endphp
