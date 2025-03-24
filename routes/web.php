@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KandangController;
+use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
@@ -27,6 +28,13 @@ Route::prefix('/admin')->group(function () {
         Route::get('/create', [KandangController::class, 'create'])->name('admin.kandang.create');
         Route::post('/', [KandangController::class, 'store'])->name('admin.kandang.store');
         Route::get('/{id}', [KandangController::class, 'destroy'])->name('admin.kandang.destroy');
+    });
+
+    Route::prefix('/pendaftar')->group(function () {
+        Route::get('/', [PendaftarController::class, 'index'])->name('admin.profile.index');
+        Route::get('/create', [PendaftarController::class, 'create'])->name('admin.profile.create');
+        Route::post('/', [PendaftarController::class, 'store'])->name('admin.profile.store');
+        Route::get('/{id}', [PendaftarController::class, 'destroy'])->name('admin.profile.destroy');
     });
 
     Route::prefix('/profile')->group(function () {
