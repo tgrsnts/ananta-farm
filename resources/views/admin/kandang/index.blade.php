@@ -20,7 +20,7 @@
                             <form action="{{ route('admin.kandang.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <label class="block mt-5">Nama Kandang</label>
-                                <input type="text" name="nama_kandang" class="input input-bordered w-full mb-5" required>
+                                <input type="text" name="nama_kandang" class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg mb-5" required>
 
                                 <button type="submit" class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>

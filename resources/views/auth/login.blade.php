@@ -27,7 +27,7 @@
                         <div class="flex flex-col">
                             <label for="username-register">Email</label>
                             <input name="email" type="text" id="username-register" placeholder="Masukkan username"
-                                class="w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
+                                class="w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal border-1 border-slate-400 focus:border-green-normal">
                         </div>
                         <div class="flex flex-col">
                             <label for="password-register">Password</label>
@@ -39,7 +39,7 @@
                                         for="toggle-register"><i class="fa-solid fa-eye"></i></label>
                                 </div>
                                 <input name="password" type="password" id="password-register" placeholder="Masukkan password"
-                                    class="js-password w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal focus-border-green-normal">
+                                    class="js-password w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal border-1 border-slate-400 focus:border-green-normal">
                             </div>
                         </div>
                         <div class="flex flex-col mt-4 text-2xl">
