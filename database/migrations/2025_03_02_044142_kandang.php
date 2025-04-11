@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('kandang', function (Blueprint $table) {
             $table->id('id_kandang');
             $table->string('nama_kandang');
+            $table->decimal('latitude', 10, 7)->nullable();
+            $table->decimal('longitude', 10, 7)->nullable();
             $table->timestamps();
         });
     }

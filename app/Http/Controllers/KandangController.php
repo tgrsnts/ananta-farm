@@ -7,34 +7,39 @@ use Illuminate\Http\Request;
 
 class KandangController extends Controller
 {
-    public function index() {
-        $kandang = Kandang::all();
+    public function index()
+    {
+        $kandang = Kandang::with('hewan')->get();
+        // return $kandang;
         return view('admin.kandang.index', ['kandang' => $kandang]);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.kandang.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $data = $request->validate([
-            "nama_kandang" => "required"
+            "nama_kandang" => "required",
+            "longitude" => "required",
+            "latitude" => "required"
         ]);
         Kandang::create([
-            "nama_kandang" => $request->nama_kandang
+            "nama_kandang" => $request->nama_kandang,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ]);
         return redirect('admin/kandang');
     }
 
-    public function edit() {
+    public function edit() {}
 
-    }
+    public function update() {}
 
-    public function update() {
-
-    }
-
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $kandang = Kandang::findOrFail($id);
         $kandang->delete();
         return redirect('admin/kandang');
