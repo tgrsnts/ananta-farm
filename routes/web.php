@@ -22,6 +22,10 @@ Route::get('/staycation', function () {
     return view('staycation.index');
 });
 
+Route::get('/magang', function () {
+    return view('magang.index');
+});
+
 Route::prefix('/admin')->group(function () {
     Route::prefix('/kandang')->group(function () {
         Route::get('/', [KandangController::class, 'index'])->name('admin.kandang.index');
