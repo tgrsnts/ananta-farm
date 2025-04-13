@@ -1,4 +1,4 @@
-<header class="shadow top-0 w-full  h-20 bg-green-normal">
+<header id="navbar" class="transition-all duration-300 fixed pl-64 shadow top-0 w-full h-20 bg-green-normal">
     <div
         class="bg-green-normal relative flex justify-between lg:justify-start flex-col lg:flex-row lg:h-20 overflow-hidden px-4 py-4 md:pl-12 md:pr-36 md:mx-auto md:flex-wrap md:items-center">
 

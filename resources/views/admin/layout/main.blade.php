@@ -16,22 +16,25 @@
     <!-- Navbar -->
     
 
-    @include('admin.layout.partials.sidebar')
-    <div id="nav-and-content" class="flex flex-col ml-64 transition-all duration-300">
-        @include('admin.layout.partials.navbar')
-        <div id="mainContent" class="mt-20 flex flex-col w-full transition-all duration-300">
+    @include('admin.layout.partials.navbar')
+    <div class="flex transition-all duration-300">
+        @include('admin.layout.partials.sidebar')
+        <div id="mainContent" class="mt-20 ml-64 flex flex-col w-full transition-all duration-300">
             @yield('content')
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.getElementById('navbar');
             const sidebar = document.getElementById('sidebar');
             const toggleBtn = document.getElementById('sidebarToggle');
-            const content = document.getElementById('nav-and-content');
+            const content = document.getElementById('mainContent');
     
             if (toggleBtn && sidebar && content) {
                 toggleBtn.addEventListener('click', () => {
+                    navbar.classList.toggle('pl-64');
+                    navbar.classList.toggle('pl-0');
                     sidebar.classList.toggle('-ml-64');
                     content.classList.toggle('ml-64');
                     content.classList.toggle('ml-0');
