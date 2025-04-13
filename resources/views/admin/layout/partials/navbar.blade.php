@@ -18,13 +18,13 @@
             <ul
                 class="flex flex-col lg:flex-row lg:space-y-0 space-y-4 items-center lg:ml-auto font-poppins font-semibold">
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
-                    <a href="#hero">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
-                    <a href="#tentang">Tentang Kami</a>
+                    <a href="/katalog">Katalog</a>
                 </li>
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
-                    <a href="#our-products">Magang</a>
+                    <a href="/magang">Magang</a>
                 </li>
                 <a
                     class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
