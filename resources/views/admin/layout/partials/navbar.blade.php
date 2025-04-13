@@ -1,9 +1,23 @@
-<header class="shadow fixed top-0 w-full z-10 h-20 bg-green-normal">
+<header class="shadow top-0 w-full  h-20 bg-green-normal">
     <div
-        class="bg-green-normal relative flex justify-between lg:justify-start flex-col lg:flex-row lg:h-20 overflow-hidden px-4 py-4 md:px-36 md:mx-auto md:flex-wrap md:items-center">
-        <a href="/" class="flex items-center whitespace-nowrap text-2xl">
-            <img class="h-8" src="{{ asset('assets/image/logo-ananta-farm-putih.png') }}" alt="">
-        </a>
+        class="bg-green-normal relative flex justify-between lg:justify-start flex-col lg:flex-row lg:h-20 overflow-hidden px-4 py-4 md:pl-12 md:pr-36 md:mx-auto md:flex-wrap md:items-center">
+
+        {{-- <div class="relative flex w-64 justify-center">
+            <a href="/" class="flex items-center whitespace-nowrap text-2xl">
+                <img class="h-8" src="{{ asset('assets/image/logo-ananta-farm-putih.png') }}" alt="">
+            </a>
+            <button id="sidebarToggle"
+                class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-slate-300 text-2xl focus:outline-none z-10">
+                ☰
+            </button>
+        </div> --}}
+
+        <button id="sidebarToggle"
+            class="text-white hover:text-slate-300 text-2xl focus:outline-none z-10">
+            ☰
+        </button>
+
+
 
         <!-- Hamburger Menu for Mobile -->
         <input type="checkbox" class="peer hidden" id="navbar-open" />
@@ -26,8 +40,7 @@
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="/magang">Magang</a>
                 </li>
-                <a
-                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
+                <a class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
                     href="/login">Masuk</a>
                 <li
                     class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal">
@@ -77,9 +90,8 @@
                 class="mt-2 flex justify-center items-center gap-2 w-full border-2 rounded-md py-1 text-black hover:bg-gray-100 hover:text-additional2"
                 onclick="modal_register.showModal()">
                 <svg class="w-8 aspect-square" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1"
-                    style="enable-background:new 0 0 150 150;" version="1.1" viewBox="0 0 150 150"
-                    xml:space="preserve">
+                    xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1" style="enable-background:new 0 0 150 150;"
+                    version="1.1" viewBox="0 0 150 150" xml:space="preserve">
                     <style type="text/css">
                         .st0 {
                             fill: #1A73E8;

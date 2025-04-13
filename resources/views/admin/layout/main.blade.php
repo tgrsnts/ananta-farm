@@ -8,20 +8,39 @@
 
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="font-poppins">
     <!-- Navbar -->
-    @include('admin.layout.partials.navbar')
+    
 
-    <div class="flex">
-        @include('admin.layout.partials.sidebar')
-        <div class="mt-20 ml-64 flex flex-col w-full">
+    @include('admin.layout.partials.sidebar')
+    <div id="nav-and-content" class="flex flex-col ml-64 transition-all duration-300">
+        @include('admin.layout.partials.navbar')
+        <div id="mainContent" class="mt-20 flex flex-col w-full transition-all duration-300">
             @yield('content')
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const content = document.getElementById('nav-and-content');
+    
+            if (toggleBtn && sidebar && content) {
+                toggleBtn.addEventListener('click', () => {
+                    sidebar.classList.toggle('-ml-64');
+                    content.classList.toggle('ml-64');
+                    content.classList.toggle('ml-0');
+                });
+            }
+        });
+    </script>
+    
+
 
     {{-- @include('admin.layout.partials.footer') --}}
 
