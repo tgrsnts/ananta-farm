@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HewanController;
 use App\Http\Controllers\KandangController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\ProfileController;
@@ -27,6 +28,17 @@ Route::get('/magang', function () {
 });
 
 Route::prefix('/admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard.index');
+    });
+    
+    Route::prefix('/hewan')->group(function () {
+        Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
+        Route::get('/create', [HewanController::class, 'create'])->name('admin.hewan.create');
+        Route::post('/', [HewanController::class, 'store'])->name('admin.hewan.store');
+        Route::get('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
+    });
+
     Route::prefix('/kandang')->group(function () {
         Route::get('/', [KandangController::class, 'index'])->name('admin.kandang.index');
         Route::get('/create', [KandangController::class, 'create'])->name('admin.kandang.create');
