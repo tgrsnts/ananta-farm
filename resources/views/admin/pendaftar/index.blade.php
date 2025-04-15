@@ -7,21 +7,95 @@
                 <div class="font-semibold">Data Pendaftar</div>
             </div>
 
-            <div class="flex flex-col gap-2">
-                <div class="flex flex-col w-full rounded-md border-1 border-slate-400 p-4">
-                    <div class="flex justify-between items-center w-full">
-                        <div class="flex gap-4">
-                            <img class="w-24 h-20" src="default-avatar.jpg" alt="Foto Profil" />
-                            <div class="flex flex-col w-fit">
-                                <span class="text-xl font-medium">Mochamad Tegar Santoso</span>
-                                <span class="text-md">IPB University</span>
-                                <span class="text-md">+62896-7052-2489</span>
-                            </div>
+            <div class="grid grid-cols-6 gap-4">
+                <div
+                    class="flex flex-col gap-4 justify-between items-center w-full rounded-md border-1 border-slate-400 p-4">
+                    <div class="flex flex-col gap-4">
+                        <img class="w-full" src="{{ asset('assets/image/avatar-biru.jpg') }}" alt="Foto Profil" />
+                        <div class="flex flex-col w-fit">
+                            <span class="text-md font-medium">Mochamad Tegar Santoso</span>
+                            <span class="text-md">IPB University</span>
+                            <span class="text-sm">+62896-7052-2489</span>
                         </div>
-                        <button class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md">Lihat
-                            Detail</button>
                     </div>
+                    <button
+                        class="bg-green-normal hover:bg-green-normal-hover text-sm text-white px-4 py-2 rounded-md">Lihat
+                        Detail</button>
                 </div>
+                <div
+                    class="flex flex-col gap-4 justify-between items-center w-full rounded-md border-1 border-slate-400 p-4">
+                    <div class="flex flex-col gap-4">
+                        <img class="w-full" src="{{ asset('assets/image/avatar-biru.jpg') }}" alt="Foto Profil" />
+                        <div class="flex flex-col w-fit">
+                            <span class="text-md font-medium">Mochamad Tegar Santoso</span>
+                            <span class="text-md">IPB University</span>
+                            <span class="text-sm">+62896-7052-2489</span>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-green-normal hover:bg-green-normal-hover text-sm text-white px-4 py-2 rounded-md">Lihat
+                        Detail</button>
+                </div>
+                <div
+                    class="flex flex-col gap-4 justify-between items-center w-full rounded-md border-1 border-slate-400 p-4">
+                    <div class="flex flex-col gap-4">
+                        <img class="w-full" src="{{ asset('assets/image/avatar-biru.jpg') }}" alt="Foto Profil" />
+                        <div class="flex flex-col w-fit">
+                            <span class="text-md font-medium">Mochamad Tegar Santoso</span>
+                            <span class="text-md">IPB University</span>
+                            <span class="text-sm">+62896-7052-2489</span>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-green-normal hover:bg-green-normal-hover text-sm text-white px-4 py-2 rounded-md">Lihat
+                        Detail</button>
+                </div>
+                <div
+                    class="flex flex-col gap-4 justify-between items-center w-full rounded-md border-1 border-slate-400 p-4">
+                    <div class="flex flex-col gap-4">
+                        <img class="w-full" src="{{ asset('assets/image/avatar-biru.jpg') }}" alt="Foto Profil" />
+                        <div class="flex flex-col w-fit">
+                            <span class="text-md font-medium">Mochamad Tegar Santoso</span>
+                            <span class="text-md">IPB University</span>
+                            <span class="text-sm">+62896-7052-2489</span>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-green-normal hover:bg-green-normal-hover text-sm text-white px-4 py-2 rounded-md">Lihat
+                        Detail</button>
+                </div>
+                <div
+                    class="flex flex-col gap-4 justify-between items-center w-full rounded-md border-1 border-slate-400 p-4">
+                    <div class="flex flex-col gap-4">
+                        <img class="w-full" src="{{ asset('assets/image/avatar-biru.jpg') }}" alt="Foto Profil" />
+                        <div class="flex flex-col w-fit">
+                            <span class="text-md font-medium">Mochamad Tegar Santoso</span>
+                            <span class="text-md">IPB University</span>
+                            <span class="text-sm">+62896-7052-2489</span>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-green-normal hover:bg-green-normal-hover text-sm text-white px-4 py-2 rounded-md">Lihat
+                        Detail</button>
+                </div>
+                <div
+                    class="flex flex-col gap-4 justify-between items-center w-full rounded-md border-1 border-slate-400 p-4">
+                    <div class="flex flex-col gap-4">
+                        <img class="w-full" src="{{ asset('assets/image/avatar-biru.jpg') }}" alt="Foto Profil" />
+                        <div class="flex flex-col w-fit">
+                            <span class="text-md font-medium">Mochamad Tegar Santoso</span>
+                            <span class="text-md">IPB University</span>
+                            <span class="text-sm">+62896-7052-2489</span>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-green-normal hover:bg-green-normal-hover text-sm text-white px-4 py-2 rounded-md">Lihat
+                        Detail</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+
                 <div class="flex flex-col w-full rounded-md border-1 border-slate-400 p-4">
                     <div class="flex justify-between items-center w-full">
                         <div class="flex gap-4">
