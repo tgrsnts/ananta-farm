@@ -115,7 +115,7 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $kandang->nama_kandang }}</td>
                                 <td>
-                                    <a href="{{ route('admin.kandang.destroy', $kandang->id_kandang) }}">Hapus</a>
+                                    <a href="{{ route('admin.kandang.destroy', $kandang->id_kandang) }}" class="bg-red-500 p-2 rounded-md text-white">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach
