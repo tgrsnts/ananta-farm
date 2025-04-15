@@ -12,18 +12,19 @@ class Hewan extends Model
 {
     protected $table = 'hewan';
     protected $primaryKey = 'id_hewan';
-    protected $fillable = [
-        'kandang_id',
-        'jenis_hewan',
-        'tanggal_lahir',
-        'jenis_kelamin',
-        'foto',
-        'keterangan'
-    ];
+    // protected $fillable = [
+    //     'kandang_id',
+    //     'jenis_hewan',
+    //     'tanggal_lahir',
+    //     'jenis_kelamin',
+    //     'foto',
+    //     'keterangan'
+    // ];
+    protected $guarded = ['id_hewan'];
 
     public function kandang(): HasOne
     {
-        return $this->hasOne(Kandang::class, 'kandang_id', 'id_kandang');
+        return $this->hasOne(Kandang::class, 'id_kandang', 'kandang_id');
     }
 
     public function rekam_bobot(): HasMany

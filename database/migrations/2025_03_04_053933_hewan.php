@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('hewan', function (Blueprint $table) {
             $table->id('id_hewan');
+            $table->string('nama_hewan');
             $table->foreignId('kandang_id')
                 ->constrained('kandang','id_kandang')
                 ->noActionOnUpdate()

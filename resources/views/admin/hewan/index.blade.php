@@ -6,8 +6,7 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Data Hewan</div>
                 <div class="flex gap-2">
-                    <button type="button"
-                        class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
+                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
                         {{-- onclick="tambahHewan()" --}} onclick="document.getElementById('addHewanModal').showModal()">
                         Tambah Data
                     </button>
@@ -24,6 +23,66 @@
                                         <input type="text" name="nama_hewan"
                                             class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
                                             required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Jenis Hewan</label>
+                                        <select name="jenis_hewan"
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                            <option value="" disabled selected>Pilih jenis hewan</option>
+                                            <option value="Sapi">Sapi</option>
+                                            <option value="Kambing">Kambing</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Jenis Kelamin</label>
+                                        <div class="flex gap-4">
+                                            <div class="flex gap-2">
+                                                <input id="jenis_kelamin_1" type="radio" value="L"
+                                                    name="jenis_kelamin"
+                                                    class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                                    required>
+                                                <label for="jenis_kelamin_1">Jantan</label>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <input id="jenis_kelamin_2" type="radio" value="P"
+                                                    name="jenis_kelamin"
+                                                    class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                                    required>
+                                                <label for="jenis_kelamin_1">Betina</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Tanggal Lahir</label>
+                                        <input type="date" name="tanggal_lahir"
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Kandang</label>
+                                        <select name="kandang_id"
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                            <option value="" disabled selected>Pilih kandang</option>
+                                            @foreach ($kandang as $item)
+                                                <option value="{{ $item->id_kandang }}">{{ $item->nama_kandang }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Keterangan</label>
+                                        <textarea name="keterangan" required
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"></textarea>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label for="foto" class="block">Foto Hewan</label>
+                                        <label for="foto"
+                                            class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
+                                            <x-feathericon-upload />
+                                            Browse Files
+                                            <input type="file" id="foto" name="foto" class="hidden" />
+                                        </label>
                                     </div>
                                 </div>
                                 <button type="submit"
@@ -42,21 +101,36 @@
                         <tr>
                             <th>#</th>
                             <th>Nama Hewan</th>
+                            <th>Jenis</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Keterangan</th>
+                            <th>Kandang</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($hewan as $hewan)
+                        @foreach ($hewan as $item)
                             <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $hewan->nama_hewan }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->nama_hewan }}</td>
+                                <td>{{ $item->jenis_hewan }}</td>
+                                <td>{{ $item->jenis_kelamin == 'L' ? 'Jantan' : 'Betina' }}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
+                                <td>{{ $item->keterangan }}</td>
+                                <td>{{ $item->kandang->nama_kandang ?? '-' }}</td>
                                 <td>
-                                    <a href="{{ route('admin.hewan.destroy', $hewan->id_hewan) }}">Hapus</a>
+                                    <form action="{{ route('admin.hewan.destroy', $item->id_hewan) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 p-2 rounded-md text-white">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </section>
