@@ -93,7 +93,43 @@
                         </div>
                     </dialog>
                 </div>
+
+                <!-- Modal Rekam Bobot -->
+                <dialog id="rekamBobotModal" class="modal">
+                    <div class="modal-box">
+                        <h2 class="font-bold text-lg">Rekam Bobot</h2>
+                        <form id="rekamBobotForm" action="{{ route('admin.hewan.store') }}" method="POST" class="flex flex-col gap-4">
+                            @csrf
+                            <input hidden type="text" name="hewan_id" id="hewan_id">
+                            <input hidden type="text" name="user_id" id="user_id">
+                            <div class="flex flex-col gap-2">
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Nama Hewan</label>
+                                    <input disabled type="text" id="nama_hewan"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Tanggal</label>
+                                    <input type="date" name="tanggal"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                        required>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Bobot</label>
+                                    <input type="text" name="bobot"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                        required>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                        </form>
+                        <button class="btn btn-ghost w-full"
+                            onclick="closeRekamBobotModal()">Batal</button>
+                    </div>
+                </dialog>
             </div>
+
 
             <div class="overflow-x-auto">
                 <table class="table rounded-lg">
@@ -119,18 +155,39 @@
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
                                 <td>{{ $item->keterangan }}</td>
                                 <td>{{ $item->kandang->nama_kandang ?? '-' }}</td>
-                                <td>
-                                    <form action="{{ route('admin.hewan.destroy', $item->id_hewan) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
+                                <td class="flex gap-1">
+                                    <button type="button"
+                                        class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
+                                        onclick="openRekamBobotModal({{ $item->id_hewan }}, '{{ $item->nama_hewan }}', '1')">
+                                        Rekam Bobot
+                                    </button>
+                                    <script>
+                                        function openRekamBobotModal(hewanId, namaHewan, userId) {
+                                            document.getElementById('hewan_id').value = hewanId;
+                                            document.getElementById('nama_hewan').value = namaHewan;
+                                            document.getElementById('user_id').value = userId;
+
+                                            document.getElementById('rekamBobotModal').showModal();
+                                        }
+
+                                        function closeRekamBobotModal() {
+                                            document.getElementById('rekamBobotModal').close();
+                                            document.getElementById('rekamBobotForm').reset();
+                                        }
+                                    </script>
+                                    <form action="{{ route('admin.hewan.destroy', $item->id_hewan) }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-red-500 p-2 rounded-md text-white">Hapus</button>
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </section>
