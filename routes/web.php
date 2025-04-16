@@ -27,11 +27,13 @@ Route::get('/magang', function () {
     return view('magang.index');
 });
 
+Route::post('/magang', [PendaftarController::class, 'store'])->name('magang.store');
+
 Route::prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard.index');
     });
-    
+
     Route::prefix('/hewan')->group(function () {
         Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
         Route::get('/create', [HewanController::class, 'create'])->name('admin.hewan.create');
