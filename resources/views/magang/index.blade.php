@@ -7,7 +7,7 @@
             <h1 class="text-green-normal text-center text-xl lg:text-5xl font-poppins font-bold mb-2 lg:mb-6">
                 Ayo Ikut Staycation<span class="text-yellow-normal">.</span>
             </h1>
-            <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4">
+            <form action="{{ route('magang.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4">
                 @csrf
                 <div class="flex flex-col gap-2">
                     <label for="nama" class="block">Nama</label>
@@ -24,12 +24,12 @@
                 <div class="flex flex-col gap-2">
                     <label for="jenis_kelamin" class="block">Jenis Kelamin?</label>
                     <div class="flex gap-2">
-                        <input id="jenis_kelamin_1" type="radio" value="Laki-laki" name="jenis_kelamin"
+                        <input id="jenis_kelamin_1" type="radio" value="L" name="jenis_kelamin"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
                         <label for="jenis_kelamin_1">Laki-laki</label>
                     </div>
                     <div class="flex gap-2">
-                        <input id="jenis_kelamin_2" type="radio" value="Perempuan" name="jenis_kelamin"
+                        <input id="jenis_kelamin_2" type="radio" value="P" name="jenis_kelamin"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
                         <label for="jenis_kelamin_1">Perempuan</label>
                     </div>
@@ -86,12 +86,12 @@
                 <div class="flex flex-col gap-2">
                     <label for="pernah_magang" class="block">Pernah Magang?</label>
                     <div class="flex gap-2">
-                        <input id="pernah_magang_1" type="radio" value="Pernah" name="pernah_magang"
+                        <input id="pernah_magang_1" type="radio" value="1" name="pernah_magang"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
                         <label for="pernah_magang_1">Pernah</label>
                     </div>
                     <div class="flex gap-2">
-                        <input id="pernah_magang_2" type="radio" value="Tidak Pernah" name="pernah_magang"
+                        <input id="pernah_magang_2" type="radio" value="0" name="pernah_magang"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
                         <label for="pernah_magang_1">Tidak Pernah</label>
                     </div>
@@ -117,37 +117,37 @@
                 <div class="flex flex-col gap-2">
                     <label for="punya_kendaraan" class="block">Apakah mempunyai kendaraan?</label>
                     <div class="flex gap-2">
-                        <input id="punya_kendaraan_1" type="radio" value="Punya" name="punya_kendaraan"
+                        <input id="punya_kendaraan_1" type="radio" value="1" name="punya_kendaraan"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
                         <label for="punya_kendaraan_1">Punya</label>
                     </div>
                     <div class="flex gap-2">
-                        <input id="punya_kendaraan_2" type="radio" value="Tidak Punya" name="punya_kendaraan"
+                        <input id="punya_kendaraan_2" type="radio" value="0" name="punya_kendaraan"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
-                        <label for="punya_kendaraan_1">Tidak Punya</label>
+                        <label for="punya_kendaraan_2">Tidak Punya</label>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="bisa_nyetir" class="block">Apakah bisa mengendarai mobil? (Khususnya L300 manual)</label>
                     <div class="flex gap-2">
-                        <input id="bisa_nyetir_1" type="radio" value="Bisa" name="bisa_nyetir"
+                        <input id="bisa_nyetir_1" type="radio" value="1" name="bisa_nyetir"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
                         <label for="bisa_nyetir_1">Bisa</label>
                     </div>
                     <div class="flex gap-2">
-                        <input id="bisa_nyetir_2" type="radio" value="Tidak Bisa" name="bisa_nyetir"
+                        <input id="bisa_nyetir_2" type="radio" value="0" name="bisa_nyetir"
                             class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" required>
-                        <label for="bisa_nyetir_1">Tidak Bisa</label>
+                        <label for="bisa_nyetir_2">Tidak Bisa</label>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="cv" class="block">Masukkan CV atau Resume kamu</label>
                     <label for="cv"
-                        class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">                     
+                        class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                         <x-feathericon-upload />
                         Browse Files
-                        <input type="file" id="cv" name="cv" class="hidden" />
-                    </label>                
+                        <input type="file" id="cv" name="cv" class="hidden" accept="application/pdf"/>
+                    </label>
                 </div>
                 <button type="submit"
                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Kirim</button>
