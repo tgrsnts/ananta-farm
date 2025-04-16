@@ -9,7 +9,8 @@ class PendaftarController extends Controller
 {
     public function index()
     {
-        return view('admin.pendaftar.index', );
+        $data = Magang::get();
+        return view('admin.pendaftar.index', ['data' => $data]);
     }
 
     public function create()
