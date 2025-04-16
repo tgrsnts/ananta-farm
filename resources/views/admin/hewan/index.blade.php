@@ -98,7 +98,7 @@
                 <dialog id="rekamBobotModal" class="modal">
                     <div class="modal-box">
                         <h2 class="font-bold text-lg">Rekam Bobot</h2>
-                        <form id="rekamBobotForm" action="{{ route('admin.hewan.store') }}" method="POST" class="flex flex-col gap-4">
+                        <form id="rekamBobotForm" action="{{ route('admin.rekam-bobot.store') }}" method="POST" class="flex flex-col gap-4">
                             @csrf
                             <input hidden type="text" name="hewan_id" id="hewan_id">
                             <input hidden type="text" name="user_id" id="user_id">
@@ -156,25 +156,18 @@
                                 <td>{{ $item->keterangan }}</td>
                                 <td>{{ $item->kandang->nama_kandang ?? '-' }}</td>
                                 <td class="flex gap-1">
+                                    <a href="/admin/hewan/{{$item->id_hewan}}"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
+                                        Detail
+                                    </a>
+                                    
                                     <button type="button"
                                         class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
                                         onclick="openRekamBobotModal({{ $item->id_hewan }}, '{{ $item->nama_hewan }}', '1')">
                                         Rekam Bobot
                                     </button>
-                                    <script>
-                                        function openRekamBobotModal(hewanId, namaHewan, userId) {
-                                            document.getElementById('hewan_id').value = hewanId;
-                                            document.getElementById('nama_hewan').value = namaHewan;
-                                            document.getElementById('user_id').value = userId;
+                                    
 
-                                            document.getElementById('rekamBobotModal').showModal();
-                                        }
-
-                                        function closeRekamBobotModal() {
-                                            document.getElementById('rekamBobotModal').close();
-                                            document.getElementById('rekamBobotForm').reset();
-                                        }
-                                    </script>
                                     <form action="{{ route('admin.hewan.destroy', $item->id_hewan) }}" method="POST"
                                         onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
                                         @csrf
@@ -185,6 +178,21 @@
                                 </td>
                             </tr>
                         @endforeach
+
+                        <script>
+                            function openRekamBobotModal(hewanId, namaHewan, userId) {
+                                document.getElementById('hewan_id').value = hewanId;
+                                document.getElementById('nama_hewan').value = namaHewan;
+                                document.getElementById('user_id').value = userId;
+
+                                document.getElementById('rekamBobotModal').showModal();
+                            }
+
+                            function closeRekamBobotModal() {
+                                document.getElementById('rekamBobotModal').close();
+                                document.getElementById('rekamBobotForm').reset();
+                            }
+                        </script>
                     </tbody>
                 </table>
 

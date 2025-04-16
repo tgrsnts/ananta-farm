@@ -6,6 +6,7 @@ use App\Http\Controllers\HewanController;
 use App\Http\Controllers\KandangController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RekamBobotController;
 
 Route::get('/', function () {
     return view('index');
@@ -34,11 +35,14 @@ Route::prefix('/admin')->group(function () {
         return view('admin.dashboard.index');
     });
 
+    Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
+
     Route::prefix('/hewan')->group(function () {
         Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
         Route::get('/create', [HewanController::class, 'create'])->name('admin.hewan.create');
         Route::post('/', [HewanController::class, 'store'])->name('admin.hewan.store');
-        Route::get('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
+        Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
+        Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
     });
 
     Route::prefix('/kandang')->group(function () {
