@@ -16,6 +16,7 @@ class MagangSeeder extends Seeder
         Magang::create([
             'nama' => 'Tegar Santoso',
             'nim' => '1234567890',
+            'email' => 'tegarsantoso@gmail.com',
             'jenis_kelamin' => 'L',
             'instansi' => 'Politeknik Negeri Jakarta',
             'jurusan' => 'Teknik Informatika',
