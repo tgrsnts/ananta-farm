@@ -14,24 +14,25 @@ class MagangSeeder extends Seeder
     public function run(): void
     {
         Magang::create([
-            'nama' => 'Mochamad Tegar',
+            'nama' => 'Tegar Santoso',
             'nim' => '1234567890',
             'jenis_kelamin' => 'L',
             'instansi' => 'Politeknik Negeri Jakarta',
             'jurusan' => 'Teknik Informatika',
-            'semester' => 6,
-            'angkatan' => 2022,
+            'semester' => '6',
+            'angkatan' => '2022',
             'nomor_whatsapp' => '+6281234567890',
             'penyakit' => 'Tidak ada',
-            'kegiatan' => 'Membantu pengelolaan kandang dan dokumentasi',
+            'kegiatan' => 'Membantu kandang dan dokumentasi',
             'kunjungan_peternakan' => 'Pernah',
-            'pernah_magang' => 'Belum',
+            'pernah_magang' => false,
             'referal' => 'Instagram',
-            'alasan' => 'Ingin belajar langsung di lapangan',
-            'instagram' => '@tegar.magang',
-            'punya_kendaraan' => 'Ya',
-            'bisa_nyetir' => 'Ya',
-            'cv' => null, // atau isi dengan path file jika perlu
+            'alasan' => 'Ingin menambah pengalaman',
+            'instagram' => '@tegar',
+            'punya_kendaraan' => true,
+            'bisa_nyetir' => true,
+            'cv' => null,
         ]);
+        
     }
 }
