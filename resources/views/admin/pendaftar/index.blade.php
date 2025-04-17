@@ -56,6 +56,10 @@
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
                                 <td>{{ $item->instansi }}</td>
                                 <td class="flex gap-1">
+                                    <a href="/admin/pendaftar/{{$item->id_daftar_magang}}"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
+                                        Detail
+                                    </a>
                                     <form action="{{ route('admin.pendaftar.destroy', $item->id_daftar_magang) }}"
                                         method="POST" onsubmit="return confirm('Yakin ingin menghapus pendaftar ini?')">
                                         @csrf
