@@ -27,7 +27,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->email }}</td>
+                                {{-- <td>{{ $item->email }}</td> --}}
                                 @php
                                     $nomor = preg_replace('/[^0-9]/', '', $item->nomor_whatsapp); // bersihkan nomor
                                     $pesan = urlencode('Halo, saya mau bertanya tentang magang di sini.'); // auto chat
