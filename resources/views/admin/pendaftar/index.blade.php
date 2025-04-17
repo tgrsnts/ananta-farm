@@ -13,7 +13,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
-                            <th>Email</th>
+                            {{-- <th>Email</th> --}}
                             <th>Whatsapp</th>
                             <th>Instagram</th>
                             <th>Jenis Kelamin</th>
