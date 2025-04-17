@@ -28,14 +28,36 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->email }}</td>
-                                <td>{{ $item->nomor_whatsapp }}</td>
-                                <td>{{ $item->instagram }}</td>
+                                @php
+                                    $nomor = preg_replace('/[^0-9]/', '', $item->nomor_whatsapp); // bersihkan nomor
+                                    $pesan = urlencode('Halo, saya mau bertanya tentang magang di sini.'); // auto chat
+                                    $waUrl = "https://wa.me/{$nomor}?text={$pesan}";
+                                @endphp
+
+                                <td>
+                                    <a href="{{ $waUrl }}" target="_blank"
+                                        class="text-green-normal underline flex items-center gap-1">
+                                        {{ $item->nomor_whatsapp }}
+                                    </a>
+                                </td>
+
+                                @php
+                                    $instagram = $item->instagramz;
+                                    $instagramUrl= "https://instagram.com/{$instagram}";
+                                @endphp
+
+                                <td>
+                                    <a href="{{ $instagramUrl}}" target="_blank"
+                                        class="text-green-normal underline flex items-center gap-1">
+                                        {{ $item->instagram}}
+                                    </a>
+                                </td>
                                 <td>{{ $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
                                 <td>{{ $item->instansi }}</td>
                                 <td class="flex gap-1">
-                                    <form action="{{ route('admin.pendaftar.destroy', $item->id_daftar_magang) }}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus pendaftar ini?')">
+                                    <form action="{{ route('admin.pendaftar.destroy', $item->id_daftar_magang) }}"
+                                        method="POST" onsubmit="return confirm('Yakin ingin menghapus pendaftar ini?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"

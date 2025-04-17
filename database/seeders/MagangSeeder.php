@@ -29,7 +29,7 @@ class MagangSeeder extends Seeder
             'pernah_magang' => false,
             'referal' => 'Instagram',
             'alasan' => 'Ingin menambah pengalaman',
-            'instagram' => '@tegar',
+            'instagram' => 'tgrsnts',
             'punya_kendaraan' => true,
             'bisa_nyetir' => true,
             'cv' => null,
