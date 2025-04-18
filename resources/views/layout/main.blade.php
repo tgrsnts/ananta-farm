@@ -26,7 +26,7 @@
     <!-- Tailwind Config -->
     {{-- <script src="{{ asset('assets/js/tailwind.config.js') }}"></script>     --}}
 
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll("section");
             // const navDivs = document.querySelectorAll("nav div div");
@@ -74,7 +74,7 @@
                 });
             }
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>
