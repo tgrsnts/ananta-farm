@@ -55,8 +55,11 @@ class HewanController extends Controller
      */
     public function show(Hewan $hewan)
     {
-        //
+        $hewan->load(['kandang', 'rekam_bobot']);
+        
+        return view('admin.hewan.detail', ['data' => $hewan]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

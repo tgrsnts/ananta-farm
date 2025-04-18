@@ -48,21 +48,30 @@
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="semester" class="block">Semester</label>
-                    <input id="semester" type="text" name="semester"
-                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                        required>
+                    <select name="semester" id="semester"
+                        class="w-full px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                        <option value="">Pilih Semester</option>
+                        @foreach (range(1, 8) as $item)
+                            <option value="{{ $item }}">Semester {{ $item }}</option>
+                        @endforeach
+                    </select>
+
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="angkatan" class="block">Angkatan</label>
+                    <label for="angkatan" class="block">Angkatan (Tahun Masuk)</label>
                     <input id="angkatan" type="text" name="angkatan"
                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
                         required>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="nomor_whatsapp" class="block">Nomor Whatsapp</label>
-                    <input id="nomor_whatsapp" type="text" name="nomor_whatsapp"
-                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                        required>
+                    <div class="flex">
+                        <div class="bg-slate-200 border border-slate-400 px-4 py-2 text-slate-500 text-lg rounded-l-lg">+62
+                        </div>
+                        <input id="nomor_whatsapp" type="text" name="nomor_whatsapp"
+                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-r-lg"
+                            required>
+                    </div>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="penyakit" class="block">Penyakit yang diderita</label>
@@ -97,7 +106,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <label for="referal" class="block">Tahu Informasi Magang Ananta Farm dari Apa/Siapa? (Tulis saja namanya~)</label>
+                    <label for="referal" class="block">Tahu Informasi Magang Ananta Farm dari Apa/Siapa? (Tulis saja
+                        namanya~)</label>
                     <input id="referal" type="text" name="referal"
                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
                         required>
@@ -110,9 +120,13 @@
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="instagram" class="block">Akun Instagram Kamu</label>
-                    <input id="instagram" type="text" name="instagram"
-                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                        required>
+                    <div class="flex">
+                        <div class="bg-slate-200 border border-slate-400 px-4 py-2 text-slate-500 text-lg rounded-l-lg">@
+                        </div>
+                        <input id="instagram" type="text" name="instagram"
+                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-r-lg"
+                            required>
+                    </div>
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="punya_kendaraan" class="block">Apakah mempunyai kendaraan?</label>
@@ -146,7 +160,7 @@
                         class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                         <x-feathericon-upload />
                         Browse Files
-                        <input type="file" id="cv" name="cv" class="hidden" accept="application/pdf"/>
+                        <input type="file" id="cv" name="cv" class="hidden" accept="application/pdf" />
                     </label>
                 </div>
                 <button type="submit"
