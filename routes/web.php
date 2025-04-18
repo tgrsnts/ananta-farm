@@ -65,6 +65,6 @@ Route::prefix('/admin')->group(function () {
         Route::post('/', [ProfileController::class, 'store'])->name('admin.profile.store');
         Route::get('/{id}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
     });
-});
+})->middleware(['auth', 'admin']);
 
 Route::post('/authenticate', [AuthController::class, 'login'])->name('admin.login');
