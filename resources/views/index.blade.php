@@ -3,7 +3,7 @@
 @section('content')
 <!-- Hero -->
 <section id="hero">
-    <div class="bg-cover bg-center h-screen relative" style="background-image: url('image/IMG_2597.jpg');">
+    <div class="bg-cover bg-center h-screen relative" style="background-image: url('/assets/image/IMG_6671.jpg');">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="absolute inset-0 flex flex-col justify-center items-center text-center">
             <h1 class="text-white px-4 text-2xl lg:text-5xl font-poppins font-bold mb-2">Ananta Farm

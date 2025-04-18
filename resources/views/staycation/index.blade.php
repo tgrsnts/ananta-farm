@@ -2,13 +2,36 @@
 
 @section('content')
     <!-- Hero -->
-    <section id="hero">
-        <div class="bg-cover bg-center h-screen relative" style="background-image: url('image/IMG_2597.jpg');">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-            <div class="absolute inset-0 flex flex-col justify-center items-center text-center">
-                <h1 class="text-white px-4 text-2xl lg:text-md sm:text-lg md:text-3xl lg:text-5xl font-bold mb-2">Ananta Farm
-                </h1>
-            </div>
+    <section class="relative w-full h-screen bg-black overflow-hidden flex items-center justify-center">
+        <!-- Segitiga Atas -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-1/2">
+            <img src="/assets/image/IMG_6205.jpg" class="w-full h-full object-cover"
+                style="clip-path: polygon(0 0, 50% 100%, 100% 0);" />
+        </div>
+    
+        <!-- Segitiga Kanan -->
+        <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full">
+            <img src="/assets/image/IMG_3945.jpg" class="w-full h-full object-cover"
+                style="clip-path: polygon(100% 0, 0 50%, 100% 100%);" />
+        </div>
+    
+        <!-- Segitiga Bawah -->
+        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-1/2">
+            <img src="/assets/image/IMG_6451.jpg" class="w-full h-full object-cover"
+                style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);" />
+        </div>
+    
+        <!-- Segitiga Kiri -->
+        <div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full">
+            <img src="/assets/image/IMG_6671.jpg" class="w-full h-full object-cover"
+                style="clip-path: polygon(0 0, 0 100%, 100% 50%);" />
+        </div>
+    
+        <!-- Konten Tengah -->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="z-10 text-white text-center px-4 ">
+            <h1 class="text-4xl md:text-5xl font-bold">Selamat Datang di Peternakan</h1>
+            <p class="text-lg mt-2">Belajar langsung dari alam</p>
         </div>
     </section>
 
@@ -226,15 +249,14 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
                 <div class="flex gap-4 items-center">
                     <div class="flex bg-[#FD5E5E] w-8 h-8"></div>
                     <p class="text-green-normal font-semibold text-lg">Waktu Staycation</p>
                 </div>
                 <div class="flex gap-4 items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 lg:w-12" viewBox="0 0 47 47"
-                        fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 lg:w-12" viewBox="0 0 47 47" fill="none">
                         <path
                             d="M23.5 0C36.479 0 47 10.521 47 23.5C47 36.479 36.479 47 23.5 47C10.521 47 0 36.479 0 23.5C0 10.521 10.521 0 23.5 0ZM23.5 4.7C18.5139 4.7 13.7321 6.68071 10.2064 10.2064C6.68071 13.7321 4.7 18.5139 4.7 23.5C4.7 28.4861 6.68071 33.2679 10.2064 36.7936C13.7321 40.3193 18.5139 42.3 23.5 42.3C28.4861 42.3 33.2679 40.3193 36.7936 36.7936C40.3193 33.2679 42.3 28.4861 42.3 23.5C42.3 18.5139 40.3193 13.7321 36.7936 10.2064C33.2679 6.68071 28.4861 4.7 23.5 4.7ZM19.1948 31.5957C22.0171 27.3634 27.6783 24.4705 33.471 25.9205C33.775 25.991 34.0618 26.1213 34.3149 26.3038C34.5679 26.4863 34.7821 26.7173 34.9449 26.9835C35.1077 27.2496 35.2159 27.5455 35.2631 27.8539C35.3104 28.1623 35.2958 28.477 35.2201 28.7797C35.1444 29.0824 35.0092 29.367 34.8224 29.6169C34.6356 29.8668 34.4009 30.0769 34.132 30.2352C33.8631 30.3934 33.5654 30.4965 33.2562 30.5384C32.9471 30.5804 32.6326 30.5603 32.3313 30.4795C28.724 29.5771 24.9828 31.3866 23.1052 34.2042C22.7593 34.7228 22.2216 35.0827 21.6103 35.2048C20.999 35.3269 20.3643 35.2011 19.8457 34.8552C19.3272 34.5093 18.9673 33.9716 18.8452 33.3603C18.7231 32.749 18.8489 32.1143 19.1948 31.5957ZM17.625 14.1C18.5599 14.1 19.4565 14.4714 20.1176 15.1324C20.7786 15.7935 21.15 16.6901 21.15 17.625C21.15 18.5599 20.7786 19.4565 20.1176 20.1176C19.4565 20.7786 18.5599 21.15 17.625 21.15C16.6901 21.15 15.7935 20.7786 15.1324 20.1176C14.4714 19.4565 14.1 18.5599 14.1 17.625C14.1 16.6901 14.4714 15.7935 15.1324 15.1324C15.7935 14.4714 16.6901 14.1 17.625 14.1ZM31.725 11.75C32.6599 11.75 33.5565 12.1214 34.2175 12.7824C34.8786 13.4435 35.25 14.3401 35.25 15.275C35.25 16.2099 34.8786 17.1065 34.2175 17.7676C33.5565 18.4286 32.6599 18.8 31.725 18.8C30.7901 18.8 29.8935 18.4286 29.2324 17.7676C28.5714 17.1065 28.2 16.2099 28.2 15.275C28.2 14.3401 28.5714 13.4435 29.2324 12.7824C29.8935 12.1214 30.7901 11.75 31.725 11.75Z"
                             fill="#157D75" />
@@ -374,10 +396,12 @@
             </div>
 
             <div class="flex flex-col gap-8 justify-center items-center">
-                <h3 class="text-green-normal text-xl lg:text-3xl font-bold text-center">Sudah tertarik magang di Ananta Farm?</h3>
-                <a href="" class="bg-green-normal hover:bg-green-normal-hover text-white px-6 py-4 text-xl font-semibold rounded-xl w-fit">
+                <h3 class="text-green-normal text-xl lg:text-3xl font-bold text-center">Sudah tertarik magang di Ananta
+                    Farm?</h3>
+                <a href=""
+                    class="bg-green-normal hover:bg-green-normal-hover text-white px-6 py-4 text-xl font-semibold rounded-xl w-fit">
                     Daftar Sekarang!
-                </a>              
+                </a>
             </div>
         </div>
     </section>
