@@ -22,25 +22,12 @@
                     <table class="w-full">
                         <tbody>
                             <tr>
-                                <td class="w-1/4 pr-4">
-                                    <label for="username" class="block text-left">Nama Pengguna</label>
-                                </td>
-                                <td class="w-3/4 pl-4 py-1">
-                                    {{-- <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="username"
-                                        value="{{ $user->username }}" /> --}}
-                                    <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="username"
-                                        value="" />
-                                </td>
-                            </tr>
-                            <tr>
                                 <td class="pr-4">
-                                    <label for="name" class="block text-left">Nama Lengkap</label>
+                                    <label for="nama" class="block text-left">Nama Lengkap</label>
                                 </td>
                                 <td class="pl-4 py-1">
-                                    {{-- <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="name"
-                                        value="{{ $user->name }}" /> --}}
                                     <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="name"
-                                        value="" />
+                                        value="{{ $user->nama }}" />     
                                 </td>
                             </tr>
                             <tr>
@@ -48,7 +35,7 @@
                                     <label for="email" class="block text-left">Email</label>
                                 </td>
                                 <td class="pl-4 py-1">
-                                    {{-- <div class="relative">
+                                    <div class="relative">
                                         <input disabled class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg pr-24" type="email"
                                             name="email" value="{{ $user->email }}" />
                                         <button type="button"
@@ -56,55 +43,6 @@
                                             @if ($user->verification_email) disabled @endif>
                                             {{ $user->verification_email ? 'Sudah Terverifikasi' : 'Verifikasi Email' }}
                                         </button>
-                                    </div> --}}
-                                    <div class="relative">
-                                        <input disabled class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg pr-24" type="email"
-                                            name="email" value="" />
-                                        <button type="button"
-                                            class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-green-normal hover:bg-green-normal-hover text-white text-sm px-3 py-1 rounded-md hover:bg-background">Verifikasi
-                                            Email
-
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pr-4">
-                                    <label for="telp" class="block text-left">Telepon</label>
-                                </td>
-                                <td class="pl-4 py-1">
-                                    {{-- <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="telp"
-                                        value="{{ $user->telp }}" /> --}}
-                                        <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="telp"
-                                        value="" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pr-4">
-                                    <label for="jenis_kelamin" class="block text-left">Jenis Kelamin</label>
-                                </td>
-                                {{-- <td class="pl-4 py-1 flex gap-8">
-                                    <div class="flex items-center gap-1">
-                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Laki-laki"
-                                            {{ $user->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }} />
-                                        <label>Laki-laki</label>
-                                    </div>
-                                    <div class="flex items-center gap-1">
-                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Perempuan"
-                                            {{ $user->jenis_kelamin == 'Perempuan' ? 'checked' : '' }} />
-                                        <label>Perempuan</label>
-                                    </div>
-                                </td> --}}
-                                <td class="pl-4 py-1 flex gap-8">
-                                    <div class="flex items-center gap-1">
-                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Laki-laki"
-                                             />
-                                        <label>Laki-laki</label>
-                                    </div>
-                                    <div class="flex items-center gap-1">
-                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Perempuan"
-                                            />
-                                        <label>Perempuan</label>
                                     </div>
                                 </td>
                             </tr>
