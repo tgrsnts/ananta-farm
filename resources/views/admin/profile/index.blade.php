@@ -47,6 +47,46 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td class="pr-4">
+                                    <label for="telp" class="block text-left">Telepon</label>
+                                </td>
+                                <td class="pl-4 py-1">
+                                    {{-- <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="telp"
+                                        value="{{ $user->telp }}" /> --}}
+                                        <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="telp"
+                                        value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pr-4">
+                                    <label for="jenis_kelamin" class="block text-left">Jenis Kelamin</label>
+                                </td>
+                                {{-- <td class="pl-4 py-1 flex gap-8">
+                                    <div class="flex items-center gap-1">
+                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Laki-laki"
+                                            {{ $user->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }} />
+                                        <label>Laki-laki</label>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Perempuan"
+                                            {{ $user->jenis_kelamin == 'Perempuan' ? 'checked' : '' }} />
+                                        <label>Perempuan</label>
+                                    </div>
+                                </td> --}}
+                                <td class="pl-4 py-1 flex gap-8">
+                                    <div class="flex items-center gap-1">
+                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Laki-laki"
+                                             />
+                                        <label>Laki-laki</label>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="Perempuan"
+                                            />
+                                        <label>Perempuan</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td class="pr-4"></td>
                                 <td class="pl-4 pt-8">
                                     <button type="submit"
