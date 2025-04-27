@@ -18,5 +18,11 @@ class KandangSeeder extends Seeder
             "latitude" => -6.7833520,
             "longitude" => 106.7023680
         ]);
+
+        Kandang::create([
+            "nama_kandang" => "Kandang B",
+            "latitude" => -8.7833520,
+            "longitude" => 110.7023680
+        ]);
     }
 }

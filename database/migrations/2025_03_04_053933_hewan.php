@@ -19,6 +19,7 @@ return new class extends Migration
                 ->noActionOnUpdate()
                 ->noActionOnDelete();
             $table->string('jenis_hewan');
+            $table->string('kategori');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->date('tanggal_lahir');
             $table->text('keterangan');

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HewanController;
 use App\Http\Controllers\KandangController;
 use App\Http\Controllers\PendaftarController;
@@ -31,9 +32,7 @@ Route::get('/magang', function () {
 Route::post('/magang', [PendaftarController::class, 'store'])->name('magang.store');
 
 Route::prefix('/admin')->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard.index');
-    });
+    Route::get('/', [DashboardController::class, 'index']);
 
     Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
 

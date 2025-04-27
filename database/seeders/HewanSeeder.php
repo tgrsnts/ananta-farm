@@ -13,13 +13,68 @@ class HewanSeeder extends Seeder
      */
     public function run(): void
     {
-        Hewan::create([
-            'nama_hewan' => 'Sapy',
-            'jenis_hewan' => 'Sapi',
-            'jenis_kelamin' => 'L',
-            'tanggal_lahir' => '2024-12-21',
-            'keterangan' => 'Lorem',
-            'kandang_id' => 1
-        ]);        
+        $hewan = [
+            // Sapi
+            [
+                'nama_hewan' => 'Sapi A',
+                'jenis_hewan' => 'Sapi',
+                'jenis_kelamin' => 'L',
+                'tanggal_lahir' => '2024-01-10',
+                'keterangan' => 'Sapi fattening',
+                'kategori' => 'Fattening',
+                'kandang_id' => 1,
+            ],
+            [
+                'nama_hewan' => 'Sapi B',
+                'jenis_hewan' => 'Sapi',
+                'jenis_kelamin' => 'P',
+                'tanggal_lahir' => '2023-11-05',
+                'keterangan' => 'Sapi breeding',
+                'kategori' => 'Breeding',
+                'kandang_id' => 1,
+            ],
+            [
+                'nama_hewan' => 'Sapi C',
+                'jenis_hewan' => 'Sapi',
+                'jenis_kelamin' => 'L',
+                'tanggal_lahir' => '2024-04-20',
+                'keterangan' => 'Anakan sapi',
+                'kategori' => 'Anakan',
+                'kandang_id' => 1,
+            ],
+
+            // Kambing
+            [
+                'nama_hewan' => 'Kambing A',
+                'jenis_hewan' => 'Kambing',
+                'jenis_kelamin' => 'P',
+                'tanggal_lahir' => '2024-02-14',
+                'keterangan' => 'Kambing fattening',
+                'kategori' => 'Fattening',
+                'kandang_id' => 2,
+            ],
+            [
+                'nama_hewan' => 'Kambing B',
+                'jenis_hewan' => 'Kambing',
+                'jenis_kelamin' => 'L',
+                'tanggal_lahir' => '2023-08-18',
+                'keterangan' => 'Kambing breeding',
+                'kategori' => 'Breeding',
+                'kandang_id' => 2,
+            ],
+            [
+                'nama_hewan' => 'Kambing C',
+                'jenis_hewan' => 'Kambing',
+                'jenis_kelamin' => 'P',
+                'tanggal_lahir' => '2024-05-05',
+                'keterangan' => 'Anakan kambing',
+                'kategori' => 'Anakan',
+                'kandang_id' => 2,
+            ],
+        ];
+
+        foreach ($hewan as $data) {
+            Hewan::create($data);
+        }
     }
 }
