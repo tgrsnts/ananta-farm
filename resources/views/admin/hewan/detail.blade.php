@@ -37,7 +37,7 @@
                             <th>#</th>
                             <th>Tanggal</th>
                             <th>Bobot</th>
-                            <th>PIC</th>
+                            <th>PJ</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
