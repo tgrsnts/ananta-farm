@@ -25,7 +25,7 @@
                     <a href="/katalog">Katalog</a>
                 </li>
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white {{ Request::is('/magang') ? 'border-white' : '' }}">
-                    <a href="/magang">Magang</a>
+                    <a href="/staycation">Magang</a>
                 </li>
                 <a
                     class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
