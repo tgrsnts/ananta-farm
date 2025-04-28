@@ -36,6 +36,7 @@ class HewanController extends Controller
             "jenis_hewan" => "required",
             "jenis_kelamin" => "required",
             "tanggal_lahir" => "required",
+            "kategori" => "required",
             "kandang_id" => "required",
         ]);
         Hewan::create([
@@ -43,6 +44,7 @@ class HewanController extends Controller
             'jenis_hewan' => $request->jenis_hewan,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'kategori' => $request->kategori,
             'keterangan' => $request->keterangan,
             'kandang_id' => $request->kandang_id,
             'foto' => $request->foto,

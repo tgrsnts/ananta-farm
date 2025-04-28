@@ -71,6 +71,17 @@
                                         </select>
                                     </div>
                                     <div class="flex flex-col gap-1">
+                                        <label class="block">Kategori</label>
+                                        <select name="kategori"
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                            <option value="" disabled selected>Pilih kategori</option>
+                                            <option value="Fattening">Fattening</option>
+                                            <option value="Breeding">Breeding</option>
+                                            <option value="Anakan">Anakan</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
                                         <label class="block">Keterangan</label>
                                         <textarea name="keterangan" required
                                             class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"></textarea>
