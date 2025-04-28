@@ -1,22 +1,20 @@
 @extends('admin.layout.main')
 
 @section('content')
-    <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col gap-4 p-4 pb-20 bg-slate-50">
-        <div class="w-full gap-4 bg-white p-4 rounded-lg shadow-md">
+    <section id="dashboard" class="min-h-screen font-poppins w-full flex gap-4 p-4 pb-20 bg-slate-50">
+        {{-- <div class="w-full gap-4 bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Dashboard</div>
             </div>
+        </div> --}}
+        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-1/2">
+            <h2 class="text-2xl font-semibold mb-4">Data Sapi</h2>
+            <canvas id="sapiChart" class="w-full"></canvas>
         </div>
-        <div class="flex gap-4 w-full">
-            <div class="bg-white p-4 rounded-lg shadow-md w-1/2">
-                <h2 class="text-2xl font-semibold mb-4">Data Sapi</h2>
-                <canvas id="sapiChart" class="w-full"></canvas>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow-md w-1/2">
-                <h2 class="text-2xl font-semibold mb-4">Data Kambing</h2>
-                <canvas id="kambingChart" class="w-full"></canvas>
-            </div>
-        </div>        
+        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-1/2">
+            <h2 class="text-2xl font-semibold mb-4">Data Kambing</h2>
+            <canvas id="kambingChart" class="w-full"></canvas>
+        </div>    
 
         <!-- Chart.js CDN -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
