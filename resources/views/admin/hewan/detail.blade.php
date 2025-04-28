@@ -37,6 +37,7 @@
                             <th>#</th>
                             <th>Tanggal</th>
                             <th>Bobot</th>
+                            <th>PIC</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->bobot }}</td>
+                                <td>{{ $item->user->nama }}</td>
                                 <td class="flex gap-1">
 
                                 </td>
