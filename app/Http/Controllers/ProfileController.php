@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -19,19 +20,18 @@ class ProfileController extends Controller
 
     public function edit() {}
 
-    public function update(Request $request){
-        dd($request);
+    public function updateFoto(Request $request){
         $user = Auth::user();
-        if ($request->hasFile('gambar')) {
+        if ($request->hasFile('foto')) {
             $pathLama = storage_path('app/public/' . $user->gambar);
             if (File::exists($pathLama)) {
                 File::delete($pathLama);
             }
-            $file = $request->file('gambar');
+            $file = $request->file('foto');
             $fileName = $this->quickRandom() . '.' . $file->extension();
             $path = $file->storeAs('foto_profile', $fileName, 'public');
             $user->update([
-                'gambar' => $path
+                'foto' => $path
             ]);
             return redirect('/admin/profile');
         } else {

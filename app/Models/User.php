@@ -3,7 +3,6 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Kandang;
 use App\Models\RekamBobot;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,7 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'kandang_id'
+        'foto'
     ];
 
     /**
@@ -54,10 +53,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function kandang(): BelongsTo
-    {
-        return $this->belongsTo(Kandang::class, 'kandang_id', 'id_kandang');
-    }
     public function rekam_bobot(): HasMany
     {
         return $this->hasMany(RekamBobot::class, 'user_id', 'id_user');
