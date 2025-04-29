@@ -31,32 +31,34 @@ Route::get('/magang', function () {
 
 Route::post('/magang', [PendaftarController::class, 'store'])->name('magang.store');
 
-Route::prefix('/admin')->group(function () {
-    Route::get('/', [DashboardController::class, 'index']);
+Route::middleware('admin')->group(function () {
+    Route::prefix('/admin')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->middleware('admin');
 
-    Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
+        Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
 
-    Route::prefix('/hewan')->group(function () {
-        Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
-        Route::get('/create', [HewanController::class, 'create'])->name('admin.hewan.create');
-        Route::post('/', [HewanController::class, 'store'])->name('admin.hewan.store');
-        Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
-        Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
+        Route::prefix('/hewan')->group(function () {
+            Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
+            Route::get('/create', [HewanController::class, 'create'])->name('admin.hewan.create');
+            Route::post('/', [HewanController::class, 'store'])->name('admin.hewan.store');
+            Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
+            Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
+        });
+
+        Route::prefix('/pendaftar')->group(function () {
+            Route::get('/', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
+            Route::get('/create', [PendaftarController::class, 'create'])->name('admin.pendaftar.create');
+            Route::post('/', [PendaftarController::class, 'store'])->name('admin.pendaftar.store');
+            Route::get('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
+        });
+
+        Route::prefix('/profile')->group(function () {
+            Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
+            Route::get('/create', [ProfileController::class, 'create'])->name('admin.profile.create');
+            Route::post('/', [ProfileController::class, 'store'])->name('admin.profile.store');
+            Route::get('/{id}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
+        });
     });
-
-    Route::prefix('/pendaftar')->group(function () {
-        Route::get('/', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
-        Route::get('/create', [PendaftarController::class, 'create'])->name('admin.pendaftar.create');
-        Route::post('/', [PendaftarController::class, 'store'])->name('admin.pendaftar.store');
-        Route::get('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
-    });
-
-    Route::prefix('/profile')->group(function () {
-        Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
-        Route::get('/create', [ProfileController::class, 'create'])->name('admin.profile.create');
-        Route::post('/', [ProfileController::class, 'store'])->name('admin.profile.store');
-        Route::get('/{id}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
-    });
-})->middleware(['auth', 'admin']);
+});
 
 Route::post('/authenticate', [AuthController::class, 'login'])->name('admin.login');
