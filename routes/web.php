@@ -22,6 +22,10 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
+Route::get('/katalog', function () {
+    return view('katalog.index');
+});
+
 Route::get('/staycation', function () {
     return view('staycation.index');
 });
