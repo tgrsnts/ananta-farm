@@ -16,6 +16,12 @@
                         required>
                 </div>
                 <div class="flex flex-col gap-2">
+                    <label for="email" class="block">Email</label>
+                    <input id="email" type="text" name="email"
+                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                        required>
+                </div>
+                <div class="flex flex-col gap-2">
                     <label for="nim" class="block">NIM</label>
                     <input id="nim" type="text" name="nim"
                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"

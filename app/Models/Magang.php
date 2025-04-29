@@ -11,6 +11,7 @@ class Magang extends Model
     protected $fillable = [
         'nama',
         'nim',
+        'email',
         'jenis_kelamin',
         'instansi',
         'jurusan',

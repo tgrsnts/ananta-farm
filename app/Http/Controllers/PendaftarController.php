@@ -36,11 +36,12 @@ class PendaftarController extends Controller
             'instagram' => $request->instagram,
             'punya_kendaraan' => $request->punya_kendaraan,
             'bisa_nyetir' => $request->bisa_nyetir,
-            'cv' => null
+            'cv' => null,
+            'status' => 'pending'
         ]);
         if ($request->hasFile('cv')) {
             $file = $request->file('cv');
-            $fileName = $request->nim . '.' . $file->extension();
+            $fileName = $request->nim . $data->id . '.' . $file->extension();
             $path = $file->storeAs('cv', $fileName, 'public');
             $data->update([
                 'cv' => $path
