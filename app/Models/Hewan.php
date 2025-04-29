@@ -31,4 +31,9 @@ class Hewan extends Model
     {
         return $this->hasMany(RiwayatPenyakit::class, 'hewan_id', 'id_hewan');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'id_hewan';
+    }
 }

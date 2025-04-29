@@ -205,6 +205,70 @@
                         </div>
                     </div>
                 </dialog>
+
+                <!-- Modal Edit Hewan -->
+                <dialog id="EditHewanModal" class="modal">
+                    <div class="modal-box">
+                        <h2 class="font-bold text-lg">Edit Hewan</h2>
+                        <form id="editForm" action="{{ route('admin.hewan.update', ['hewan']) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input hidden type="text" name="hewan_id" id="edit-hewan-id">
+
+                            <div class="flex flex-col gap-2">
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Nama Hewan</label>
+                                    <input type="text" name="nama_hewan" id="edit_nama_hewan"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Jenis Hewan</label>
+                                    <select name="jenis_hewan" id="edit_jenis_hewan"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                        <option value="Sapi">Sapi</option>
+                                        <option value="Kambing">Kambing</option>
+                                    </select>
+                                </div>
+                    
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Jenis Kelamin</label>
+                                    <select name="jenis_kelamin" id="edit_jenis_kelamin"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
+                    
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Tanggal Lahir</label>
+                                    <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                </div>
+                    
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Kategori</label>
+                                    <select name="kategori" id="edit_kategori"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                        <option value="Fattening">Fattening</option>
+                                        <option value="Breeding">Breeding</option>
+                                        <option value="Anakan">Anakan</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Keterangan</label>
+                                    <textarea name="keterangan" id="edit_keterangan" rows="3"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"></textarea>
+                                </div>
+
+                                <button type="submit"
+                                class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                        </form>
+                        <button class="btn btn-ghost w-full"
+                            onclick="closeEditHewanModal()">Batal</button>
+                    </div>
+                </dialog>
             </div>
 
 
@@ -250,6 +314,10 @@
                                         <button type="submit"
                                             class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
                                     </form>
+
+                                    <button type="button" onclick="openEditHewanModal({{ $item }})" class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded">
+                                        Edit
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -270,6 +338,22 @@
                                 document.getElementById('rekamModal').close();
                                 document.getElementById('rekamBobotForm').reset();
                                 document.getElementById('rekamPenyakitForm').reset();
+                            }
+
+                            function openEditHewanModal(hewan) {
+                                // Fill in the form fields with data from the `hewan` object
+                                document.getElementById('edit-hewan-id').value = hewan.id_hewan;
+                                document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
+                                document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
+                                document.getElementById('edit_jenis_kelamin').value = hewan.jenis_kelamin;
+                                document.getElementById('edit_tanggal_lahir').value = hewan.tanggal_lahir;
+                                document.getElementById('edit_kategori').value = hewan.kategori;
+                                document.getElementById('edit_keterangan').value = hewan.keterangan;
+
+                                const form = document.getElementById('editForm');
+                                form.action = `/admin/hewan/${hewan.id_hewan}`;
+
+                                document.getElementById('EditHewanModal').showModal();
                             }
                         </script>
                     </tbody>

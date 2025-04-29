@@ -73,7 +73,21 @@ class HewanController extends Controller
      */
     public function update(Request $request, Hewan $hewan)
     {
-        //
+        $data = $request->validate([
+            'nama_hewan' => 'required|string',
+            'jenis_hewan' => 'required|string',
+            'jenis_kelamin' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'keterangan' => 'nullable|string',
+            'kategori' => 'required|string',
+        ]);
+        \Log::info('Form Data:', $data);
+        \Log::info('Before Update:', $hewan->toArray());
+    
+        $hewan->update($data);
+        \Log::info('After Update:', $hewan->fresh()->toArray());
+    
+        return redirect()->route('admin.hewan.index')->with('status', 'Updated!');
     }
 
     /**
