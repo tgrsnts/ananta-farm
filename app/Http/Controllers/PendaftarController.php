@@ -50,6 +50,12 @@ class PendaftarController extends Controller
         return redirect('/');
     }
 
+    public function show(Magang $pendaftar)
+    {
+        return view('admin.pendaftar.detail', ['data' => $pendaftar]);
+    }
+
+
     public function edit() {}
 
     public function update() {}
