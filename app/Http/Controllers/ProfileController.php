@@ -18,7 +18,20 @@ class ProfileController extends Controller
 
     public function store(Request $request) {}
 
-    public function edit() {}
+    public function edit(Request $request){
+        $user = Auth::user();
+        $request_data = $request->validate([
+            'jenis_kelamin' => 'required',
+            'nama' => 'required',
+            'telepon' => 'required'
+        ]);
+        $user->update([
+            'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'telepon' => $request->telepon
+        ]);
+        return redirect('/admin/profile');
+    }
 
     public function updateFoto(Request $request){
         $user = Auth::user();
@@ -38,6 +51,7 @@ class ProfileController extends Controller
             return redirect('/admin/profile');
         }
     }
+
 
     public function destroy($id) {}
 
