@@ -57,6 +57,8 @@ Route::middleware('admin')->group(function () {
             Route::get('/create', [ProfileController::class, 'create'])->name('admin.profile.create');
             Route::post('/', [ProfileController::class, 'store'])->name('admin.profile.store');
             Route::get('/{id}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
+            Route::post('/foto', [ProfileController::class, 'updateFoto'])->name('admin.update.foto');
+            Route::post('/update', [ProfileController::class, 'update'])->name('admin.update');
         });
 
         Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
