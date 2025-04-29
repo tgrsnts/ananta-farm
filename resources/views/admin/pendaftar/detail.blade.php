@@ -5,6 +5,18 @@
         <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Detail Pendaftar</div>
+                <div>
+                    <form action="" class="flex gap-2">
+                        <label for="status" class="flex items-center">Status:</label>
+                        <select name="status" id="status" class="w-auto px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                            <option value="pending" @selected(old('status', $data->status ?? '') == 'pending')>Pending</option>
+                            <option value="diterima" @selected(old('status', $data->status ?? '') == 'diterima')>Diterima</option>
+                            <option value="tidak_diterima" @selected(old('status', $data->status ?? '') == 'tidak_diterima')>Tidak Diterima</option>
+                            <option value="selesai" @selected(old('status', $data->status ?? '') == 'selesai')>Selesai</option>
+                        </select>
+                        <button type="submit" class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                    </form>
+                </div>
             </div>
             <div class="grid grid-cols-2 gap-x-8 gap-y-4">
                 <!-- Kolom Kiri -->
@@ -32,6 +44,13 @@
 
                     <label>Angkatan</label>
                     <input type="text" value="{{ $data->angkatan }}" class="input input-bordered w-full" readonly>
+
+                    <label>CV</label>
+                    @if($data->cv)
+                        <a href="{{ asset('storage/' . $data->cv) }}" target="_blank" class="text-blue-600 underline">Lihat CV</a>
+                    @else
+                        <p class="text-gray-500">Tidak ada</p>
+                    @endif
                 </div>
 
                 <!-- Kolom Kanan -->
@@ -66,15 +85,7 @@
                     <label>Bisa Nyetir</label>
                     <input type="text" value="{{ $data->bisa_nyetir ? 'Ya' : 'Tidak' }}" class="input input-bordered w-full" readonly>
 
-                    <label>CV</label>
-                    @if($data->cv)
-                        <a href="{{ asset('storage/' . $data->cv) }}" target="_blank" class="text-blue-600 underline">Lihat CV</a>
-                    @else
-                        <p class="text-gray-500">Tidak ada</p>
-                    @endif
 
-                    <label>Status</label>
-                    <input type="text" value="{{ ucfirst(str_replace('_', ' ', $data->status)) }}" class="input input-bordered w-full" readonly>
                 </div>
             </div>
         </div>
