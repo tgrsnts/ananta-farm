@@ -6,7 +6,7 @@
             <div class="font-semibold">Akun Saya</div>
             <div>Kelola informasi profil Anda.</div>
             <div class="divider"></div>
-            <div class="flex w-full">
+            <div class="flex w-full p-6">
                 <form action="{{ route('admin.update.foto') }}" method="POST" class="flex w-1/4" enctype="multipart/form-data">
                     @csrf
                     <div class="w-full flex flex-col items-center gap-4">
