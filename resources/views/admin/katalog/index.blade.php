@@ -66,6 +66,50 @@
                                 onclick="document.getElementById('addKatalogModal').close()">Batal</button>
                         </div>
                     </dialog>
+
+                     <!-- Modal Edit Katalog -->
+                     <dialog id="editKatalogModal" class="modal">
+                        <div class="modal-box">
+                            <h2 class="font-bold text-lg">Edit Katalog</h2>
+                            <form id="editKatalogForm" action="{{ route('admin.katalog.update', ['id' => '__ID__']) }}" method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id_katalog" id="edit_id_katalog">
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Nama </label>
+                                    <input type="text" id="edit_nama" name="nama" class="w-full p-2 border-1 rounded-lg" required>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label for="edit_jenis" class="block">Jenis</label>
+                                    <select name="jenis" id="edit_jenis" class="w-full px-2 py-3 border-1 rounded-lg">
+                                        <option value="">Pilih Jenis</option>
+                                        <option value="sapi">Sapi</option>
+                                        <option value="domba">Domba</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Bobot </label>
+                                    <input type="text" id="edit_bobot" name="bobot" class="w-full p-2 border-1 rounded-lg" required>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label for="edit_harga" class="block">Harga</label>
+                                    <div class="flex">
+                                        <div class="bg-slate-200 border px-4 py-2 text-slate-500 text-lg rounded-l-lg">Rp.</div>
+                                        <input id="edit_harga" type="text" name="harga" class="w-full p-2 border-1 rounded-r-lg" required>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label for="edit_foto" class="block">Foto Katalog</label>
+                                    <label for="edit_foto" class="flex gap-2 items-center justify-center rounded-md border border-green-normal py-2 px-4 cursor-pointer">
+                                        <x-feathericon-upload />
+                                        Browse Files
+                                        <input type="file" id="edit_foto" name="foto" class="hidden" />
+                                    </label>
+                                </div>
+                                <button type="submit" class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                            </form>
+                            <button class="btn btn-ghost w-full" onclick="document.getElementById('editKatalogModal').close()">Batal</button>
+                        </div>
+                    </dialog>
                 </div>
             </div>
 
@@ -95,10 +139,10 @@
                                 <td>
                                     <div class="flex gap-1">
                                         <button type="button"
-                                            class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
-                                            onclick="openRekamModal({{ $item->id_katalog }}, '{{ $item->nama_katalog }}', '1')">
-                                            Edit
-                                        </button>
+                                        class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
+                                        onclick="openEditModal({{ $item->id_katalog }}, '{{ $item->nama }}', '{{ $item->jenis }}', '{{ $item->bobot }}', '{{ $item->harga }}')">
+                                        Edit
+                                    </button>                                    
                                         <form action="{{ route('admin.katalog.destroy', $item->id_katalog) }}" method="POST"
                                             onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
                                             @csrf
@@ -111,24 +155,18 @@
                             </tr>
                         @endforeach
 
-                        {{-- <script>
-                            function openRekamModal(katalogId, namaKatalog, userId) {
-                                document.getElementById('katalog_id_bobot').value = katalogId;
-                                document.getElementById('nama_katalog_bobot').value = namaKatalog;
-                                document.getElementById('user_id_bobot').value = userId;
-                                document.getElementById('katalog_id_penyakit').value = katalogId;
-                                document.getElementById('nama_katalog_penyakit').value = namaKatalog;
-                                document.getElementById('user_id_penyakit').value = userId;
-
-                                document.getElementById('rekamModal').showModal();
+                        <script>
+                            function openEditModal(id, nama, jenis, bobot, harga) {
+                                form.action = form.action.replace('__ID__', id);
+                                document.getElementById('edit_id_katalog').value = id;
+                                document.getElementById('edit_nama').value = nama;
+                                document.getElementById('edit_jenis').value = jenis;
+                                document.getElementById('edit_bobot').value = bobot;
+                                document.getElementById('edit_harga').value = harga;
+                        
+                                document.getElementById('editKatalogModal').showModal();
                             }
-
-                            function closeRekamModal() {
-                                document.getElementById('rekamModal').close();
-                                document.getElementById('rekamBobotForm').reset();
-                                document.getElementById('rekamPenyakitForm').reset();
-                            }
-                        </script> --}}
+                        </script>
                     </tbody>
                 </table>
 

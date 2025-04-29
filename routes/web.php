@@ -56,6 +56,7 @@ Route::middleware('admin')->group(function () {
             Route::get('/', [KatalogController::class, 'index_admin'])->name('admin.katalog.index');
             Route::get('/create', [KatalogController::class, 'create'])->name('admin.katalog.create');
             Route::post('/', [KatalogController::class, 'store'])->name('admin.katalog.store');
+            Route::post('/{id}', [KatalogController::class, 'update'])->name('admin.katalog.update');
             Route::get('/{katalog}', [KatalogController::class, 'show'])->name('admin.katalog.show');
             Route::delete('/{id}', [KatalogController::class, 'destroy'])->name('admin.katalog.destroy');
         });
