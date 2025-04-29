@@ -27,6 +27,14 @@
         Hewan
     </a>
 
+    <a href="/admin/katalog"
+        class="{{ $currentRoute == 'admin/katalog' ? 'text-green-normal bg-white' : 'text-white' }} font-poppins font-semibold flex items-center w-full py-4 pl-16 pr-8 leading-tight transition-all rounded-r-lg outline-none text-start hover:bg-white hover:text-green-normal focus:bg-white focus:text-green-normal active:bg-white active:text-green-normal">
+        <div class="flex w-6 h-6 mr-4 items-center justify-center">
+            <i class="fa-solid fa-image"></i>
+        </div>
+        Katalog
+    </a>
+
     <a href="/admin/pendaftar"
         class="{{ $currentRoute == 'admin/pendaftar' ? 'text-green-normal bg-white' : 'text-white' }} font-poppins font-semibold flex items-center w-full py-4 pl-16 pr-8 leading-tight transition-all rounded-r-lg outline-none text-start hover:bg-white hover:text-green-normal focus:bg-white focus:text-green-normal active:bg-white active:text-green-normal">
         <div class="flex w-6 h-6 mr-4 items-center justify-center">

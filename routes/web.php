@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HewanController;
 use App\Http\Controllers\KandangController;
+use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekamBobotController;
@@ -49,6 +50,14 @@ Route::middleware('admin')->group(function () {
             Route::post('/', [HewanController::class, 'store'])->name('admin.hewan.store');
             Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
             Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
+        });
+        
+        Route::prefix('/katalog')->group(function () {
+            Route::get('/', [KatalogController::class, 'index'])->name('admin.katalog.index');
+            Route::get('/create', [KatalogController::class, 'create'])->name('admin.katalog.create');
+            Route::post('/', [KatalogController::class, 'store'])->name('admin.katalog.store');
+            Route::get('/{katalog}', [KatalogController::class, 'show'])->name('admin.katalog.show');
+            Route::delete('/{id}', [KatalogController::class, 'destroy'])->name('admin.katalog.destroy');
         });
 
         Route::prefix('/pendaftar')->group(function () {
