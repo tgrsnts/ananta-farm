@@ -23,9 +23,9 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
-Route::get('/katalog', function () {
-    return view('katalog.index');
-});
+Route::get('/katalog',
+    [KatalogController::class, 'index']
+);
 
 Route::get('/staycation', function () {
     return view('staycation.index');
@@ -53,7 +53,7 @@ Route::middleware('admin')->group(function () {
         });
 
         Route::prefix('/katalog')->group(function () {
-            Route::get('/', [KatalogController::class, 'index'])->name('admin.katalog.index');
+            Route::get('/', [KatalogController::class, 'index_admin'])->name('admin.katalog.index');
             Route::get('/create', [KatalogController::class, 'create'])->name('admin.katalog.create');
             Route::post('/', [KatalogController::class, 'store'])->name('admin.katalog.store');
             Route::get('/{katalog}', [KatalogController::class, 'show'])->name('admin.katalog.show');

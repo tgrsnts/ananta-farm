@@ -10,6 +10,12 @@ class KatalogController extends Controller
     public function index()
     {
         $katalog = Katalog::get();
+        return view('katalog.index', ['katalog' => $katalog]);
+    }
+
+    public function index_admin()
+    {
+        $katalog = Katalog::get();
         return view('admin.katalog.index', ['katalog' => $katalog]);
     }
 
