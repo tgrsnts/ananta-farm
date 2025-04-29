@@ -88,7 +88,7 @@ class PendaftarController extends Controller
                 if($magang->status == 'pending' || $magang->status == 'tidak_diterima'){
                     break;
                 }else{
-                    $user = User::find($magang->email);
+                    $user = User::where('email', $magang->email)->first();
                     $user->delete();
                     $magang->update([
                         'status' => 'selesai'
