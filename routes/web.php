@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->middleware('login');
 
 Route::get('/register', function () {
     return view('auth.register');
