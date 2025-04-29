@@ -15,7 +15,7 @@
                     <dialog id="addKatalogModal" class="modal">
                         <div class="modal-box">
                             <h2 class="font-bold text-lg">Tambah Katalog</h2>
-                            <form action="{{ route('admin.katalog.store') }}" method="POST" class="flex flex-col gap-4">
+                            <form action="{{ route('admin.katalog.store') }}" method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex flex-col gap-2">
                                     <div class="flex flex-col gap-1">
@@ -24,30 +24,30 @@
                                             class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
                                             required>
                                     </div>
-                                    <div class="flex flex-col gap-1">
-                                        <label class="block">Jenis Kelamin</label>
-                                        <div class="flex gap-4">
-                                            <div class="flex gap-2">
-                                                <input id="jenis_kelamin_1" type="radio" value="L"
-                                                    name="jenis_kelamin"
-                                                    class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                                    required>
-                                                <label for="jenis_kelamin_1">Jantan</label>
-                                            </div>
-                                            <div class="flex gap-2">
-                                                <input id="jenis_kelamin_2" type="radio" value="P"
-                                                    name="jenis_kelamin"
-                                                    class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                                    required>
-                                                <label for="jenis_kelamin_1">Betina</label>
-                                            </div>
-                                        </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label for="jenis" class="block">Jenis</label>
+                                        <select name="jenis" id="jenis"
+                                            class="w-full px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                            <option value="">Pilih Jenis</option>
+                                                <option value="sapi">Sapi</option>
+                                                <option value="domba">Domba</option>
+                                        </select>
                                     </div>
                                     <div class="flex flex-col gap-1">
                                         <label class="block">Bobot </label>
                                         <input type="text" name="bobot"
                                             class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
                                             required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label for="harga" class="block">Harga</label>
+                                        <div class="flex">
+                                            <div class="bg-slate-200 border border-slate-400 px-4 py-2 text-slate-500 text-lg rounded-l-lg">Rp.
+                                            </div>
+                                            <input id="harga" type="text" name="harga"
+                                                class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-r-lg"
+                                                required>
+                                        </div>
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <label for="foto" class="block">Foto Katalog</label>
@@ -67,7 +67,6 @@
                         </div>
                     </dialog>
                 </div>
-
             </div>
 
 
@@ -77,8 +76,9 @@
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
-                            <th>Jenis Kelamin</th>
+                            <th>Jenis</th>
                             <th>Bobot</th>
+                            <th>Harga</th>
                             <th>Foto</th>
                             <th>Aksi</th>
                         </tr>
@@ -90,27 +90,23 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->jenis_kelamin == 'L' ? 'Jantan' : 'Betina' }}</td>
                                 <td>{{ $item->bobot }}</td>
-                                <td>{{ $item->foto }}</td>
-                                <td class="flex gap-1">
-                                    {{-- <a href="/admin/katalog/{{ $item->id_katalog }}"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
-                                        Detail
-                                    </a>
-
-                                    <button type="button"
-                                        class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
-                                        onclick="openRekamModal({{ $item->id_katalog }}, '{{ $item->nama_katalog }}', '1')">
-                                        Rekam
-                                    </button> --}}
-
-
-                                    <form action="{{ route('admin.katalog.destroy', $item->id_katalog) }}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
-                                    </form>
+                                <td>{{ $item->harga }}</td>
+                                <td><img class="max-h-24" src="{{ asset('storage/' . $item->foto) }}" alt="foto_katalog"></td>
+                                <td>
+                                    <div class="flex gap-1">
+                                        <button type="button"
+                                            class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
+                                            onclick="openRekamModal({{ $item->id_katalog }}, '{{ $item->nama_katalog }}', '1')">
+                                            Edit
+                                        </button>
+                                        <form action="{{ route('admin.katalog.destroy', $item->id_katalog) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
