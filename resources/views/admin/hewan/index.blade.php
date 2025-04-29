@@ -141,7 +141,6 @@
                             <th>Jenis Kelamin</th>
                             <th>Tanggal Lahir</th>
                             <th>Keterangan</th>
-                            <th>Kandang</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -154,7 +153,6 @@
                                 <td>{{ $item->jenis_kelamin == 'L' ? 'Jantan' : 'Betina' }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
                                 <td>{{ $item->keterangan }}</td>
-                                <td>{{ $item->kandang->nama_kandang ?? '-' }}</td>
                                 <td class="flex gap-1">
                                     <a href="/admin/hewan/{{$item->id_hewan}}"
                                         class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
