@@ -10,15 +10,19 @@
                 <form action="{{ route('admin.update.foto') }}" method="POST" class="flex w-1/4" enctype="multipart/form-data">
                     @csrf
                     <div class="w-full flex flex-col items-center gap-4">
-                        <img class="w-full aspect-square" src="{{ asset('storage/' . $user->foto ) ?? '/default-avatar.jpg' }}" alt="Foto Profil" />
+                        <img class="w-full aspect-square"
+                            src="{{ $user->foto ? asset('storage/' . $user->foto) : asset('assets/image/avatar-biru.jpg') }}"
+                            alt="Foto Profil" />
                         <label for="foto"
                             class="w-full flex items-center justify-center rounded-md bg-green-normal hover:bg-green-normal-hover cursor-pointer py-2 px-4 text-white hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                             Ubah Foto
-                            <input type="file" id="foto" name="foto" class="hidden" onchange="this.form.submit()"/>
+                            <input type="file" id="foto" name="foto" class="hidden"
+                                onchange="this.form.submit()" />
                         </label>
                     </div>
                 </form>
-                <form method="POST" action="{{ route('admin.update.about') }}" enctype="multipart/form-data" class="flex w-full">
+                <form method="POST" action="{{ route('admin.update.about') }}" enctype="multipart/form-data"
+                    class="flex w-full">
                     @csrf
                     <div class="flex w-3/4 pl-8">
                         <table class="w-full">
@@ -28,8 +32,9 @@
                                         <label for="nama" class="block text-left">Nama Lengkap</label>
                                     </td>
                                     <td class="pl-4 py-1">
-                                        <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="nama" id="nama"
-                                            value="{{ $user->nama }}" />
+                                        <input
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            type="text" name="nama" id="nama" value="{{ $user->nama }}" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -38,8 +43,9 @@
                                     </td>
                                     <td class="pl-4 py-1">
                                         <div class="relative">
-                                            <input disabled class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg pr-24" id="email" type="email"
-                                                name="email" value="{{ $user->email }}" />
+                                            <input disabled
+                                                class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg pr-24"
+                                                id="email" type="email" name="email" value="{{ $user->email }}" />
                                         </div>
                                     </td>
                                 </tr>
@@ -48,7 +54,9 @@
                                         <label for="telepon" class="block text-left">Telepon</label>
                                     </td>
                                     <td class="pl-4 py-1">
-                                        <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="telepon" value="{{ $user->telepon }}" />
+                                        <input
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            type="text" name="telepon" value="{{ $user->telepon }}" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -57,13 +65,13 @@
                                     </td>
                                     <td class="pl-4 py-1 flex gap-8">
                                         <div class="flex items-center gap-1">
-                                            <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="L"
-                                                {{ $user->jenis_kelamin == 'L' ? 'checked' : '' }} />
+                                            <input class="accent-green-normal" name="jenis_kelamin" type="radio"
+                                                value="L" {{ $user->jenis_kelamin == 'L' ? 'checked' : '' }} />
                                             <label>Laki-laki</label>
                                         </div>
                                         <div class="flex items-center gap-1">
-                                            <input class="accent-green-normal" name="jenis_kelamin" type="radio" value="P"
-                                                {{ $user->jenis_kelamin == 'P' ? 'checked' : '' }} />
+                                            <input class="accent-green-normal" name="jenis_kelamin" type="radio"
+                                                value="P" {{ $user->jenis_kelamin == 'P' ? 'checked' : '' }} />
                                             <label>Perempuan</label>
                                         </div>
                                     </td>
