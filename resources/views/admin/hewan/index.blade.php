@@ -99,10 +99,10 @@
                     <div class="modal-box">
                         <!-- Tombol -->
                         <div class="flex mb-2">
-                            <button onclick="showForm('bobot')" type="button"
+                            <button id="button-bobot" onclick="showForm('bobot')" type="button"
                                 class="w-full p-2 font-semibold text-white bg-green-normal hover:bg-green-normal border border-green-normal">Rekam
                                 Bobot</button>
-                            <button onclick="showForm('penyakit')" type="button"
+                            <button id="button-penyakit" onclick="showForm('penyakit')" type="button"
                                 class="w-full p-2 font-semibold hover:text-white hover:bg-green-normal border border-green-normal">Rekam
                                 Penyakit</button>
                         </div>
@@ -110,17 +110,35 @@
                             function showForm(type) {
                                 const formBobot = document.getElementById('form-bobot');
                                 const formPenyakit = document.getElementById('form-penyakit');
-                        
+                                const buttonBobot = document.getElementById('button-bobot');
+                                const buttonPenyakit = document.getElementById('button-penyakit');
+
                                 if (type === 'bobot') {
                                     formBobot.classList.remove('hidden');
                                     formPenyakit.classList.add('hidden');
+
+                                    // Aktifkan tombol bobot
+                                    buttonBobot.classList.add('text-white', 'bg-green-normal');
+                                    buttonBobot.classList.remove('text-green-normal', 'bg-transparent');
+
+                                    // Nonaktifkan tombol penyakit
+                                    buttonPenyakit.classList.remove('text-white', 'bg-green-normal');
+                                    buttonPenyakit.classList.add('text-green-normal', 'bg-transparent');
                                 } else {
                                     formBobot.classList.add('hidden');
                                     formPenyakit.classList.remove('hidden');
+
+                                    // Aktifkan tombol penyakit
+                                    buttonPenyakit.classList.add('text-white', 'bg-green-normal');
+                                    buttonPenyakit.classList.remove('text-green-normal', 'bg-transparent');
+
+                                    // Nonaktifkan tombol bobot
+                                    buttonBobot.classList.remove('text-white', 'bg-green-normal');
+                                    buttonBobot.classList.add('text-green-normal', 'bg-transparent');
                                 }
                             }
                         </script>
-                        
+
 
                         <!-- Form Rekam Bobot -->
                         <div id="form-bobot">
