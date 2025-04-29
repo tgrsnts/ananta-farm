@@ -95,37 +95,96 @@
                 </div>
 
                 <!-- Modal Rekam Bobot -->
-                <dialog id="rekamBobotModal" class="modal">
+                <dialog id="rekamModal" class="modal">
                     <div class="modal-box">
-                        <h2 class="font-bold text-lg">Rekam Bobot</h2>
-                        <form id="rekamBobotForm" action="{{ route('admin.rekam-bobot.store') }}" method="POST" class="flex flex-col gap-4">
-                            @csrf
-                            <input hidden type="text" name="hewan_id" id="hewan_id">
-                            <input hidden type="text" name="user_id" id="user_id">
-                            <div class="flex flex-col gap-2">
-                                <div class="flex flex-col gap-1">
-                                    <label class="block">Nama Hewan</label>
-                                    <input disabled type="text" id="nama_hewan"
-                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                        <!-- Tombol -->
+                        <div class="flex mb-2">
+                            <button onclick="showForm('bobot')" type="button"
+                                class="w-full p-2 font-semibold text-white bg-green-normal hover:bg-green-normal border border-green-normal">Rekam
+                                Bobot</button>
+                            <button onclick="showForm('penyakit')" type="button"
+                                class="w-full p-2 font-semibold hover:text-white hover:bg-green-normal border border-green-normal">Rekam
+                                Penyakit</button>
+                        </div>
+                        <script>
+                            function showForm(type) {
+                                const formBobot = document.getElementById('form-bobot');
+                                const formPenyakit = document.getElementById('form-penyakit');
+                        
+                                if (type === 'bobot') {
+                                    formBobot.classList.remove('hidden');
+                                    formPenyakit.classList.add('hidden');
+                                } else {
+                                    formBobot.classList.add('hidden');
+                                    formPenyakit.classList.remove('hidden');
+                                }
+                            }
+                        </script>
+                        
+
+                        <!-- Form Rekam Bobot -->
+                        <div id="form-bobot">
+                            <h2 class="font-bold text-lg">Rekam Bobot</h2>
+                            <form id="rekamBobotForm" action="{{ route('admin.rekam-bobot.store') }}" method="POST"
+                                class="flex flex-col gap-4">
+                                @csrf
+                                <input hidden type="text" name="hewan_id" id="hewan_id_bobot">
+                                <input hidden type="text" name="user_id" id="user_id_bobot">
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Nama Hewan</label>
+                                        <input disabled type="text" id="nama_hewan_bobot"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Tanggal</label>
+                                        <input type="date" name="tanggal"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Bobot</label>
+                                        <input type="text" name="bobot"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="block">Tanggal</label>
-                                    <input type="date" name="tanggal"
-                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                        required>
+                                <button type="submit"
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                            </form>
+                        </div>
+
+                        <!-- Form Rekam Penyakit -->
+                        <div id="form-penyakit" class="hidden">
+                            <h2 class="font-bold text-lg">Rekam Penyakit</h2>
+                            <form id="rekamPenyakitForm" action="{{ route('admin.rekam-penyakit.store') }}"
+                                method="POST" class="flex flex-col gap-4">
+                                @csrf
+                                <input hidden type="text" name="hewan_id" id="hewan_id_penyakit">
+                                <input hidden type="text" name="user_id" id="user_id_penyakit">
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Nama Hewan</label>
+                                        <input disabled type="text" id="nama_hewan_penyakit"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Nama Penyakit</label>
+                                        <input type="text" name="penyakit"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Tanggal</label>
+                                        <input type="date" name="tanggal"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="block">Bobot</label>
-                                    <input type="text" name="bobot"
-                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                        required>
-                                </div>
-                            </div>
-                            <button type="submit"
-                                class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
-                        </form>
-                        <button class="btn btn-ghost w-full"
-                            onclick="closeRekamBobotModal()">Batal</button>
+                                <button type="submit"
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                            </form>
+                        </div>
                     </div>
                 </dialog>
             </div>
@@ -154,15 +213,15 @@
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
                                 <td>{{ $item->keterangan }}</td>
                                 <td class="flex gap-1">
-                                    <a href="/admin/hewan/{{$item->id_hewan}}"
+                                    <a href="/admin/hewan/{{ $item->id_hewan }}"
                                         class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
                                         Detail
                                     </a>
 
                                     <button type="button"
                                         class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
-                                        onclick="openRekamBobotModal({{ $item->id_hewan }}, '{{ $item->nama_hewan }}', '1')">
-                                        Rekam Bobot
+                                        onclick="openRekamModal({{ $item->id_hewan }}, '{{ $item->nama_hewan }}', '1')">
+                                        Rekam
                                     </button>
 
 
@@ -178,17 +237,21 @@
                         @endforeach
 
                         <script>
-                            function openRekamBobotModal(hewanId, namaHewan, userId) {
-                                document.getElementById('hewan_id').value = hewanId;
-                                document.getElementById('nama_hewan').value = namaHewan;
-                                document.getElementById('user_id').value = userId;
+                            function openRekamModal(hewanId, namaHewan, userId) {
+                                document.getElementById('hewan_id_bobot').value = hewanId;
+                                document.getElementById('nama_hewan_bobot').value = namaHewan;
+                                document.getElementById('user_id_bobot').value = userId;
+                                document.getElementById('hewan_id_penyakit').value = hewanId;
+                                document.getElementById('nama_hewan_penyakit').value = namaHewan;
+                                document.getElementById('user_id_penyakit').value = userId;
 
-                                document.getElementById('rekamBobotModal').showModal();
+                                document.getElementById('rekamModal').showModal();
                             }
 
-                            function closeRekamBobotModal() {
-                                document.getElementById('rekamBobotModal').close();
+                            function closeRekamModal() {
+                                document.getElementById('rekamModal').close();
                                 document.getElementById('rekamBobotForm').reset();
+                                document.getElementById('rekamPenyakitForm').reset();
                             }
                         </script>
                     </tbody>

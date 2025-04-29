@@ -8,6 +8,7 @@ use App\Http\Controllers\KandangController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RekamBobotController;
+use App\Http\Controllers\RekamPenyakitController;
 
 Route::get('/', function () {
     return view('index');
@@ -36,6 +37,7 @@ Route::middleware('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->middleware('admin');
 
         Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
+        Route::post('/rekam-penyakit', [RekamPenyakitController::class, 'store'])->name('admin.rekam-penyakit.store');
 
         Route::prefix('/hewan')->group(function () {
             Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
