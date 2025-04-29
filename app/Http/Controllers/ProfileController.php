@@ -19,7 +19,31 @@ class ProfileController extends Controller
 
     public function edit() {}
 
-    public function update() {}
+    public function update(Request $request){
+        dd($request);
+        $user = Auth::user();
+        if ($request->hasFile('gambar')) {
+            $pathLama = storage_path('app/public/' . $user->gambar);
+            if (File::exists($pathLama)) {
+                File::delete($pathLama);
+            }
+            $file = $request->file('gambar');
+            $fileName = $this->quickRandom() . '.' . $file->extension();
+            $path = $file->storeAs('foto_profile', $fileName, 'public');
+            $user->update([
+                'gambar' => $path
+            ]);
+            return redirect('/admin/profile');
+        } else {
+            return redirect('/admin/profile');
+        }
+    }
 
     public function destroy($id) {}
+
+    public static function quickRandom($length = 16)
+    {
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+    }
 }

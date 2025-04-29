@@ -17,7 +17,9 @@ class UserSeeder extends Seeder
             "nama" => "Admin",
             "email" => "admin@gmail.com",
             "password" => "rahasia",
-            "role" => 1
+            "role" => 1,
+            "jenis_kelamin" => "L",
+            "telepon" => "+62879076582341"
         ]);
     }
 }
