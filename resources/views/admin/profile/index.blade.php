@@ -27,7 +27,7 @@
                                 </td>
                                 <td class="pl-4 py-1">
                                     <input class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" type="text" name="name"
-                                        value="{{ $user->nama }}" />     
+                                        value="{{ $user->nama }}" />
                                 </td>
                             </tr>
                             <tr>
@@ -102,21 +102,4 @@
 
         </div>
     </section>
-
-    <script>
-        function tambahKandang() {
-            Swal.fire({
-                title: 'Apakah anda ingin menambah kandang?',
-                text: 'Kode Kandang akan terbuat secara otomatis!',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Tambah',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.kandang.create') }}";
-                }
-            });
-        }
-    </script>
 @endsection
