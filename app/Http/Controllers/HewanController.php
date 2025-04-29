@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hewan;
+use App\Models\RiwayatPenyakit;
 use Illuminate\Http\Request;
 
 class HewanController extends Controller
@@ -53,7 +54,7 @@ class HewanController extends Controller
      */
     public function show(Hewan $hewan)
     {
-        $hewan->load(['rekam_bobot']);
+        $hewan->load(['rekam_bobot', 'riwayat_penyakit']);
 
         return view('admin.hewan.detail', ['data' => $hewan]);
     }

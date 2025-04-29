@@ -147,12 +147,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data->rekam_bobot as $item)
+                            @foreach ($data->riwayat_penyakit as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->bobot }}</td>
-                                    <td>{{ $item->user->nama }}</td>
+                                    <td>{{ $item->nama_penyakit }}</td>
+                                    <td>{{ $item->awal_sakit }}</td>
+                                    <td>{{ $item->sembuh }}</td>
                                     <td class="flex gap-1">
     
                                     </td>
