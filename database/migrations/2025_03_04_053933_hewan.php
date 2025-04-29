@@ -14,10 +14,6 @@ return new class extends Migration
         Schema::create('hewan', function (Blueprint $table) {
             $table->id('id_hewan');
             $table->string('nama_hewan');
-            $table->foreignId('kandang_id')
-                ->constrained('kandang','id_kandang')
-                ->noActionOnUpdate()
-                ->noActionOnDelete();
             $table->string('jenis_hewan');
             $table->string('kategori');
             $table->enum('jenis_kelamin', ['L', 'P']);

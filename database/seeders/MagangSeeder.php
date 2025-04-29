@@ -33,7 +33,8 @@ class MagangSeeder extends Seeder
             'punya_kendaraan' => true,
             'bisa_nyetir' => true,
             'cv' => null,
+            'status' => 'pending'
         ]);
-        
+
     }
 }

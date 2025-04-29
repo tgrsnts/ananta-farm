@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hewan;
-use App\Models\Kandang;
 use Illuminate\Http\Request;
 
 class HewanController extends Controller
@@ -13,9 +12,8 @@ class HewanController extends Controller
      */
     public function index()
     {
-        $hewan = Hewan::with(['kandang'])->get();
-        $kandang = Kandang::get();
-        return view('admin.hewan.index', ['hewan' => $hewan, 'kandang' => $kandang]);
+        $hewan = Hewan::get();
+        return view('admin.hewan.index', ['hewan' => $hewan]);
     }
 
     /**
@@ -36,8 +34,7 @@ class HewanController extends Controller
             "jenis_hewan" => "required",
             "jenis_kelamin" => "required",
             "tanggal_lahir" => "required",
-            "kategori" => "required",
-            "kandang_id" => "required",
+            "kategori" => "required"
         ]);
         Hewan::create([
             "nama_hewan" => $request->nama_hewan,
@@ -46,7 +43,6 @@ class HewanController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
             'kategori' => $request->kategori,
             'keterangan' => $request->keterangan,
-            'kandang_id' => $request->kandang_id,
             'foto' => $request->foto,
         ]);
         return redirect('admin/hewan');
@@ -57,8 +53,8 @@ class HewanController extends Controller
      */
     public function show(Hewan $hewan)
     {
-        $hewan->load(['kandang', 'rekam_bobot']);
-        
+        $hewan->load(['rekam_bobot']);
+
         return view('admin.hewan.detail', ['data' => $hewan]);
     }
 

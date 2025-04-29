@@ -60,17 +60,6 @@
                                             required>
                                     </div>
                                     <div class="flex flex-col gap-1">
-                                        <label class="block">Kandang</label>
-                                        <select name="kandang_id"
-                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                            required>
-                                            <option value="" disabled selected>Pilih kandang</option>
-                                            @foreach ($kandang as $item)
-                                                <option value="{{ $item->id_kandang }}">{{ $item->nama_kandang }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="flex flex-col gap-1">
                                         <label class="block">Kategori</label>
                                         <select name="kategori"
                                             class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
@@ -171,13 +160,13 @@
                                         class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
                                         Detail
                                     </a>
-                                    
+
                                     <button type="button"
                                         class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
                                         onclick="openRekamBobotModal({{ $item->id_hewan }}, '{{ $item->nama_hewan }}', '1')">
                                         Rekam Bobot
                                     </button>
-                                    
+
 
                                     <form action="{{ route('admin.hewan.destroy', $item->id_hewan) }}" method="POST"
                                         onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">

@@ -22,7 +22,6 @@ class HewanSeeder extends Seeder
                 'tanggal_lahir' => '2024-01-10',
                 'keterangan' => 'Sapi fattening',
                 'kategori' => 'Fattening',
-                'kandang_id' => 1,
             ],
             [
                 'nama_hewan' => 'Sapi B',
@@ -30,8 +29,7 @@ class HewanSeeder extends Seeder
                 'jenis_kelamin' => 'P',
                 'tanggal_lahir' => '2023-11-05',
                 'keterangan' => 'Sapi breeding',
-                'kategori' => 'Breeding',
-                'kandang_id' => 1,
+                'kategori' => 'Breeding'
             ],
             [
                 'nama_hewan' => 'Sapi C',
@@ -39,8 +37,7 @@ class HewanSeeder extends Seeder
                 'jenis_kelamin' => 'L',
                 'tanggal_lahir' => '2024-04-20',
                 'keterangan' => 'Anakan sapi',
-                'kategori' => 'Anakan',
-                'kandang_id' => 1,
+                'kategori' => 'Anakan'
             ],
 
             // Kambing
@@ -50,8 +47,7 @@ class HewanSeeder extends Seeder
                 'jenis_kelamin' => 'P',
                 'tanggal_lahir' => '2024-02-14',
                 'keterangan' => 'Kambing fattening',
-                'kategori' => 'Fattening',
-                'kandang_id' => 2,
+                'kategori' => 'Fattening'
             ],
             [
                 'nama_hewan' => 'Kambing B',
@@ -59,8 +55,7 @@ class HewanSeeder extends Seeder
                 'jenis_kelamin' => 'L',
                 'tanggal_lahir' => '2023-08-18',
                 'keterangan' => 'Kambing breeding',
-                'kategori' => 'Breeding',
-                'kandang_id' => 2,
+                'kategori' => 'Breeding'
             ],
             [
                 'nama_hewan' => 'Kambing C',
@@ -68,8 +63,7 @@ class HewanSeeder extends Seeder
                 'jenis_kelamin' => 'P',
                 'tanggal_lahir' => '2024-05-05',
                 'keterangan' => 'Anakan kambing',
-                'kategori' => 'Anakan',
-                'kandang_id' => 2,
+                'kategori' => 'Anakan'
             ],
         ];
 

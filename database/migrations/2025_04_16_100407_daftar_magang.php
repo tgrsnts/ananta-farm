@@ -32,6 +32,7 @@ return new class extends Migration
             $table->boolean('punya_kendaraan');
             $table->boolean('bisa_nyetir');
             $table->string('cv')->nullable();
+            $table->enum('status', ['pending', 'diterima', 'tidak_diterima', 'selesai']);
             $table->timestamps();
         });
     }

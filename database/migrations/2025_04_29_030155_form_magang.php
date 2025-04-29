@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kandang', function (Blueprint $table) {
-            $table->id('id_kandang');
-            $table->string('nama_kandang');
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
+        Schema::create('form_magang', function (Blueprint $table) {
+            $table->id('id_form_magang');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kandang');
+        Schema::dropIfExists('form_magang');
     }
 };

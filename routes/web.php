@@ -44,13 +44,6 @@ Route::prefix('/admin')->group(function () {
         Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
     });
 
-    Route::prefix('/kandang')->group(function () {
-        Route::get('/', [KandangController::class, 'index'])->name('admin.kandang.index');
-        Route::get('/create', [KandangController::class, 'create'])->name('admin.kandang.create');
-        Route::post('/', [KandangController::class, 'store'])->name('admin.kandang.store');
-        Route::get('/{id}', [KandangController::class, 'destroy'])->name('admin.kandang.destroy');
-    });
-
     Route::prefix('/pendaftar')->group(function () {
         Route::get('/', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
         Route::get('/create', [PendaftarController::class, 'create'])->name('admin.pendaftar.create');

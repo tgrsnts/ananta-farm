@@ -13,9 +13,6 @@
                     <p class="text-start">:</p>
                     <p>{{ $data->nama_hewan }}</p>
 
-                    <p class="font-medium">Kandang</p>
-                    <p class="text-start">:</p>
-                    <p>{{ $data->kandang->nama_kandang }}</p>
                 </div>
 
                 <!-- Kolom Kanan -->

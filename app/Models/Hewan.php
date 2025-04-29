@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Kandang;
 use App\Models\RekamBobot;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -21,11 +20,6 @@ class Hewan extends Model
     //     'keterangan'
     // ];
     protected $guarded = ['id_hewan'];
-
-    public function kandang(): HasOne
-    {
-        return $this->hasOne(Kandang::class, 'id_kandang', 'kandang_id');
-    }
 
     public function rekam_bobot(): HasMany
     {
