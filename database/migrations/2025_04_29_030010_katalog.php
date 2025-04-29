@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id('id_katalog');
             $table->string('nama');
             $table->string('bobot');
-            $table->string('harga');
+            $table->integer('harga');
             $table->string('jenis');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
