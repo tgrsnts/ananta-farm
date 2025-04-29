@@ -51,6 +51,7 @@ Route::middleware('admin')->group(function () {
             Route::get('/', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
             Route::get('/create', [PendaftarController::class, 'create'])->name('admin.pendaftar.create');
             Route::post('/', [PendaftarController::class, 'store'])->name('admin.pendaftar.store');
+            Route::get('/{pendaftar}', [PendaftarController::class, 'show'])->name('admin.pendaftar.show');
             Route::get('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
         });
 
