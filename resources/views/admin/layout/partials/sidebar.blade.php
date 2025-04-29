@@ -50,7 +50,7 @@
         Profil
     </a>
 
-    <form method="POST" {{-- action="{{ route('logout') }}" --}}>
+    <form action="{{ route('admin.logout') }}" method="POST">
         @csrf
         <button type="submit"
             class="text-white font-poppins font-semibold flex items-center w-full py-4 pl-16 pr-8 leading-tight transition-all rounded-r-lg outline-none text-start hover:bg-white hover:text-green-normal focus:bg-white focus:text-green-normal active:bg-white active:text-green-normal">

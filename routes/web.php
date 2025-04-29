@@ -58,6 +58,8 @@ Route::middleware('admin')->group(function () {
             Route::post('/', [ProfileController::class, 'store'])->name('admin.profile.store');
             Route::get('/{id}', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
         });
+
+        Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
     });
 });
 
