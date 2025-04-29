@@ -8,25 +8,25 @@
             <img src="/assets/image/IMG_6205.jpg" class="w-full h-full object-cover"
                 style="clip-path: polygon(0 0, 50% 100%, 100% 0);" />
         </div>
-    
+
         <!-- Segitiga Kanan -->
         <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full">
             <img src="/assets/image/IMG_3945.jpg" class="w-full h-full object-cover"
                 style="clip-path: polygon(100% 0, 0 50%, 100% 100%);" />
         </div>
-    
+
         <!-- Segitiga Bawah -->
         <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-1/2">
             <img src="/assets/image/IMG_6451.jpg" class="w-full h-full object-cover"
                 style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);" />
         </div>
-    
+
         <!-- Segitiga Kiri -->
         <div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full">
             <img src="/assets/image/IMG_6671.jpg" class="w-full h-full object-cover"
                 style="clip-path: polygon(0 0, 0 100%, 100% 50%);" />
         </div>
-    
+
         <!-- Konten Tengah -->
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="z-10 text-white text-center px-4 ">
@@ -398,7 +398,7 @@
             <div class="flex flex-col gap-8 justify-center items-center">
                 <h3 class="text-green-normal text-xl lg:text-3xl font-bold text-center">Sudah tertarik magang di Ananta
                     Farm?</h3>
-                <a href=""
+                <a href="/magang"
                     class="bg-green-normal hover:bg-green-normal-hover text-white px-6 py-4 text-xl font-semibold rounded-xl w-fit">
                     Daftar Sekarang!
                 </a>
