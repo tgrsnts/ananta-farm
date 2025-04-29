@@ -12,8 +12,7 @@
             </button>
         </div> --}}
 
-        <button id="sidebarToggle"
-            class="text-white hover:text-slate-300 text-2xl focus:outline-none z-10">
+        <button id="sidebarToggle" class="text-white hover:text-slate-300 text-2xl focus:outline-none z-10">
             ☰
         </button>
 
@@ -40,12 +39,15 @@
                 <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white">
                     <a href="/staycation">Magang</a>
                 </li>
-                <a class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
-                    href="/login">Masuk</a>
-                <li
-                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal">
-                    <a href="/admin">Dashboard</a>
-                </li>
+                @auth
+                    <li
+                        class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal">
+                        <a href="/admin">Dashboard</a>
+                    </li>
+                @else
+                    <a class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
+                        href="/login">Masuk</a>
+                @endauth
             </ul>
         </nav>
     </div>

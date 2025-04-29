@@ -18,22 +18,27 @@
             class="peer-checked:max-h-60 max-h-0 w-full lg:w-auto flex-col flex lg:flex-row lg:max-h-full overflow-hidden transition-all duration-300 lg:items-center lg:ml-auto">
             <ul
                 class="flex flex-col lg:flex-row lg:space-y-0 space-y-4 items-center lg:ml-auto font-poppins font-semibold">
-                <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white {{ Request::is('/') ? 'border-white' : '' }}">
+                <li
+                    class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white {{ Request::is('/') ? 'border-white' : '' }}">
                     <a href="/">Home</a>
                 </li>
-                <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white {{ Request::is('/katalog') ? 'border-white' : '' }}">
+                <li
+                    class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white {{ Request::is('/katalog') ? 'border-white' : '' }}">
                     <a href="/katalog">Katalog</a>
                 </li>
-                <li class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white {{ Request::is('/magang') ? 'border-white' : '' }}">
+                <li
+                    class="text-white border-b-2 border-green-normal md:mr-12 hover:border-white {{ Request::is('/magang') ? 'border-white' : '' }}">
                     <a href="/staycation">Magang</a>
                 </li>
-                <a
-                    class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
-                    href="/login">Masuk</a>
-                <li
-                    class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal">
-                    <a href="/admin">Dashboard</a>
-                </li>
+                @auth
+                    <li
+                        class="text-white border-2 border-white md:mr-12 px-4 py-2 hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal">
+                        <a href="/admin">Dashboard</a>
+                    </li>
+                @else
+                    <a class="text-white border-2 md:mr-12 px-4 py-2 border-white cursor-pointer hover:bg-green-normal-hover hover:border-green-normal focus:bg-green-normal-hover focus:border-green-normal"
+                        href="/login">Masuk</a>
+                @endauth
             </ul>
         </nav>
     </div>
