@@ -32,7 +32,7 @@
                 <p class="text-lg font-semibold mb-4">Grafik Perkembangan Bobot</p>
                 <canvas id="perkembanganBobotChart" height="100"></canvas>
             </div>
-            
+
             <div class="bg-white p-4 rounded-lg shadow-md w-full">
                 <p class="text-lg font-semibold mb-4">Grafik Selisih Bobot</p>
                 <canvas id="selisihBobotChart" height="100"></canvas>
@@ -40,10 +40,36 @@
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                 const bobotData = @json($data->rekam_bobot);
-                const labels = bobotData.map(item => item.tanggal);
+                const labels = bobotData.map(item => {
+                    const date = new Date(item.created_at);
+                    return new Intl.DateTimeFormat('id-ID', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    }).format(date);
+                });
                 const bobotValues = bobotData.map(item => item.bobot);
                 const selisihValues = bobotData.map(item => item.selisih);
-            
+                const selisihLabels = [];
+                const selisihData = [];
+
+                for (let i = 1; i < bobotData.length; i++) {
+                    const prev = bobotData[i - 1];
+                    const curr = bobotData[i];
+
+                    // Label pakai waktu rekaman kedua
+                    const date = new Date(curr.created_at);
+                    const formatted = new Intl.DateTimeFormat('id-ID', {
+                        day: '2-digit', month: 'short', year: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                    }).format(date);
+
+                    selisihLabels.push(formatted);
+                    selisihData.push(curr.bobot - prev.bobot);
+                }
+
                 // Chart Perkembangan Bobot
                 const perkembanganCtx = document.getElementById('perkembanganBobotChart').getContext('2d');
                 new Chart(perkembanganCtx, {
@@ -55,7 +81,8 @@
                             data: bobotValues,
                             borderColor: 'rgb(75, 192, 192)',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            tension: 0.3
+                            tension: 0.3,
+                            fill: true
                         }]
                     },
                     options: {
@@ -71,16 +98,16 @@
                         }
                     }
                 });
-            
+
                 // Chart Selisih Bobot
                 const selisihCtx = document.getElementById('selisihBobotChart').getContext('2d');
                 new Chart(selisihCtx, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: labels,
                         datasets: [{
                             label: 'Selisih Bobot (kg)',
-                            data: selisihValues,
+                            data: selisihData,
                             backgroundColor: 'rgba(255, 99, 132, 0.5)',
                             borderColor: 'rgb(255, 99, 132)',
                             borderWidth: 1
@@ -100,7 +127,7 @@
                     }
                 });
             </script>
-                
+
         </div>
         <div class="flex gap-4">
             <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
@@ -124,13 +151,13 @@
                                     <td>{{ $item->bobot }}</td>
                                     <td>{{ $item->user->nama }}</td>
                                     <td class="flex gap-1">
-    
+
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-    
+
                 </div>
             </div>
             <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
@@ -154,15 +181,15 @@
                                     <td>{{ $item->awal_sakit }}</td>
                                     <td>{{ $item->sembuh }}</td>
                                     <td class="flex gap-1">
-    
+
                                     </td>
                                 </tr>
                             @endforeach
-    
-    
+
+
                         </tbody>
                     </table>
-    
+
                 </div>
             </div>
         </div>
