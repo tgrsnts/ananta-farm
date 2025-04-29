@@ -6,7 +6,8 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Detail Pendaftar</div>
                 <div>
-                    <form action="" class="flex gap-2">
+                    <form action="{{ route('admin.pendaftar.status', $data->id_daftar_magang) }}" method="POST" class="flex gap-2">
+                        @csrf
                         <label for="status" class="flex items-center">Status:</label>
                         <select name="status" id="status" class="w-auto px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
                             <option value="pending" @selected(old('status', $data->status ?? '') == 'pending')>Pending</option>

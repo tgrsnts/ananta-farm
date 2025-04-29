@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Magang;
 use Illuminate\Http\Request;
 
@@ -58,7 +59,48 @@ class PendaftarController extends Controller
 
     public function edit() {}
 
-    public function update() {}
+    public function updateStatus(Request $request, $id){
+        $magang = Magang::findOrFail($id);
+        switch($request->status){
+            case 'diterima':
+                if($magang->status == 'selesai' || $magang->status == 'tidak_diterima'){
+                    break;
+                }else{
+                    User::create([
+                        'nama' => $magang->nama,
+                        'email' => $magang->email,
+                        'password' => '123',
+                        'role' => 2,
+                        'jenis_kelamin' => $magang->jenis_kelamin,
+                        'telepon' => $magang->nomor_whatsapp
+                    ]);
+                    $magang->update([
+                        'status' => 'diterima'
+                    ]);
+                }
+                break;
+            case 'tidak_diterima':
+                $magang->update([
+                    'status' => 'tidak_diterima'
+                ]);
+                break;
+            case 'selesai':
+                if($magang->status == 'pending' || $magang->status == 'tidak_diterima'){
+                    break;
+                }else{
+                    $user = User::find($magang->email);
+                    $user->delete();
+                    $magang->update([
+                        'status' => 'selesai'
+                    ]);
+                }
+                break;
+            default:
+                break;
+        }
+        return redirect('/admin/pendaftar');
+
+    }
 
     public function destroy($id) {}
 }

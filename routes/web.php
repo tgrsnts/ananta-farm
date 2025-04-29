@@ -51,7 +51,7 @@ Route::middleware('admin')->group(function () {
             Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
             Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
         });
-        
+
         Route::prefix('/katalog')->group(function () {
             Route::get('/', [KatalogController::class, 'index'])->name('admin.katalog.index');
             Route::get('/create', [KatalogController::class, 'create'])->name('admin.katalog.create');
@@ -63,6 +63,7 @@ Route::middleware('admin')->group(function () {
         Route::prefix('/pendaftar')->group(function () {
             Route::get('/', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
             Route::get('/create', [PendaftarController::class, 'create'])->name('admin.pendaftar.create');
+            Route::post('/update/{id}', [PendaftarController::class, 'updateStatus'])->name('admin.pendaftar.status');
             Route::post('/', [PendaftarController::class, 'store'])->name('admin.pendaftar.store');
             Route::get('/{pendaftar}', [PendaftarController::class, 'show'])->name('admin.pendaftar.show');
             Route::get('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');

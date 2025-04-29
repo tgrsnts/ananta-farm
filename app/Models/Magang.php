@@ -27,6 +27,7 @@ class Magang extends Model
         'instagram',
         'punya_kendaraan',
         'bisa_nyetir',
-        'cv'
+        'cv',
+        'status'
     ];
 }
