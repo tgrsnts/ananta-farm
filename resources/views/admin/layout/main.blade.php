@@ -52,56 +52,6 @@
 
     <!-- Tailwind Config -->
     {{-- <script src="{{ asset('assets/js/tailwind.config.js') }}"></script>     --}}
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll("section");
-            // const navDivs = document.querySelectorAll("nav div div");
-            // const navLinks = document.querySelectorAll("nav div div a");
-            const navLinks = document.querySelectorAll("header div nav ul li a");
-
-            window.addEventListener("scroll", handleNavbar);
-
-            function handleNavbar() {
-                // let current = "";
-
-                // sections.forEach(section => {
-                //     const sectionTop = section.offsetTop;
-                //     if (pageYOffset >= sectionTop - 50) {
-                //         current = section.getAttribute("id");
-                //     }
-                // });
-
-                // navDivs.forEach(div => {
-                //     div.classList.remove("border-red-600");
-                // });
-
-                // navLinks.forEach(link => {
-                //     if (link.getAttribute("href").includes(current)) {
-                //         link.parentElement.classList.add("border-red-600");
-                //     }
-                // });
-
-                let current = "";
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 50) {
-                        current = section.getAttribute("id");
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    // link.classList.remove("border-white");
-                    link.parentElement.classList.remove("border-white");
-                    if (link.getAttribute("href").includes(current)) {
-                        // link.classList.add("border-white");
-                        link.parentElement.classList.add("border-white");
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 
 </html>
