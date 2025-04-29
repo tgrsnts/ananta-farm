@@ -19,6 +19,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Tanggal Lahir</th>
                             <th>Instansi</th>
+                            <th>status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -55,6 +56,7 @@
                                 <td>{{ $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
                                 <td>{{ $item->instansi }}</td>
+                                <td>{{ ucfirst(str_replace('_', ' ', $item->status)) }}</td>
                                 <td class="flex gap-1">
                                     <a href="/admin/pendaftar/{{$item->id_daftar_magang}}"
                                         class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
