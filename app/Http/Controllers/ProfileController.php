@@ -36,7 +36,7 @@ class ProfileController extends Controller
     public function updateFoto(Request $request){
         $user = Auth::user();
         if ($request->hasFile('foto')) {
-            $pathLama = storage_path('app/public/' . $user->gambar);
+            $pathLama = storage_path('app/public/' . $user->foto);
             if (File::exists($pathLama)) {
                 File::delete($pathLama);
             }

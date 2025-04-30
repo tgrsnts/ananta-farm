@@ -161,10 +161,10 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->jenis_kelamin == 'L' ? 'Jantan' : 'Betina' }}</td>
+                                <td>{{ ucfirst($item->jenis) }}</td>
                                 <td>{{ $item->bobot }}</td>
                                 <td>{{ $item->harga }}</td>
-                                <td><img class="max-h-24" src="{{ asset('storage/' . $item->foto) }}" alt="foto_katalog">
+                                <td><img class="w-36 h-24 object-cover" src="{{ asset('storage/' . $item->foto) }}" alt="foto_katalog">
                                 </td>
                                 <td class="flex gap-2">
                                     <button type="button"
