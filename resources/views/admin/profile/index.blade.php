@@ -10,16 +10,54 @@
                 <form action="{{ route('admin.update.foto') }}" method="POST" class="flex w-1/4" enctype="multipart/form-data">
                     @csrf
                     <div class="w-full flex flex-col items-center gap-4">
-                        <img class="w-full aspect-square"
+                        <!-- Preview Gambar -->
+                        <img id="foto-preview" class="w-full aspect-square object-cover rounded-md"
                             src="{{ $user->foto ? asset('storage/' . $user->foto) : asset('assets/image/avatar-biru.jpg') }}"
                             alt="Foto Profil" />
-                        <label for="foto"
-                            class="w-full flex items-center justify-center rounded-md bg-green-normal hover:bg-green-normal-hover cursor-pointer py-2 px-4 text-white hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
+                    
+                        <!-- Tombol Ubah -->
+                        <label id="ubah-foto-label"
+                            class="w-full flex items-center justify-center rounded-md bg-green-normal hover:bg-green-normal-hover cursor-pointer py-2 px-4 text-white focus:outline-none focus:ring focus:ring-green-normal">
                             Ubah Foto
-                            <input type="file" id="foto" name="foto" class="hidden"
-                                onchange="this.form.submit()" />
+                            <input type="file" id="foto" name="foto" class="hidden" onchange="handleFotoChange(event)" />
                         </label>
+                    
+                        <!-- Tombol Simpan & Batal (awal disembunyikan) -->
+                        <div id="foto-action-buttons" class="w-full flex gap-2 hidden">
+                            <button type="submit"
+                                class="flex-1 bg-green-normal hover:bg-green-normal-hover text-white py-2 px-4 rounded-md">Simpan</button>
+                            <button type="button" onclick="resetFotoPreview()"
+                                class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-md">Batal</button>
+                        </div>
                     </div>
+                    <script>
+                        let originalSrc = document.getElementById('foto-preview').src;
+                    
+                        function handleFotoChange(event) {
+                            const file = event.target.files[0];
+                            const preview = document.getElementById('foto-preview');
+                            const label = document.getElementById('ubah-foto-label');
+                            const buttons = document.getElementById('foto-action-buttons');
+                    
+                            if (file) {
+                                preview.src = URL.createObjectURL(file);
+                                label.classList.add('hidden');
+                                buttons.classList.remove('hidden');
+                            }
+                        }
+                    
+                        function resetFotoPreview() {
+                            const preview = document.getElementById('foto-preview');
+                            const fileInput = document.getElementById('foto');
+                            const label = document.getElementById('ubah-foto-label');
+                            const buttons = document.getElementById('foto-action-buttons');
+                    
+                            fileInput.value = ''; // clear file input
+                            preview.src = originalSrc;
+                            buttons.classList.add('hidden');
+                            label.classList.remove('hidden');
+                        }
+                    </script>                                        
                 </form>
                 <form method="POST" action="{{ route('admin.update.about') }}" enctype="multipart/form-data"
                     class="flex w-full">
