@@ -17,10 +17,10 @@
             @foreach ($katalog as $item)
                 <div class="flex flex-col bg-white drop-shadow-lg rounded-lg">
                     {{-- Gambar utama --}}
-                    <img src="{{ asset('storage/' . $item->foto) }}" class="w-full rounded-t-lg h-64 object-cover">
+                    <img src="{{ asset('storage/' . $item->foto) }}" class="w-full rounded-t-lg aspect-square object-cover">
         
                     {{-- Konten --}}
-                    <div class="flex flex-col items-center gap-2 px-4 py-8">
+                    <div class="flex flex-col items-center gap-1 lg:gap-2 p-2 lg:px-4 lg:py-8">
                         {{-- Nama hewan --}}
                         <div class="flex w-full justify-center bg-yellow-normal p-1 rounded-full">
                             <p class="font-semibold text-lg">{{ $item->nama }}</p>
