@@ -3,14 +3,20 @@
 @section('content')
     <!-- Know About Us -->
     <section class="px-4 lg:px-40 py-20 bg-white">
-        <div class="flex justify-between mb-4">
+        <div class="flex justify-between items-center mb-4">
             <h3 class="text-green-normal text-xl lg:text-3xl font-bold">Katalog Hewan Kurban
             </h3>
-            <div class="flex">
-                <select name="" id="" class="p-2 border border-green-normal text-green-normal rounded-lg">
-                    <option value="" disabled selected>Hewan</option>
+            <form method="GET" action="" class="flex">
+                <select name="jenis" onchange="this.form.submit()" class="p-2 border border-green-normal text-sm lg:text-lg text-green-normal rounded-lg">
+                    <option value="" disabled {{ request('jenis') ? '' : 'selected' }}>Pilih Hewan</option>
+                    @foreach ($jenis_hewan as $jenis)
+                        <option value="{{ $jenis }}" {{ request('jenis') == $jenis ? 'selected' : '' }}>
+                            {{ ucfirst($jenis) }}
+                        </option>
+                    @endforeach
                 </select>
-            </div>
+            </form>
+            
         </div>
 
         <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">

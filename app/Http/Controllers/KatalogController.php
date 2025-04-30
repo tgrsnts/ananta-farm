@@ -10,9 +10,20 @@ class KatalogController extends Controller
 {
     public function index()
     {
-        $katalog = Katalog::get();
-        return view('katalog.index', ['katalog' => $katalog]);
+        $jenis = request('jenis');
+
+        $katalog = Katalog::when($jenis, function ($query, $jenis) {
+            return $query->where('jenis', $jenis);
+        })->get();
+
+        $jenisHewan = Katalog::pluck('jenis')->unique();
+
+        return view('katalog.index', [
+            'katalog' => $katalog,
+            'jenis_hewan' => $jenisHewan
+        ]);
     }
+
 
     public function index_admin()
     {
@@ -20,7 +31,8 @@ class KatalogController extends Controller
         return view('admin.katalog.index', ['katalog' => $katalog]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->validate([
             'nama' => 'required',
             'bobot' => 'required',
@@ -36,7 +48,7 @@ class KatalogController extends Controller
         ]);
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-            $fileName = $request->bobot. $katalog->id . '.' . $file->extension();
+            $fileName = $request->bobot . $katalog->id . '.' . $file->extension();
             $path = $file->storeAs('fotoKatalog', $fileName, 'public');
             $katalog->update([
                 'foto' => $path
@@ -45,10 +57,11 @@ class KatalogController extends Controller
         return redirect('/admin/katalog');
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $katalog = Katalog::findOrFail($id);
         $katalog->update([
-           'nama' => $request->nama,
+            'nama' => $request->nama,
             'bobot' => $request->bobot,
             'harga' => $request->harga,
             'jenis' => $request->jenis,
@@ -59,7 +72,7 @@ class KatalogController extends Controller
                 File::delete($pathLama);
             }
             $file = $request->file('foto');
-            $fileName = $request->bobot. $katalog->id . '.' . $file->extension();
+            $fileName = $request->bobot . $katalog->id . '.' . $file->extension();
             $path = $file->storeAs('fotoKatalog', $fileName, 'public');
             $katalog->update([
                 'foto' => $path
@@ -68,7 +81,8 @@ class KatalogController extends Controller
         return redirect()->route('admin.katalog.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $katalog = Katalog::findOrFail($id);
         $katalog->delete();
         return redirect('/admin/katalog');
