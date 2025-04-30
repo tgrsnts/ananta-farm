@@ -17,13 +17,6 @@ class HewanController extends Controller
         return view('admin.hewan.index', ['hewan' => $hewan]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -61,14 +54,6 @@ class HewanController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Hewan $hewan)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Hewan $hewan)
@@ -83,18 +68,20 @@ class HewanController extends Controller
         ]);
         \Log::info('Form Data:', $data);
         \Log::info('Before Update:', $hewan->toArray());
-    
+
         $hewan->update($data);
         \Log::info('After Update:', $hewan->fresh()->toArray());
-    
+
         return redirect()->route('admin.hewan.index')->with('status', 'Updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hewan $hewan)
+    public function destroy($id)
     {
-        //
+        $hewan = Hewan::findOrFail($id);
+        $hewan->delete();
+        return redirect()->route('admin.hewan.index');
     }
 }
