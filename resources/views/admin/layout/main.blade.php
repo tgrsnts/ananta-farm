@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @vite('resources/css/app.css')
+    @yield('style')
 
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script>
@@ -13,8 +14,11 @@
 </head>
 
 <body class="font-poppins">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <!-- Navbar -->
-    
+
 
     @include('admin.layout.partials.navbar')
     <div class="flex transition-all duration-300">
@@ -30,7 +34,7 @@
             const sidebar = document.getElementById('sidebar');
             const toggleBtn = document.getElementById('sidebarToggle');
             const content = document.getElementById('mainContent');
-    
+
             if (toggleBtn && sidebar && content) {
                 toggleBtn.addEventListener('click', () => {
                     navbar.classList.toggle('pl-64');
@@ -42,7 +46,7 @@
             }
         });
     </script>
-    
+
 
 
     {{-- @include('admin.layout.partials.footer') --}}

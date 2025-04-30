@@ -1,5 +1,20 @@
 @extends('admin.layout.main')
 
+@section('style')
+<style>
+    #example tbody td:nth-child(6){
+        display: flex;
+        gap: calc(var(--spacing) * 4)
+    }
+    #example tbody td:nth-child(5) img {
+        width: calc(var(--spacing) * 36);
+        height: calc(var(--spacing) * 24);
+        object-fit: cover;
+
+    }
+</style>
+@endsection
+
 @section('content')
     <section id="dashboard" class="min-h-screen font-poppins w-full flex gap-4 p-4 pb-20 bg-slate-50">
         <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
@@ -142,12 +157,10 @@
                 </div>
             </div>
 
-
             <div class="overflow-x-auto">
-                <table class="table rounded-lg">
+                <table id="example" class="table rounded-lg row-border w-full stripe">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Nama</th>
                             <th>Jenis</th>
                             <th>Bobot</th>
@@ -156,69 +169,82 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($katalog as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ ucfirst($item->jenis) }}</td>
-                                <td>{{ $item->bobot }}</td>
-                                <td>{{ number_format($item->harga, 0, ',', '.')}}</td>
-                                <td><img class="w-36 h-24 object-cover" src="{{ asset('storage/' . $item->foto) }}" alt="foto_katalog">
-                                </td>
-                                <td class="flex gap-2">
+                </table>
+            </div>
+
+            <script>
+                const $katalog = @json($katalog);
+                new DataTable('#example', {
+                    data: $katalog,
+                    columns: [
+                        { data: 'nama' },
+                        {
+                            data: 'jenis',
+                            render: d => d.charAt(0).toUpperCase() + d.slice(1)
+                        },
+                        {
+                            data: 'bobot',
+                            render: d => d + ' kg'
+                        },
+                        {
+                            data: 'harga',
+                            render: d => 'Rp' + parseInt(d).toLocaleString('id-ID')
+                        },
+                        {
+                            data: 'foto',
+                            render: d => `<img src="/storage/${d}" width="80">`
+                        },
+                        {
+                            data: null,
+                            render: function (data, type, row) {
+                                return `
                                     <button type="button"
                                         class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
-                                        onclick="openEditModal({{ $item->id_katalog }}, '{{ $item->nama }}', '{{ $item->jenis }}', '{{ $item->bobot }}', '{{ $item->harga }}', '{{ $item->foto }}')">
+                                        onclick="openEditModal(${row.id_katalog}, '${row.nama}', '${row.jenis}', '${row.bobot}', '${row.harga}', '${row.foto}')">
                                         Edit
                                     </button>
 
-                                    <form action="{{ route('admin.katalog.destroy', $item->id_katalog) }}" method="POST"
+                                    <form action="/admin/katalog/${row.id_katalog}" method="POST"
                                         onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                             class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
                                     </form>
-
-                                </td>
-                            </tr>
-                        @endforeach
-
-                        <script>
-                            function previewEditFoto(event) {
-                                const image = document.getElementById('edit-preview-image');
-                                const file = event.target.files[0];
-                                if (file) {
-                                    image.src = URL.createObjectURL(file);
-                                    image.style.display = 'block';
-                                } else {
-                                    image.style.display = 'none';
-                                }
+                                `;
                             }
+                        }
+                    ]
+                });
+                function previewEditFoto(event) {
+                    const image = document.getElementById('edit-preview-image');
+                    const file = event.target.files[0];
+                    if (file) {
+                        image.src = URL.createObjectURL(file);
+                        image.style.display = 'block';
+                    } else {
+                        image.style.display = 'none';
+                    }
+                }
 
-                            function openEditModal(id, nama, jenis, bobot, harga, foto) {
-                                const form = document.getElementById('editKatalogForm');
-                                form.action = form.action.replace('__ID__', id);
+                function openEditModal(id, nama, jenis, bobot, harga, foto) {
+                    const form = document.getElementById('editKatalogForm');
+                    form.action = form.action.replace('__ID__', id);
 
-                                document.getElementById('edit_id_katalog').value = id;
-                                document.getElementById('edit_nama').value = nama;
-                                document.getElementById('edit_jenis').value = jenis;
-                                document.getElementById('edit_bobot').value = bobot;
-                                document.getElementById('edit_harga').value = harga;
+                    document.getElementById('edit_id_katalog').value = id;
+                    document.getElementById('edit_nama').value = nama;
+                    document.getElementById('edit_jenis').value = jenis;
+                    document.getElementById('edit_bobot').value = bobot;
+                    document.getElementById('edit_harga').value = harga;
 
-                                const previewImg = document.getElementById('edit-preview-image');
-                                previewImg.src = `/storage/${foto}`;
-                                previewImg.style.display = 'block';
+                    const previewImg = document.getElementById('edit-preview-image');
+                    previewImg.src = `/storage/${foto}`;
+                    previewImg.style.display = 'block';
 
-                                document.getElementById('editKatalogModal').showModal();
-                            }
-                        </script>
-                    </tbody>
-                </table>
+                    document.getElementById('editKatalogModal').showModal();
+                }
+            </script>
 
-            </div>
-        </div>
     </section>
 
     <script>
