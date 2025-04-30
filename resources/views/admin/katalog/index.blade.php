@@ -15,7 +15,8 @@
                     <dialog id="addKatalogModal" class="modal">
                         <div class="modal-box">
                             <h2 class="font-bold text-lg">Tambah Katalog</h2>
-                            <form action="{{ route('admin.katalog.store') }}" method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
+                            <form action="{{ route('admin.katalog.store') }}" method="POST" class="flex flex-col gap-4"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex flex-col gap-2">
                                     <div class="flex flex-col gap-1">
@@ -29,8 +30,8 @@
                                         <select name="jenis" id="jenis"
                                             class="w-full px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
                                             <option value="">Pilih Jenis</option>
-                                                <option value="sapi">Sapi</option>
-                                                <option value="domba">Domba</option>
+                                            <option value="sapi">Sapi</option>
+                                            <option value="domba">Domba</option>
                                         </select>
                                     </div>
                                     <div class="flex flex-col gap-1">
@@ -42,7 +43,9 @@
                                     <div class="flex flex-col gap-1">
                                         <label for="harga" class="block">Harga</label>
                                         <div class="flex">
-                                            <div class="bg-slate-200 border border-slate-400 px-4 py-2 text-slate-500 text-lg rounded-l-lg">Rp.
+                                            <div
+                                                class="bg-slate-200 border border-slate-400 px-4 py-2 text-slate-500 text-lg rounded-l-lg">
+                                                Rp.
                                             </div>
                                             <input id="harga" type="text" name="harga"
                                                 class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-r-lg"
@@ -51,12 +54,27 @@
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <label for="foto" class="block">Foto Katalog</label>
+                                        <img id="preview-image"
+                                            class="mt-2 max-h-40 rounded border border-gray-300 object-contain" />
                                         <label for="foto"
                                             class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                                             <x-feathericon-upload />
                                             Browse Files
-                                            <input type="file" id="foto" name="foto" class="hidden" />
+                                            <input type="file" id="foto" name="foto" class="hidden"
+                                                onchange="previewFoto(event)" />
                                         </label>
+                                        <script>
+                                            function previewFoto(event) {
+                                                const image = document.getElementById('preview-image');
+                                                const file = event.target.files[0];
+                                                if (file) {
+                                                    image.src = URL.createObjectURL(file);
+                                                    image.style.display = 'block';
+                                                } else {
+                                                    image.style.display = 'none';
+                                                }
+                                            }
+                                        </script>
                                     </div>
                                 </div>
                                 <button type="submit"
@@ -67,16 +85,18 @@
                         </div>
                     </dialog>
 
-                     <!-- Modal Edit Katalog -->
-                     <dialog id="editKatalogModal" class="modal">
+                    <!-- Modal Edit Katalog -->
+                    <dialog id="editKatalogModal" class="modal">
                         <div class="modal-box">
                             <h2 class="font-bold text-lg">Edit Katalog</h2>
-                            <form id="editKatalogForm" action="{{ route('admin.katalog.update', ['id' => '__ID__']) }}" method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
+                            <form id="editKatalogForm" action="{{ route('admin.katalog.update', ['id' => '__ID__']) }}"
+                                method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id_katalog" id="edit_id_katalog">
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Nama </label>
-                                    <input type="text" id="edit_nama" name="nama" class="w-full p-2 border-1 rounded-lg" required>
+                                    <input type="text" id="edit_nama" name="nama"
+                                        class="w-full p-2 border-1 rounded-lg" required>
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <label for="edit_jenis" class="block">Jenis</label>
@@ -88,26 +108,35 @@
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Bobot </label>
-                                    <input type="text" id="edit_bobot" name="bobot" class="w-full p-2 border-1 rounded-lg" required>
+                                    <input type="text" id="edit_bobot" name="bobot"
+                                        class="w-full p-2 border-1 rounded-lg" required>
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label for="edit_harga" class="block">Harga</label>
                                     <div class="flex">
-                                        <div class="bg-slate-200 border px-4 py-2 text-slate-500 text-lg rounded-l-lg">Rp.</div>
-                                        <input id="edit_harga" type="text" name="harga" class="w-full p-2 border-1 rounded-r-lg" required>
+                                        <div class="bg-slate-200 border px-4 py-2 text-slate-500 text-lg rounded-l-lg">Rp.
+                                        </div>
+                                        <input id="edit_harga" type="text" name="harga"
+                                            class="w-full p-2 border-1 rounded-r-lg" required>
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <label for="edit_foto" class="block">Foto Katalog</label>
-                                    <label for="edit_foto" class="flex gap-2 items-center justify-center rounded-md border border-green-normal py-2 px-4 cursor-pointer">
+                                    <img id="edit-preview-image"
+                                        class="mt-2 max-h-40 rounded border border-gray-300 object-contain" />
+                                    <label for="edit_foto"
+                                        class="flex gap-2 items-center justify-center rounded-md border border-green-normal py-2 px-4 cursor-pointer">
                                         <x-feathericon-upload />
                                         Browse Files
-                                        <input type="file" id="edit_foto" name="foto" class="hidden" />
+                                        <input type="file" id="edit_foto" name="foto" class="hidden"
+                                            onchange="previewEditFoto(event)" />
                                     </label>
                                 </div>
-                                <button type="submit" class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                <button type="submit"
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>
-                            <button class="btn btn-ghost w-full" onclick="document.getElementById('editKatalogModal').close()">Batal</button>
+                            <button class="btn btn-ghost w-full"
+                                onclick="document.getElementById('editKatalogModal').close()">Batal</button>
                         </div>
                     </dialog>
                 </div>
@@ -135,35 +164,53 @@
                                 <td>{{ $item->jenis_kelamin == 'L' ? 'Jantan' : 'Betina' }}</td>
                                 <td>{{ $item->bobot }}</td>
                                 <td>{{ $item->harga }}</td>
-                                <td><img class="max-h-24" src="{{ asset('storage/' . $item->foto) }}" alt="foto_katalog"></td>
-                                <td>
-                                    <div class="flex gap-1">
-                                        <button type="button"
+                                <td><img class="max-h-24" src="{{ asset('storage/' . $item->foto) }}" alt="foto_katalog">
+                                </td>
+                                <td class="flex gap-2">
+                                    <button type="button"
                                         class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
-                                        onclick="openEditModal({{ $item->id_katalog }}, '{{ $item->nama }}', '{{ $item->jenis }}', '{{ $item->bobot }}', '{{ $item->harga }}')">
+                                        onclick="openEditModal({{ $item->id_katalog }}, '{{ $item->nama }}', '{{ $item->jenis }}', '{{ $item->bobot }}', '{{ $item->harga }}', '{{ $item->foto }}')">
                                         Edit
-                                    </button>                                    
-                                        <form action="{{ route('admin.katalog.destroy', $item->id_katalog) }}" method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
-                                        </form>
-                                    </div>
+                                    </button>
+
+                                    <form action="{{ route('admin.katalog.destroy', $item->id_katalog) }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                    </form>
+
                                 </td>
                             </tr>
                         @endforeach
 
                         <script>
-                            function openEditModal(id, nama, jenis, bobot, harga) {
+                            function previewEditFoto(event) {
+                                const image = document.getElementById('edit-preview-image');
+                                const file = event.target.files[0];
+                                if (file) {
+                                    image.src = URL.createObjectURL(file);
+                                    image.style.display = 'block';
+                                } else {
+                                    image.style.display = 'none';
+                                }
+                            }
+
+                            function openEditModal(id, nama, jenis, bobot, harga, foto) {
+                                const form = document.getElementById('editKatalogForm');
                                 form.action = form.action.replace('__ID__', id);
+
                                 document.getElementById('edit_id_katalog').value = id;
                                 document.getElementById('edit_nama').value = nama;
                                 document.getElementById('edit_jenis').value = jenis;
                                 document.getElementById('edit_bobot').value = bobot;
                                 document.getElementById('edit_harga').value = harga;
-                        
+
+                                const previewImg = document.getElementById('edit-preview-image');
+                                previewImg.src = `/storage/${foto}`;
+                                previewImg.style.display = 'block';
+
                                 document.getElementById('editKatalogModal').showModal();
                             }
                         </script>
