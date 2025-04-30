@@ -180,44 +180,44 @@
                                         <button type="submit"
                                             class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
                                     </form>
+
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        <script>
+                            function previewEditFoto(event) {
+                                const image = document.getElementById('edit-preview-image');
+                                const file = event.target.files[0];
+                                if (file) {
+                                    image.src = URL.createObjectURL(file);
+                                    image.style.display = 'block';
+                                } else {
+                                    image.style.display = 'none';
+                                }
+                            }
+
+                            function openEditModal(id, nama, jenis, bobot, harga, foto) {
+                                const form = document.getElementById('editKatalogForm');
+                                form.action = form.action.replace('__ID__', id);
+
+                                document.getElementById('edit_id_katalog').value = id;
+                                document.getElementById('edit_nama').value = nama;
+                                document.getElementById('edit_jenis').value = jenis;
+                                document.getElementById('edit_bobot').value = bobot;
+                                document.getElementById('edit_harga').value = harga;
+
+                                const previewImg = document.getElementById('edit-preview-image');
+                                previewImg.src = `/storage/${foto}`;
+                                previewImg.style.display = 'block';
+
+                                document.getElementById('editKatalogModal').showModal();
+                            }
+                        </script>
+                    </tbody>
+                </table>
+
             </div>
-            </td>
-            </tr>
-            @endforeach
-
-            <script>
-                function previewEditFoto(event) {
-                    const image = document.getElementById('edit-preview-image');
-                    const file = event.target.files[0];
-                    if (file) {
-                        image.src = URL.createObjectURL(file);
-                        image.style.display = 'block';
-                    } else {
-                        image.style.display = 'none';
-                    }
-                }
-
-                function openEditModal(id, nama, jenis, bobot, harga, foto) {
-                    const form = document.getElementById('editKatalogForm');
-                    form.action = form.action.replace('__ID__', id);
-
-                    document.getElementById('edit_id_katalog').value = id;
-                    document.getElementById('edit_nama').value = nama;
-                    document.getElementById('edit_jenis').value = jenis;
-                    document.getElementById('edit_bobot').value = bobot;
-                    document.getElementById('edit_harga').value = harga;
-
-                    const previewImg = document.getElementById('edit-preview-image');
-                    previewImg.src = `/storage/${foto}`;
-                    previewImg.style.display = 'block';
-
-                    document.getElementById('editKatalogModal').showModal();
-                }
-            </script>
-            </tbody>
-            </table>
-
-        </div>
         </div>
     </section>
 
