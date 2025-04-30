@@ -163,7 +163,7 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ ucfirst($item->jenis) }}</td>
                                 <td>{{ $item->bobot }}</td>
-                                <td>{{ $item->harga }}</td>
+                                <td>{{ number_format($item->harga, 0, ',', '.')}}</td>
                                 <td><img class="w-36 h-24 object-cover" src="{{ asset('storage/' . $item->foto) }}" alt="foto_katalog">
                                 </td>
                                 <td class="flex gap-2">
