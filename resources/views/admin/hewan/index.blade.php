@@ -77,6 +77,20 @@
                                     </div>
                                     <div class="flex flex-col gap-2">
                                         <label for="foto" class="block">Foto Hewan</label>
+                                        <img id="preview-image"
+                                            class="mt-2 max-h-40 rounded border border-gray-300 object-contain" />
+                                        <script>
+                                            function previewFoto(event) {
+                                                const image = document.getElementById('preview-image');
+                                                const file = event.target.files[0];
+                                                if (file) {
+                                                    image.src = URL.createObjectURL(file);
+                                                    image.style.display = 'block';
+                                                } else {
+                                                    image.style.display = 'none';
+                                                }
+                                            }
+                                        </script>
                                         <label for="foto"
                                             class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                                             <x-feathericon-upload />
@@ -230,7 +244,7 @@
                                         <option value="Kambing">Kambing</option>
                                     </select>
                                 </div>
-                    
+
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Jenis Kelamin</label>
                                     <select name="jenis_kelamin" id="edit_jenis_kelamin"
@@ -239,13 +253,13 @@
                                         <option value="P">Perempuan</option>
                                     </select>
                                 </div>
-                    
+
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Tanggal Lahir</label>
                                     <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir"
                                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
                                 </div>
-                    
+
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Kategori</label>
                                     <select name="kategori" id="edit_kategori"
@@ -262,11 +276,22 @@
                                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"></textarea>
                                 </div>
 
+                                <div class="flex flex-col gap-2">
+                                    <label for="foto" class="block">Foto Hewan</label>
+                                    <img id="edit-preview-hewan"
+                                        class="mt-2 max-h-40 rounded border border-gray-300 object-contain" />
+                                    <label for="foto"
+                                        class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
+                                        <x-feathericon-upload />
+                                        Browse Files
+                                        <input type="file" id="foto" name="foto" class="hidden" />
+                                    </label>
+                                </div>
+
                                 <button type="submit"
-                                class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                         </form>
-                        <button class="btn btn-ghost w-full"
-                            onclick="closeEditHewanModal()">Batal</button>
+                        <button class="btn btn-ghost w-full" onclick="closeEditHewanModal()">Batal</button>
                     </div>
                 </dialog>
             </div>
@@ -315,7 +340,8 @@
                                             class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
                                     </form>
 
-                                    <button type="button" onclick="openEditHewanModal({{ $item }})" class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded">
+                                    <button type="button" onclick="openEditHewanModal({{ $item }})"
+                                        class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded">
                                         Edit
                                     </button>
                                 </td>
@@ -323,6 +349,17 @@
                         @endforeach
 
                         <script>
+                            function previewEditFoto(event) {
+                                const image = document.getElementById('edit-preview-image');
+                                const file = event.target.files[0];
+                                if (file) {
+                                    image.src = URL.createObjectURL(file);
+                                    image.style.display = 'block';
+                                } else {
+                                    image.style.display = 'none';
+                                }
+                            }
+
                             function openRekamModal(hewanId, namaHewan, userId) {
                                 document.getElementById('hewan_id_bobot').value = hewanId;
                                 document.getElementById('nama_hewan_bobot').value = namaHewan;
@@ -341,7 +378,6 @@
                             }
 
                             function openEditHewanModal(hewan) {
-                                // Fill in the form fields with data from the `hewan` object
                                 document.getElementById('edit-hewan-id').value = hewan.id_hewan;
                                 document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
                                 document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
@@ -349,6 +385,10 @@
                                 document.getElementById('edit_tanggal_lahir').value = hewan.tanggal_lahir;
                                 document.getElementById('edit_kategori').value = hewan.kategori;
                                 document.getElementById('edit_keterangan').value = hewan.keterangan;
+
+                                const previewImg = document.getElementById('edit-preview-hewan');
+                                previewImg.src = `/storage/${hewan.foto}`;
+                                previewImg.style.display = 'block';
 
                                 const form = document.getElementById('editForm');
                                 form.action = `/admin/hewan/${hewan.id_hewan}`;

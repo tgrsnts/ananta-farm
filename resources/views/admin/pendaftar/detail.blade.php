@@ -6,16 +6,19 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Detail Pendaftar</div>
                 <div>
-                    <form action="{{ route('admin.pendaftar.status', $data->id_daftar_magang) }}" method="POST" class="flex gap-2">
+                    <form action="{{ route('admin.pendaftar.status', $data->id_daftar_magang) }}" method="POST"
+                        class="flex gap-2">
                         @csrf
                         <label for="status" class="flex items-center">Status:</label>
-                        <select name="status" id="status" class="w-auto px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                        <select name="status" id="status"
+                            class="w-auto px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
                             <option value="pending" @selected(old('status', $data->status ?? '') == 'pending')>Pending</option>
                             <option value="diterima" @selected(old('status', $data->status ?? '') == 'diterima')>Diterima</option>
                             <option value="tidak_diterima" @selected(old('status', $data->status ?? '') == 'tidak_diterima')>Tidak Diterima</option>
                             <option value="selesai" @selected(old('status', $data->status ?? '') == 'selesai')>Selesai</option>
                         </select>
-                        <button type="submit" class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                        <button type="submit"
+                            class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -32,7 +35,8 @@
                     <input type="email" value="{{ $data->email }}" class="input input-bordered w-full" readonly>
 
                     <label>Jenis Kelamin</label>
-                    <input type="text" value="{{ $data->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}" class="input input-bordered w-full" readonly>
+                    <input type="text" value="{{ $data->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}"
+                        class="input input-bordered w-full" readonly>
 
                     <label>Instansi</label>
                     <input type="text" value="{{ $data->instansi }}" class="input input-bordered w-full" readonly>
@@ -47,8 +51,11 @@
                     <input type="text" value="{{ $data->angkatan }}" class="input input-bordered w-full" readonly>
 
                     <label>CV</label>
-                    @if($data->cv)
-                        <a href="{{ asset('storage/' . $data->cv) }}" target="_blank" class="text-blue-600 underline">Lihat CV</a>
+                    @if ($data->cv)
+                        <a href="{{ asset('storage/' . $data->cv) }}" target="_blank" class="text-blue-600 underline">Lihat
+                            CV (tab baru)</a>
+                        <embed src="{{ asset('storage/' . $data->cv) }}" type="application/pdf"
+                            class="w-full h-64 mt-2 rounded border border-gray-300" />
                     @else
                         <p class="text-gray-500">Tidak ada</p>
                     @endif
@@ -66,10 +73,12 @@
                     <input type="text" value="{{ $data->kegiatan }}" class="input input-bordered w-full" readonly>
 
                     <label>Kunjungan Peternakan</label>
-                    <input type="text" value="{{ $data->kunjungan_peternakan }}" class="input input-bordered w-full" readonly>
+                    <input type="text" value="{{ $data->kunjungan_peternakan }}" class="input input-bordered w-full"
+                        readonly>
 
                     <label>Pernah Magang</label>
-                    <input type="text" value="{{ $data->pernah_magang ? 'Ya' : 'Tidak' }}" class="input input-bordered w-full" readonly>
+                    <input type="text" value="{{ $data->pernah_magang ? 'Ya' : 'Tidak' }}"
+                        class="input input-bordered w-full" readonly>
 
                     <label>Referal</label>
                     <input type="text" value="{{ $data->referal }}" class="input input-bordered w-full" readonly>
@@ -81,10 +90,12 @@
                     <input type="text" value="{{ $data->instagram }}" class="input input-bordered w-full" readonly>
 
                     <label>Punya Kendaraan</label>
-                    <input type="text" value="{{ $data->punya_kendaraan ? 'Ya' : 'Tidak' }}" class="input input-bordered w-full" readonly>
+                    <input type="text" value="{{ $data->punya_kendaraan ? 'Ya' : 'Tidak' }}"
+                        class="input input-bordered w-full" readonly>
 
                     <label>Bisa Nyetir</label>
-                    <input type="text" value="{{ $data->bisa_nyetir ? 'Ya' : 'Tidak' }}" class="input input-bordered w-full" readonly>
+                    <input type="text" value="{{ $data->bisa_nyetir ? 'Ya' : 'Tidak' }}"
+                        class="input input-bordered w-full" readonly>
 
 
                 </div>
