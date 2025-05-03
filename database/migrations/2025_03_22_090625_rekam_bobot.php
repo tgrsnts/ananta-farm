@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id('id_rekamBobot');
             $table->foreignId('hewan_id')
                 ->constrained('hewan', 'id_hewan')
-                ->noActionOnUpdate()
-                ->noActionOnDelete();
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->foreignId('user_id')
                 ->constrained('users', 'id_user')
-                ->noActionOnUpdate()
-                ->noActionOnDelete();
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->integer('bobot');
             $table->timestamps();
         });
