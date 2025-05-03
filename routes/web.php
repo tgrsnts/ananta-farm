@@ -68,7 +68,7 @@ Route::middleware('admin')->group(function () {
             Route::post('/update/{id}', [PendaftarController::class, 'updateStatus'])->name('admin.pendaftar.status');
             Route::post('/', [PendaftarController::class, 'store'])->name('admin.pendaftar.store');
             Route::get('/{pendaftar}', [PendaftarController::class, 'show'])->name('admin.pendaftar.show');
-            Route::get('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
+            Route::delete('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
         });
 
         Route::prefix('/profile')->group(function () {
