@@ -12,6 +12,7 @@ class Magang extends Model
         'nama',
         'nim',
         'email',
+        'tanggal_lahir',
         'jenis_kelamin',
         'instansi',
         'jurusan',

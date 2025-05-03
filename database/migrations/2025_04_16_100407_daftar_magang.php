@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_daftar_magang');
             $table->string('nama');
             $table->string('nim');
+            $table->date('tanggal_lahir');
             $table->string('email');
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('instansi');

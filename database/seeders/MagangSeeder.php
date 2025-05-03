@@ -18,6 +18,7 @@ class MagangSeeder extends Seeder
             'nim' => '1234567890',
             'email' => 'tegarsantoso@gmail.com',
             'jenis_kelamin' => 'L',
+            'tanggal_lahir' => '2023-11-05',
             'instansi' => 'Politeknik Negeri Jakarta',
             'jurusan' => 'Teknik Informatika',
             'semester' => '6',
