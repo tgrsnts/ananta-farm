@@ -4,13 +4,29 @@
 <style>
     #example tbody td:nth-child(6){
         display: flex;
-        gap: calc(var(--spacing) * 4)
+        gap: calc(var(--spacing) * 4);
+    }
+    .dataTables_wrapper .dataTables_filter {
+        margin-bottom: calc(var(--spacing) * 8) !important;
     }
     #example tbody td:nth-child(5) img {
         width: calc(var(--spacing) * 36);
         height: calc(var(--spacing) * 24);
         object-fit: cover;
-
+    }
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #aaa;
+        border-radius: 3px;
+        padding: 5px;
+        background-color: transparent;
+        color: inherit;
+        margin-left: 10px !important;
+    }
+    .dataTables_wrapper .dataTables_paginate {
+        margin-top: calc(var(--spacing) * 8) !important;
+    }
+    .dataTables_wrapper .dataTables_info {
+        margin-top: calc(var(--spacing) * 8) !important;
     }
 </style>
 @endsection
@@ -157,8 +173,8 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto">
-                <table id="example" class="table rounded-lg row-border w-full stripe">
+            <div class="overflow-x-auto m-4">
+                <table id="example" class="table rounded-lg row-border w-full">
                     <thead>
                         <tr>
                             <th>Nama</th>
@@ -174,7 +190,16 @@
 
             <script>
                 const $katalog = @json($katalog);
-                new DataTable('#example', {
+                const table = new DataTable('#example', {
+                    pagingType: 'full_numbers',
+                    language: {
+                        paginate: {
+                            first: '«',
+                            previous: '‹',
+                            next: '›',
+                            last: '»'
+                        }
+                    },
                     data: $katalog,
                     columns: [
                         { data: 'nama' },
