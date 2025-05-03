@@ -1,5 +1,29 @@
 @extends('admin.layout.main')
-
+@section('style')
+<style>
+    #tablehewan tbody td:nth-child(6){
+        display: flex;
+        gap: calc(var(--spacing) * 2);
+    }
+    .dataTables_wrapper .dataTables_filter {
+        margin-bottom: calc(var(--spacing) * 8) !important;
+    }
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #aaa;
+        border-radius: 3px;
+        padding: 5px;
+        background-color: transparent;
+        color: inherit;
+        margin-left: 10px !important;
+    }
+    .dataTables_wrapper .dataTables_paginate {
+        margin-top: calc(var(--spacing) * 8) !important;
+    }
+    .dataTables_wrapper .dataTables_info {
+        margin-top: calc(var(--spacing) * 8) !important;
+    }
+</style>
+@endsection
 @section('content')
     <section id="dashboard" class="min-h-screen font-poppins w-full flex gap-4 p-4 pb-20 bg-slate-50">
         <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
@@ -161,7 +185,6 @@
                                 class="flex flex-col gap-4">
                                 @csrf
                                 <input hidden type="text" name="hewan_id" id="hewan_id_bobot">
-                                <input hidden type="text" name="user_id" id="user_id_bobot">
                                 <div class="flex flex-col gap-2">
                                     <div class="flex flex-col gap-1">
                                         <label class="block">Nama Hewan</label>
@@ -193,7 +216,6 @@
                                 method="POST" class="flex flex-col gap-4">
                                 @csrf
                                 <input hidden type="text" name="hewan_id" id="hewan_id_penyakit">
-                                <input hidden type="text" name="user_id" id="user_id_penyakit">
                                 <div class="flex flex-col gap-2">
                                     <div class="flex flex-col gap-1">
                                         <label class="block">Nama Hewan</label>
@@ -296,8 +318,129 @@
                 </dialog>
             </div>
 
+            <div class="overflow-x-auto m-4">
+                <table id="tablehewan" class="table rounded-lg row-border w-full">
+                    <thead>
+                        <tr>
+                            <th>Nama Hewan</th>
+                            <th>Jenis</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Keterangan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
 
-            <div class="overflow-x-auto">
+            <script>
+                const $hewan = @json($hewan);
+                const table = new DataTable('#tablehewan', {
+                    pagingType: 'full_numbers',
+                    language: {
+                        paginate: {
+                            first: '«',
+                            previous: '‹',
+                            next: '›',
+                            last: '»'
+                        }
+                    },
+                    data: $hewan,
+                    columns: [
+                        { data: 'nama_hewan', name: 'nama_hewan' },
+                        { data: 'jenis_hewan', name: 'jenis_hewan' },
+                        {
+                            data: 'jenis_kelamin',
+                            render: function (data) {
+                                return data === 'L' ? 'Jantan' : 'Betina';
+                            }
+                        },
+                        {
+                            data: 'tanggal_lahir',
+                            render: function (data) {
+                                const date = new Date(data);
+                                return date.toLocaleDateString('id-ID', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric'
+                                });
+                            }
+                        },
+                        { data: 'keterangan', name: 'keterangan' },
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            render: function(data,type,row) {
+                                const hewanJson = JSON.stringify(data).replace(/"/g, '&quot;');
+                                return `
+                                    <a href="/admin/hewan/${row.id_hewan}">
+                                        <button class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">Detail</button>
+                                    </a>
+                                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md" onclick="openRekamModal(this)" data-hewan="${hewanJson}">Rekam</button>
+                                    <form action="/admin/hewan/${row.id_hewan}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                    </form>
+                                    <button type="button" class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded" onclick="openEditHewanModal(this)" data-hewan="${hewanJson}">Edit</button>
+                                `;
+                            }
+                        }
+                    ]
+                })
+                function previewEditFoto(event) {
+                        const image = document.getElementById('edit-preview-image');
+                        const file = event.target.files[0];
+                        if (file) {
+                            image.src = URL.createObjectURL(file);
+                            image.style.display = 'block';
+                        } else {
+                            image.style.display = 'none';
+                        }
+                    }
+
+                    function openRekamModal(button) {
+                        const hewan = JSON.parse(button.getAttribute('data-hewan'));
+                        document.getElementById('hewan_id_bobot').value = hewan.id_hewan;
+                        document.getElementById('nama_hewan_bobot').value = hewan.nama_hewan;
+                        document.getElementById('hewan_id_penyakit').value = hewan.id_hewan;
+                        document.getElementById('nama_hewan_penyakit').value = hewan.nama_hewan;
+
+
+                        document.getElementById('rekamModal').showModal();
+                    }
+
+                    function closeRekamModal() {
+                        document.getElementById('rekamModal').close();
+                        document.getElementById('rekamBobotForm').reset();
+                        document.getElementById('rekamPenyakitForm').reset();
+                    }
+
+                    function openEditHewanModal(button) {
+                        const hewan = JSON.parse(button.getAttribute('data-hewan'));
+                        document.getElementById('edit-hewan-id').value = hewan.id_hewan;
+                        document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
+                        document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
+                        document.getElementById('edit_jenis_kelamin').value = hewan.jenis_kelamin;
+                        document.getElementById('edit_tanggal_lahir').value = hewan.tanggal_lahir;
+                        document.getElementById('edit_kategori').value = hewan.kategori;
+                        document.getElementById('edit_keterangan').value = hewan.keterangan;
+
+                        const previewImg = document.getElementById('edit-preview-hewan');
+                        previewImg.src = `/storage/${hewan.foto}`;
+                        previewImg.style.display = 'block';
+
+                        const form = document.getElementById('editForm');
+                        form.action = `/admin/hewan/${hewan.id_hewan}`;
+
+                        document.getElementById('EditHewanModal').showModal();
+                    }
+            </script>
+
+            {{-- <div class="overflow-x-auto">
                 <table class="table rounded-lg">
                     <thead>
                         <tr>
@@ -399,7 +542,7 @@
                     </tbody>
                 </table>
 
-            </div>
+            </div> --}}
         </div>
     </section>
 
