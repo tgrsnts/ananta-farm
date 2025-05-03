@@ -170,6 +170,23 @@
                                 onclick="document.getElementById('editKatalogModal').close()">Batal</button>
                         </div>
                     </dialog>
+
+                    <!-- Modal Detail Katalog -->
+                    <dialog id="detailKatalogModal" class="modal">
+                        <div class="modal-box">
+                            <h2 class="font-bold text-lg mb-4">Detail Katalog</h2>
+                            <div class="flex flex-col gap-2">
+                                <img id="detail_foto" class="w-full rounded-md object-cover max-h-60" />
+                                <p><strong>Nama:</strong> <span id="detail_nama"></span></p>
+                                <p><strong>Jenis:</strong> <span id="detail_jenis"></span></p>
+                                <p><strong>Bobot:</strong> <span id="detail_bobot"></span> kg</p>
+                                <p><strong>Harga:</strong> Rp <span id="detail_harga"></span></p>
+                            </div>
+                            <button class="btn btn-ghost w-full mt-4"
+                                onclick="document.getElementById('detailKatalogModal').close()">Tutup</button>
+                        </div>
+                    </dialog>
+
                 </div>
             </div>
 
@@ -181,14 +198,30 @@
                             <th>Jenis</th>
                             <th>Bobot</th>
                             <th>Harga</th>
-                            <th>Foto</th>
+                            {{-- <th>Foto</th> --}}
                             <th>Aksi</th>
                         </tr>
                     </thead>
                 </table>
             </div>
 
+
             <script>
+                function openDetailModal(id) {
+                    const katalog = $katalog.find(k => k.id_katalog == id);
+                    if (!katalog) return;
+
+                    document.getElementById('detail_nama').textContent = katalog.nama;
+                    document.getElementById('detail_jenis').textContent = katalog.jenis.charAt(0).toUpperCase() + katalog.jenis
+                        .slice(1);
+                    document.getElementById('detail_bobot').textContent = katalog.bobot;
+                    document.getElementById('detail_harga').textContent = parseInt(katalog.harga).toLocaleString('id-ID');
+                    document.getElementById('detail_foto').src = `/storage/${katalog.foto}`;
+
+                    document.getElementById('detailKatalogModal').showModal();
+                }
+
+
                 const $katalog = @json($katalog);
                 const table = new DataTable('#example', {
                     pagingType: 'full_numbers',
@@ -201,8 +234,9 @@
                         }
                     },
                     data: $katalog,
-                    columns: [
-                        { data: 'nama' },
+                    columns: [{
+                            data: 'nama'
+                        },
                         {
                             data: 'jenis',
                             render: d => d.charAt(0).toUpperCase() + d.slice(1)
@@ -215,32 +249,39 @@
                             data: 'harga',
                             render: d => 'Rp' + parseInt(d).toLocaleString('id-ID')
                         },
-                        {
-                            data: 'foto',
-                            render: d => `<img src="/storage/${d}" width="80">`
-                        },
+                        // {
+                        //     data: 'foto',
+                        //     render: d => `<img src="/storage/${d}" width="80">`
+                        // },
                         {
                             data: null,
-                            render: function (data, type, row) {
+                            render: function(data, type, row) {
                                 return `
-                                    <button type="button"
-                                        class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
-                                        onclick="openEditModal(${row.id_katalog}, '${row.nama}', '${row.jenis}', '${row.bobot}', '${row.harga}', '${row.foto}')">
-                                        Edit
-                                    </button>
-
-                                    <form action="/admin/katalog/${row.id_katalog}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
-                                    </form>
+                                    <div class="flex gap-1">
+                                        <button type="button"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+                                            onclick="openDetailModal(${row.id_katalog})">
+                                            Detail
+                                        </button>
+                                        <button type="button"
+                                            class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
+                                            onclick="openEditModal(${row.id_katalog}, '${row.nama}', '${row.jenis}', '${row.bobot}', '${row.harga}', '${row.foto}')">
+                                            Edit
+                                        </button>
+                                        <form action="/admin/katalog/${row.id_katalog}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                        </form>
+                                    </div>
                                 `;
                             }
                         }
                     ]
                 });
+
                 function previewEditFoto(event) {
                     const image = document.getElementById('edit-preview-image');
                     const file = event.target.files[0];

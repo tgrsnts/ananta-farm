@@ -3,60 +3,87 @@
 @section('content')
     <!-- Know About Us -->
     <section class="px-4 lg:px-40 py-20 bg-white">
-        <div class="flex justify-between mb-4">
+        <div class="flex justify-between items-center mb-4">
             <h3 class="text-green-normal text-xl lg:text-3xl font-bold">Katalog Hewan Kurban
             </h3>
-            <div class="flex">
-                <select name="" id="" class="p-2 border border-green-normal text-green-normal rounded-lg">
-                    <option value="" disabled selected>Hewan</option>
+            <form method="GET" action="" class="flex">
+                <select name="jenis" onchange="this.form.submit()" class="p-2 border border-green-normal text-sm lg:text-lg text-green-normal rounded-lg">
+                    <option value="" disabled {{ request('jenis') ? '' : 'selected' }}>Pilih Hewan</option>
+                    @foreach ($jenis_hewan as $jenis)
+                        <option value="{{ $jenis }}" {{ request('jenis') == $jenis ? 'selected' : '' }}>
+                            {{ ucfirst($jenis) }}
+                        </option>
+                    @endforeach
                 </select>
-            </div>
+            </form>
+            
         </div>
 
-        <div class="grid grid-cols-3 gap-4">
-            @foreach($katalog as $item)
-            <div class="flex flex-col bg-white drop-shadow-lg rounded-lg">
-                <img src="{{ asset('storage/'. $item->foto) }}" class="w-full rounded-t-lg h-64 object-cover">
-
-                <div class="flex items-center w-full">
-                    <div class="flex justify-center bg-yellow-normal p-6">
-                        <p class="font-extrabold text-2xl text-green-normal">{{ $item->nama}}</p>
-                    </div>
-                    <div class="flex flex-col justify-center px-4 w-full h-full bg-green-normal">
-                        <p class="text-yellow-normal">Kategori</p>
-                        <p class="font-bold text-yellow-normal">Rp {{number_format($item->harga, 0, ',', '.')}}</p>
-                    </div>
-                    <div class="flex flex-col justify-center px-4 h-full w-full bg-green-normal">
-                        <p class="text-yellow-normal">Bobot</p>
-                        <p class="text-yellow-normal font-extrabold text-2xl">{{ $item->bobot }} kg</p>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach ($katalog as $item)
+                <div class="flex flex-col bg-white drop-shadow-lg rounded-lg">
+                    {{-- Gambar utama --}}
+                    <img src="{{ asset('storage/' . $item->foto) }}" class="w-full rounded-t-lg aspect-square object-cover">
+        
+                    {{-- Konten --}}
+                    <div class="flex flex-col items-center gap-1 lg:gap-2 p-2 lg:px-4 lg:py-8">
+                        {{-- Nama hewan --}}
+                        <div class="flex w-full justify-center bg-yellow-normal p-1 rounded-full">
+                            <p class="font-semibold text-lg">{{ $item->nama }}</p>
+                        </div>
+        
+                        {{-- Harga --}}
+                        <p class="font-semibold text-green-normal text-xl">Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
+        
+                        {{-- Info lainnya --}}
+                        <div class="flex gap-4 mt-2">
+                            {{-- Bobot --}}
+                            <div class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 18 19" fill="none">
+                                    <path d="M6 4C6 5.10457 6.89543 6 8 6H10C11.1046 6 12 5.10457 12 4C12 2.89543 11.1046 2 10 2H8C6.89543 2 6 2.89543 6 4Z" stroke="#157D75" stroke-width="2"/>
+                                    <path d="M3.5 7H14.5L16 17H2L3.5 7Z" stroke="#157D75" stroke-width="2"/>
+                                </svg>
+                                <p class="text-green-normal">{{ $item->bobot }} kg</p>
+                            </div>
+        
+                            {{-- Jenis kelamin (jika ada) --}}
+                            @if(isset($item->jenis_kelamin))
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                        <path d="M12 2H18V8" stroke="#157D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M18 2L10 10" stroke="#157D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="7" cy="13" r="5" stroke="#157D75" stroke-width="2"/>
+                                    </svg>
+                                    <p class="text-green-normal">{{ ucfirst($item->jenis_kelamin) }}</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
-            {{-- <div class="flex flex-col bg-white drop-shadow-lg rounded-lg">
-                <img src="{{ asset('assets/image/IMG_9423.jpg') }}" class="w-full rounded-t-lg">
-                <div class="flex flex-col items-center gap-2 px-4 py-8">
-                    <div class="flex w-full justify-center bg-yellow-normal p-1 rounded-full">
-                        <p class="font-semibold text-lg">Sapi</p>
-                    </div>
-                    <p class="font-semibold text-green-normal text-xl">Rp.10.000.000</p>
-                    <div class="flex gap-4">
-                        <div class="flex gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 19" fill="none">
-                                <path d="M6 4C6 4.79565 6.31607 5.55871 6.87868 6.12132C7.44129 6.68393 8.20435 7 9 7C9.79565 7 10.5587 6.68393 11.1213 6.12132C11.6839 5.55871 12 4.79565 12 4C12 3.20435 11.6839 2.44129 11.1213 1.87868C10.5587 1.31607 9.79565 1 9 1C8.20435 1 7.44129 1.31607 6.87868 1.87868C6.31607 2.44129 6 3.20435 6 4Z" stroke="#157D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M3.8349 7H14.1649C14.3991 6.99996 14.6259 7.08213 14.8057 7.23216C14.9855 7.3822 15.107 7.59059 15.1489 7.821L16.7859 16.821C16.8121 16.9651 16.8064 17.1133 16.769 17.2549C16.7317 17.3966 16.6637 17.5283 16.5698 17.6408C16.4759 17.7532 16.3585 17.8437 16.2258 17.9058C16.0931 17.9679 15.9484 18 15.8019 18H2.1979C2.05141 18 1.9067 17.9679 1.77401 17.9058C1.64131 17.8437 1.52388 17.7532 1.43001 17.6408C1.33615 17.5283 1.26813 17.3966 1.23079 17.2549C1.19345 17.1133 1.18768 16.9651 1.2139 16.821L2.8509 7.821C2.89283 7.59059 3.01429 7.3822 3.19411 7.23216C3.37393 7.08213 3.60071 6.99996 3.8349 7Z" stroke="#157D75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <p class="text-green-normal">100 kg</p>
+        </div>
+        
+
+        {{-- <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach ($katalog as $item)
+                <div class="flex flex-col bg-white drop-shadow-lg rounded-lg">
+                    <img src="{{ asset('storage/' . $item->foto) }}" class="w-full rounded-t-lg h-64 object-cover">
+
+                    <div class="flex flex-col lg:flex-row items-center w-full">
+                        <div class="flex justify-center items-center bg-yellow-normal p-2 w-full h-full lg:p-6">
+                            <p class="font-extrabold text-md lg:text-2xl text-green-normal">{{ $item->nama }}</p>
                         </div>
-                        <div class="flex gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 11 14" fill="none">
-                                <path d="M9.99997 0.5H7.49997C7.36736 0.5 7.24018 0.552678 7.14642 0.646447C7.05265 0.740215 6.99997 0.867392 6.99997 1C6.99997 1.13261 7.05265 1.25979 7.14642 1.35355C7.24018 1.44732 7.36736 1.5 7.49997 1.5H8.79309L7.22122 3.07188C6.75967 2.64174 6.20292 2.32689 5.59645 2.15303C4.98997 1.97916 4.35097 1.95123 3.73164 2.07149C3.1123 2.19176 2.5302 2.45682 2.03287 2.84502C1.53554 3.23323 1.1371 3.73357 0.870072 4.30518C0.603048 4.87679 0.475021 5.50346 0.496449 6.134C0.517876 6.76454 0.68815 7.38107 0.993363 7.93323C1.29858 8.48539 1.73007 8.95753 2.25261 9.31108C2.77514 9.66462 3.3739 9.88956 3.99997 9.9675V11H2.49997C2.36736 11 2.24018 11.0527 2.14642 11.1464C2.05265 11.2402 1.99997 11.3674 1.99997 11.5C1.99997 11.6326 2.05265 11.7598 2.14642 11.8536C2.24018 11.9473 2.36736 12 2.49997 12H3.99997V13.5C3.99997 13.6326 4.05265 13.7598 4.14642 13.8536C4.24018 13.9473 4.36736 14 4.49997 14C4.63258 14 4.75975 13.9473 4.85352 13.8536C4.94729 13.7598 4.99997 13.6326 4.99997 13.5V12H6.49997C6.63258 12 6.75975 11.9473 6.85352 11.8536C6.94729 11.7598 6.99997 11.6326 6.99997 11.5C6.99997 11.3674 6.94729 11.2402 6.85352 11.1464C6.75975 11.0527 6.63258 11 6.49997 11H4.99997V9.9675C5.67017 9.88378 6.30821 9.63151 6.85445 9.23426C7.40069 8.83701 7.83729 8.30776 8.12346 7.69597C8.40963 7.08418 8.53602 6.40982 8.49081 5.73592C8.44561 5.06203 8.23028 4.41059 7.86497 3.8425L9.49997 2.20688V3.5C9.49997 3.63261 9.55265 3.75979 9.64642 3.85355C9.74018 3.94732 9.86736 4 9.99997 4C10.1326 4 10.2598 3.94732 10.3535 3.85355C10.4473 3.75979 10.5 3.63261 10.5 3.5V1C10.5 0.867392 10.4473 0.740215 10.3535 0.646447C10.2598 0.552678 10.1326 0.5 9.99997 0.5ZM4.49997 9C3.90663 9 3.32661 8.82405 2.83326 8.49441C2.33991 8.16476 1.95539 7.69623 1.72833 7.14805C1.50127 6.59987 1.44186 5.99667 1.55761 5.41473C1.67337 4.83279 1.95909 4.29824 2.37865 3.87868C2.79821 3.45912 3.33276 3.1734 3.9147 3.05764C4.49664 2.94189 5.09984 3.0013 5.64802 3.22836C6.1962 3.45542 6.66473 3.83994 6.99438 4.33329C7.32402 4.82664 7.49997 5.40666 7.49997 6C7.49914 6.7954 7.18281 7.55798 6.62038 8.12041C6.05795 8.68284 5.29536 8.99917 4.49997 9Z" fill="#157D75"/>
-                                </svg>
-                                <p class="text-green-normal">Jantan</p>
+                        <div class="flex flex-row lg:flex-col justify-center px-4 w-full h-full bg-green-normal">
+                            <p class="text-yellow-normal text">Kategori</p>
+                            <p class="font-bold text-yellow-normal text-sm lg:text-md">Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
+                        </div>
+                        <div class="flex flex-row lg:flex-col justify-center px-4 h-full w-full bg-green-normal">
+                            <p class="text-yellow-normal">Bobot</p>
+                            <p class="text-yellow-normal font-extrabold text-md lg:text-2xl">{{ $item->bobot }} kg</p>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            @endforeach --}}
         </div>
     </section>
 @endsection
