@@ -1,5 +1,29 @@
 @extends('admin.layout.main')
-
+@section('style')
+<style>
+    #tablependaftar tbody td:nth-child(8){
+        display: flex;
+        gap: calc(var(--spacing) * 2);
+    }
+    .dataTables_wrapper .dataTables_filter {
+        margin-bottom: calc(var(--spacing) * 8) !important;
+    }
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #aaa;
+        border-radius: 3px;
+        padding: 5px;
+        background-color: transparent;
+        color: inherit;
+        margin-left: 10px !important;
+    }
+    .dataTables_wrapper .dataTables_paginate {
+        margin-top: calc(var(--spacing) * 8) !important;
+    }
+    .dataTables_wrapper .dataTables_info {
+        margin-top: calc(var(--spacing) * 8) !important;
+    }
+</style>
+@endsection
 @section('content')
     <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col p-4 pb-20 bg-slate-50">
         <div class="flex flex-col gap-4 bg-white p-4 w-full rounded-lg shadow-md">
@@ -7,13 +31,95 @@
                 <div class="font-semibold">Data Pendaftar</div>
             </div>
 
-            <div class="overflow-x-auto">
+            <div class="overflow-y-auto">
+                <table id="tablependaftar" class="table rounded-lg row-border w-full">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Whatsapp</th>
+                            <th>Instagram</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Instansi</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <script>
+                const $pendaftar = @json($data);
+                const table = new DataTable('#tablependaftar', {
+                    pagingType: 'full_numbers',
+                    language: {
+                        paginate: {
+                            first: '«',
+                            previous: '‹',
+                            next: '›',
+                            last: '»'
+                        }
+                    },
+                    data: $pendaftar,
+                    columns: [
+                        {data: 'nama', name: 'nama'},
+                        {
+                            data: 'nomor_whatsapp',
+                            render: data => `<a href="https://wa.me/${data.replace('+','')}" target="_blank">${data}</a>`
+                        },
+                        {
+                            data: 'instagram',
+                            render: data => `<a href="https://instagram.com/${data}" target="_blank">${data}</a>`
+                        },
+                        { data: 'jenis_kelamin', render: data => data === 'L' ? 'Laki-laki' : 'Perempuan' },
+                        {
+                            data: 'tanggal_lahir',
+                            render: function (data) {
+                                    const date = new Date(data);
+                                    return date.toLocaleDateString('id-ID', {
+                                        day: '2-digit',
+                                        month: '2-digit',
+                                        year: 'numeric'
+                                    });
+                                }
+                        },
+                        { data: 'instansi' },
+                        {
+                            data: 'status',
+                            render: function (data) {
+                                return data.charAt(0).toUpperCase() + data.slice(1);
+                            } },
+                        {
+                            data: null,
+                            orderable: false,
+                            searchable: false,
+                            render:  function(data, type, row){
+                                return `
+                                    <a href="/admin/pendaftar/${row.id_daftar_magang}"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
+                                        Detail
+                                    </a>
+                                    <form action="/admin/pendaftar/${row.id_daftar_magang}"
+                                        onsubmit="return confirm('Yakin ingin menghapus pendaftar ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                    </form>
+                                `
+                            }
+                        }
+
+                    ]
+                })
+            </script>
+
+            {{-- <div class="overflow-x-auto">
                 <table class="table rounded-lg">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
-                            {{-- <th>Email</th> --}}
                             <th>Whatsapp</th>
                             <th>Instagram</th>
                             <th>Jenis Kelamin</th>
@@ -28,7 +134,6 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama }}</td>
-                                {{-- <td>{{ $item->email }}</td> --}}
                                 @php
                                     $nomor = preg_replace('/[^0-9]/', '', $item->nomor_whatsapp); // bersihkan nomor
                                     $pesan = urlencode('Halo, saya mau bertanya tentang magang di sini.'); // auto chat
@@ -75,7 +180,7 @@
                     </tbody>
                 </table>
 
-            </div>
+            </div> --}}
 
             {{-- <div class="grid grid-cols-6 gap-4">
                 <div
