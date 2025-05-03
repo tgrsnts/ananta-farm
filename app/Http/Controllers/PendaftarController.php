@@ -18,10 +18,32 @@ class PendaftarController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nama' => 'required',
+            'nim' => 'required',
+            'email' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'instansi' => 'required',
+            'jurusan' => 'required',
+            'semester' => 'required',
+            'angkatan' => 'required',
+            'nomor_whatsapp' => 'required',
+            'penyakit' => 'required',
+            'kegiatan' => 'required',
+            'kunjungan_peternakan' => 'required',
+            'pernah_magang' => 'required',
+            'referal' => 'required',
+            'alasan' => 'required',
+            'instagram' => 'required',
+            'punya_kendaraan' => 'required',
+            'bisa_nyetir' => 'required'
+        ]);
         $data = Magang::create([
             'nama' => $request->nama,
             'nim' => $request->nim,
             'email' => $request->email,
+            'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
             'instansi' => $request->instansi,
             'jurusan' => $request->jurusan,
