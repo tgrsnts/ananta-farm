@@ -2,7 +2,7 @@
 
 @section('style')
 <style>
-    #example tbody td:nth-child(6){
+    #example tbody td:nth-child(5){
         display: flex;
         gap: calc(var(--spacing) * 4);
     }
