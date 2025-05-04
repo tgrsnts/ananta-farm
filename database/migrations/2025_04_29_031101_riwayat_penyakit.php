@@ -18,7 +18,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->date('awal_sakit');
-            $table->date('sembuh');
+            $table->date('sembuh')->nullable();
             $table->string('nama_penyakit');
             $table->timestamps();
         });
