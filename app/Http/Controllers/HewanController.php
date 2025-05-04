@@ -47,7 +47,7 @@ class HewanController extends Controller
      */
     public function show(Hewan $hewan)
     {
-        $hewan->load(['rekam_bobot', 'riwayat_penyakit']);
+        $hewan->load(['rekam_bobot', 'riwayat_penyakit.perlakuan']);
 
         return view('admin.hewan.detail', ['data' => $hewan]);
     }

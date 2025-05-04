@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RiwayatPenyakit;
+use App\Models\PerlakuanPenyakit;
 
 class RekamPenyakitController extends Controller
 {
@@ -25,5 +26,16 @@ class RekamPenyakitController extends Controller
         $riwayat->update([
             'sembuh' => now()
         ]);
+    }
+
+    public function storePerlakuan(Request $request){
+        $request->validate([
+            'perlakuan' => 'required'
+        ]);
+        PerlakuanPenyakit::create([
+            'riwayat_penyakit_id' => $request->perlakuan_id,
+            'perlakuan' => $request->perlakuan
+        ]);
+        return redirect()->back();
     }
 }

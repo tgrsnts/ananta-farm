@@ -43,6 +43,8 @@ Route::middleware('admin')->group(function () {
 
         Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
         Route::post('/rekam-penyakit', [RekamPenyakitController::class, 'store'])->name('admin.rekam-penyakit.store');
+        Route::post('/sembuh/{id}', [RekamPenyakitController::class, 'sembuh'])->name('admin.hewan.sembuh');
+        Route::post('/perlakuan', [RekamPenyakitController::class, 'storePerlakuan'])->name('admin.perlakuan');
 
         Route::prefix('/hewan')->group(function () {
             Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
@@ -51,7 +53,6 @@ Route::middleware('admin')->group(function () {
             Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
             Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
             Route::put('/{hewan}', [HewanController::class, 'update'])->name('admin.hewan.update');
-            Route::post('/sembuh/{id}', [RekamPenyakitController::class, 'sembuh'])->name('admin.hewan.sembuh');
         });
 
         Route::prefix('/katalog')->group(function () {

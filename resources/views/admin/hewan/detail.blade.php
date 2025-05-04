@@ -319,8 +319,16 @@
                                         @endif
                                     </td>
                                     <td class="flex gap-1">
-                                        <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md">
-                                            Tambah Perlakuan
+                                        <button
+                                            type="button"
+                                            class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
+                                            onclick="bukaModalPerlakuan(
+                                                '{{ $item->id_riwayat_penyakit }}',
+                                                '{{ $item->nama_penyakit }}',
+                                                '{{ $item->awal_sakit }}',
+                                                '{{ json_encode($item->perlakuan) }}'
+                                            )">
+                                            Detail Perlakuan
                                         </button>
                                     </td>
                                 </tr>
@@ -329,9 +337,74 @@
 
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
+        <dialog id="detailPerlakuanModal" class="modal">
+            <div class="modal-box w-11/12 max-w-5xl">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-bold text-lg mb-4">Detail Perlakuan Penyakit</h2>
+                    <div>
+                        <form action="{{ route('admin.perlakuan') }}" class="flex gap-2" method="POST">
+                            @csrf
+                            <input hidden type="text" name="perlakuan_id" id="hewan_id_perlakuan">
+                            <label class="flex items-center" for="perlakuan_input">Perlakuan: </label>
+                            <input type="text" id="perlakuan_input" name="perlakuan" class="p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                            <button class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full" type="submit">Tambah</button>
+                        </form>
+                    </div>
+                </div>
+              <div class="flex flex-col gap-2">
+                <p><strong>Nama Penyakit:</strong> <span id="modal_nama_penyakit"></span></p>
+                <p><strong>Awal Sakit:</strong> <span id="modal_awal_sakit"></span></p>
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Tanggal</th>
+                      <th>Perlakuan</th>
+                    </tr>
+                  </thead>
+                  <tbody id="modal_tbody">
+                    <!-- Diisi via JS -->
+                  </tbody>
+                </table>
+              </div>
+              <form method="dialog">
+                <button class="btn btn-ghost w-full mt-4">Tutup</button>
+              </form>
+            </div>
+        </dialog>
+        <script>
+            function bukaModalPerlakuan(idPenyakit ,namaPenyakit, awalSakit, perlakuanJson) {
+            const modal = document.getElementById('detailPerlakuanModal');
+            document.getElementById('hewan_id_perlakuan').value = idPenyakit;
+            document.getElementById('modal_nama_penyakit').textContent = namaPenyakit;
+            document.getElementById('modal_awal_sakit').textContent = awalSakit;
+
+            let tbody = document.getElementById('modal_tbody');
+            tbody.innerHTML = ''; // kosongkan dulu
+
+            let perlakuan = JSON.parse(perlakuanJson);
+            perlakuan.forEach((item, index) => {
+                const tanggalPerlakuan = new Date(item.created_at);
+                const formatted = new Intl.DateTimeFormat('id-ID', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric',
+                }).format(tanggalPerlakuan);
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${formatted}</td>
+                        <td>${item.perlakuan}</td>
+                    </tr>
+                `;
+            });
+
+            modal.showModal();
+        }
+        </script>
     </section>
 @endsection

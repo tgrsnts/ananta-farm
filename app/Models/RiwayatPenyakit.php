@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class RiwayatPenyakit extends Model
@@ -20,5 +21,10 @@ class RiwayatPenyakit extends Model
     public function hewan(): BelongsTo
     {
         return $this->belongsTo(Hewan::class, 'hewan_id', 'id_hewan');
+    }
+
+    public function perlakuan(): HasMany
+    {
+        return $this->hasMany(PerlakuanPenyakit::class, 'riwayat_penyakit_id', 'id_riwayat_penyakit');
     }
 }
