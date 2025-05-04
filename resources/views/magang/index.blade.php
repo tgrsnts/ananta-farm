@@ -41,6 +41,12 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
+                    <label for="tanggal_lahir" class="block">Tanggal Lahir</label>
+                    <input id="tanggal_lahir" type="date" name="tanggal_lahir"
+                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                        required>
+                </div>
+                <div class="flex flex-col gap-2">
                     <label for="instansi" class="block">Instansi/Universitas</label>
                     <input id="instansi" type="text" name="instansi"
                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
