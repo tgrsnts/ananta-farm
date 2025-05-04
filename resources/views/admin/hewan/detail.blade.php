@@ -279,7 +279,7 @@
                             @foreach ($data->rekam_bobot as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->bobot }}</td>
                                     <td>{{ $item->user->nama }}</td>
                                     <td class="flex gap-1">

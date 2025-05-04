@@ -22,6 +22,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->integer('bobot');
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

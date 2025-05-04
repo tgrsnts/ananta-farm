@@ -14,7 +14,8 @@ class RekamBobot extends Model
     protected $fillable = [
         'hewan_id',
         'user_id',
-        'bobot'
+        'bobot',
+        'tanggal'
     ];
 
 
