@@ -173,13 +173,11 @@
                 }
                 const bobotData = @json($data->rekam_bobot);
                 const labels = bobotData.map(item => {
-                    const date = new Date(item.created_at);
+                    const date = new Date(item.tanggal);
                     return new Intl.DateTimeFormat('id-ID', {
                         day: '2-digit',
                         month: 'short',
                         year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
                     }).format(date);
                 });
                 const bobotValues = bobotData.map(item => item.bobot);
@@ -192,10 +190,9 @@
                     const curr = bobotData[i];
 
                     // Label pakai waktu rekaman kedua
-                    const date = new Date(curr.created_at);
+                    const date = new Date(curr.tanggal);
                     const formatted = new Intl.DateTimeFormat('id-ID', {
-                        day: '2-digit', month: 'short', year: 'numeric',
-                        hour: '2-digit', minute: '2-digit'
+                        day: '2-digit', month: 'short', year: 'numeric'
                     }).format(date);
 
                     selisihLabels.push(formatted);
@@ -234,7 +231,7 @@
                 // Chart Selisih Bobot
                 const selisihCtx = document.getElementById('selisihBobotChart').getContext('2d');
                 new Chart(selisihCtx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: labels,
                         datasets: [{
