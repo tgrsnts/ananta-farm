@@ -5,6 +5,124 @@
         <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Detail Hewan</div>
+                <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
+                onclick="openRekamModal({{ $data->id_hewan }}, '{{ $data->nama_hewan }}')">
+                    Rekam Data
+                </button>
+
+                <!-- Modal Rekam Bobot -->
+                <dialog id="rekamModal" class="modal">
+                    <div class="modal-box">
+                        <!-- Tombol -->
+                        <div class="flex mb-2">
+                            <button id="button-bobot" onclick="showForm('bobot')" type="button"
+                                class="w-full p-2 font-semibold text-white bg-green-normal hover:bg-green-normal border border-green-normal">Rekam
+                                Bobot</button>
+                            <button id="button-penyakit" onclick="showForm('penyakit')" type="button"
+                                class="w-full p-2 font-semibold hover:text-white hover:bg-green-normal border border-green-normal">Rekam
+                                Penyakit</button>
+                        </div>
+                        <script>
+                            function showForm(type) {
+                                const formBobot = document.getElementById('form-bobot');
+                                const formPenyakit = document.getElementById('form-penyakit');
+                                const buttonBobot = document.getElementById('button-bobot');
+                                const buttonPenyakit = document.getElementById('button-penyakit');
+
+                                if (type === 'bobot') {
+                                    formBobot.classList.remove('hidden');
+                                    formPenyakit.classList.add('hidden');
+
+                                    // Aktifkan tombol bobot
+                                    buttonBobot.classList.add('text-white', 'bg-green-normal');
+                                    buttonBobot.classList.remove('text-green-normal', 'bg-transparent');
+
+                                    // Nonaktifkan tombol penyakit
+                                    buttonPenyakit.classList.remove('text-white', 'bg-green-normal');
+                                    buttonPenyakit.classList.add('text-green-normal', 'bg-transparent');
+                                } else {
+                                    formBobot.classList.add('hidden');
+                                    formPenyakit.classList.remove('hidden');
+
+                                    // Aktifkan tombol penyakit
+                                    buttonPenyakit.classList.add('text-white', 'bg-green-normal');
+                                    buttonPenyakit.classList.remove('text-green-normal', 'bg-transparent');
+
+                                    // Nonaktifkan tombol bobot
+                                    buttonBobot.classList.remove('text-white', 'bg-green-normal');
+                                    buttonBobot.classList.add('text-green-normal', 'bg-transparent');
+                                }
+                            }
+                        </script>
+
+
+                        <!-- Form Rekam Bobot -->
+                        <div id="form-bobot">
+                            <h2 class="font-bold text-lg">Rekam Bobot</h2>
+                            <form id="rekamBobotForm" action="{{ route('admin.rekam-bobot.store') }}" method="POST"
+                                class="flex flex-col gap-4">
+                                @csrf
+                                <input hidden type="text" name="hewan_id" id="hewan_id_bobot">
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Nama Hewan</label>
+                                        <input disabled type="text" id="nama_hewan_bobot"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Tanggal</label>
+                                        <input type="date" name="tanggal"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Bobot</label>
+                                        <input type="text" name="bobot"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                            </form>
+                            <button class="btn btn-ghost w-full"
+                                onclick="closeRekamModal()">Batal</button>
+                        </div>
+
+                        <!-- Form Rekam Penyakit -->
+                        <div id="form-penyakit" class="hidden">
+                            <h2 class="font-bold text-lg">Rekam Penyakit</h2>
+                            <form id="rekamPenyakitForm" action="{{ route('admin.rekam-penyakit.store') }}"
+                                method="POST" class="flex flex-col gap-4">
+                                @csrf
+                                <input hidden type="text" name="hewan_id" id="hewan_id_penyakit">
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Nama Hewan</label>
+                                        <input disabled type="text" id="nama_hewan_penyakit"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Nama Penyakit</label>
+                                        <input type="text" name="nama_penyakit"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Tanggal</label>
+                                        <input type="date" name="awal_sakit"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                            </form>
+                            <button class="btn btn-ghost w-full"
+                                onclick="closeRekamModal()">Batal</button>
+                        </div>
+                    </div>
+                </dialog>
             </div>
             <div class="grid grid-cols-2 gap-x-8">
                 <!-- Kolom Kiri -->
@@ -39,6 +157,20 @@
             </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
+                function openRekamModal(id_hewan, nama_hewan) {
+                    document.getElementById('hewan_id_bobot').value = id_hewan;
+                    document.getElementById('nama_hewan_bobot').value = nama_hewan;
+                    document.getElementById('hewan_id_penyakit').value = id_hewan;
+                    document.getElementById('nama_hewan_penyakit').value = nama_hewan;
+
+
+                    document.getElementById('rekamModal').showModal();
+                }
+                function closeRekamModal() {
+                    document.getElementById('rekamModal').close();
+                    document.getElementById('rekamBobotForm').reset();
+                    document.getElementById('rekamPenyakitForm').reset();
+                }
                 const bobotData = @json($data->rekam_bobot);
                 const labels = bobotData.map(item => {
                     const date = new Date(item.created_at);
@@ -179,9 +311,20 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama_penyakit }}</td>
                                     <td>{{ $item->awal_sakit }}</td>
-                                    <td>{{ $item->sembuh }}</td>
+                                    <td>
+                                        @if ($item->sembuh)
+                                            {{ $item->sembuh }}
+                                        @else
+                                            <form action="{{ route('admin.hewan.sembuh', $item->id_riwayat_penyakit) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">Sembuh</button>
+                                            </form>
+                                        @endif
+                                    </td>
                                     <td class="flex gap-1">
-
+                                        <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md">
+                                            Tambah Perlakuan
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach

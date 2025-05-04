@@ -51,6 +51,7 @@ Route::middleware('admin')->group(function () {
             Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
             Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
             Route::put('/{hewan}', [HewanController::class, 'update'])->name('admin.hewan.update');
+            Route::post('/sembuh/{id}', [RekamPenyakitController::class, 'sembuh'])->name('admin.hewan.sembuh');
         });
 
         Route::prefix('/katalog')->group(function () {

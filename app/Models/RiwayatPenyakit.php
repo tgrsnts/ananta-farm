@@ -10,6 +10,12 @@ class RiwayatPenyakit extends Model
     protected $table = 'riwayat_penyakit';
     protected $primaryKey = 'id_riwayat_penyakit';
     protected $guarded = ['id_riwayat_penyakit'];
+    protected $fillable = [
+        'hewan_id',
+        'awal_sakit',
+        'sembuh',
+        'nama_penyakit'
+    ];
 
     public function hewan(): BelongsTo
     {
