@@ -141,7 +141,7 @@
 
                     <p class="font-medium">Tanggal Lahir</p>
                     <p class="text-start">:</p>
-                    <p>{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</p>
+                    <p>{{ $data->tanggal_lahir }}</p>
                 </div>
             </div>
         </div>
@@ -174,11 +174,10 @@
                 const bobotData = @json($data->rekam_bobot);
                 const labels = bobotData.map(item => {
                     const date = new Date(item.tanggal);
-                    return new Intl.DateTimeFormat('id-ID', {
-                        day: '2-digit',
-                        month: 'short',
-                        year: 'numeric',
-                    }).format(date);
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                    const day = String(date.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}`;
                 });
                 const bobotValues = bobotData.map(item => item.bobot);
                 const selisihValues = bobotData.map(item => item.selisih);
@@ -191,9 +190,10 @@
 
                     // Label pakai waktu rekaman kedua
                     const date = new Date(curr.tanggal);
-                    const formatted = new Intl.DateTimeFormat('id-ID', {
-                        day: '2-digit', month: 'short', year: 'numeric'
-                    }).format(date);
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const formatted = `${year}-${month}-${day}`;
 
                     selisihLabels.push(formatted);
                     selisihData.push(curr.bobot - prev.bobot);
@@ -389,11 +389,10 @@
             let perlakuan = JSON.parse(perlakuanJson);
             perlakuan.forEach((item, index) => {
                 const tanggalPerlakuan = new Date(item.created_at);
-                const formatted = new Intl.DateTimeFormat('id-ID', {
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric',
-                }).format(tanggalPerlakuan);
+                const year = tanggalPerlakuan.getFullYear();
+                const month = String(tanggalPerlakuan.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                const day = String(tanggalPerlakuan.getDate()).padStart(2, '0');
+                const formatted = `${year}-${month}-${day}`;
                 tbody.innerHTML += `
                     <tr>
                         <td>${index + 1}</td>
