@@ -87,7 +87,18 @@
                         {
                             data: 'status',
                             render: function (data) {
-                                return data.charAt(0).toUpperCase() + data.slice(1);
+                                switch(data){
+                                    case 'diterima':
+                                        return 'Diterima';
+                                    case 'tidak_diterima':
+                                        return 'Tidak Diterima';
+                                    case 'pending':
+                                        return 'Pending';
+                                    case 'selesai':
+                                        return 'Selesai';
+                                    default:
+                                        return 'Status Tidak Dikenal'
+                                }
                             } },
                         {
                             data: null,
