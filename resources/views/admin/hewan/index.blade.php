@@ -31,7 +31,7 @@
                 <div class="text-xl font-semibold">Data Hewan</div>
                 <div class="flex gap-2">
                     <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
-                        {{-- onclick="tambahHewan()" --}} onclick="document.getElementById('addHewanModal').showModal()">
+                         onclick="document.getElementById('addHewanModal').showModal()">
                         Tambah Data
                     </button>
 
@@ -207,6 +207,8 @@
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>
+                            <button class="btn btn-ghost w-full"
+                                onclick="closeRekamModal()">Batal</button>
                         </div>
 
                         <!-- Form Rekam Penyakit -->
@@ -224,13 +226,13 @@
                                     </div>
                                     <div class="flex flex-col gap-1">
                                         <label class="block">Nama Penyakit</label>
-                                        <input type="text" name="penyakit"
+                                        <input type="text" name="nama_penyakit"
                                             class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
                                             required>
                                     </div>
                                     <div class="flex flex-col gap-1">
                                         <label class="block">Tanggal</label>
-                                        <input type="date" name="tanggal"
+                                        <input type="date" name="awal_sakit"
                                             class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
                                             required>
                                     </div>
@@ -238,6 +240,8 @@
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>
+                            <button class="btn btn-ghost w-full"
+                                onclick="closeRekamModal()">Batal</button>
                         </div>
                     </div>
                 </dialog>
