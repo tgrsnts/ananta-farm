@@ -41,7 +41,7 @@ class RekamBobotController extends Controller
             'bobot' => $request->bobot,
             'user_id' => $user->id_user
         ]);
-        return redirect('admin/hewan');
+        return redirect()->back();
     }
 
     /**

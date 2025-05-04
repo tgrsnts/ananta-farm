@@ -39,7 +39,7 @@ class HewanController extends Controller
             'keterangan' => $request->keterangan,
             'foto' => $request->foto,
         ]);
-        return redirect('admin/hewan');
+        return redirect()->back();
     }
 
     /**
