@@ -5,10 +5,114 @@
         <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Detail Hewan</div>
-                <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
-                onclick="openRekamModal({{ $data->id_hewan }}, '{{ $data->nama_hewan }}')">
-                    Rekam Data
-                </button>
+                <div>
+
+                    <button type="button" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+                    onclick="document.getElementById('editHewanModal').showModal()">
+                        Edit Data
+                    </button>
+                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
+                    onclick="openRekamModal({{ $data->id_hewan }}, '{{ $data->nama_hewan }}')">
+                        Rekam Data
+                    </button>
+                </div>
+
+                <dialog id="editHewanModal" class="modal">
+                    <div class="modal-box">
+                        <h2 class="font-bold text-lg">Edit Hewan</h2>
+                        <form id="editForm" action="{{ route('admin.hewan.update', $data->id_hewan) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="flex flex-col gap-2">
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Nama Hewan</label>
+                                    <input type="text" name="nama_hewan" id="edit_nama_hewan"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                        value="{{ $data->nama_hewan }}">
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Jenis Hewan</label>
+                                    <select name="jenis_hewan" id="edit_jenis_hewan"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                        <option value="Sapi"  @if( $data->jenis_hewan == 'Sapi') selected @endif>Sapi</option>
+                                        <option value="Kambing"  @if( $data->jenis_hewan == 'Kambing') selected @endif>Kambing</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Jenis Kelamin</label>
+                                    <div class="flex gap-4">
+                                        <div class="flex gap-2">
+                                            <input id="jenis_kelamin_1" type="radio" value="L"
+                                                name="jenis_kelamin"
+                                                class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                                @if( $data->jenis_kelamin == 'L') checked @endif
+                                                required>
+                                            <label for="jenis_kelamin_1">Jantan</label>
+                                        </div>
+                                        <div class="flex gap-2">
+                                            <input id="jenis_kelamin_2" type="radio" value="P"
+                                                name="jenis_kelamin"
+                                                class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                                @if( $data->jenis_kelamin == 'P') checked @endif
+                                                required>
+                                            <label for="jenis_kelamin_1">Betina</label>
+                                        </div>
+                                    </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Tanggal Lahir</label>
+                                    <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" value="{{ $data->tanggal_lahir }}">
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Kategori</label>
+                                    <select name="kategori" id="edit_kategori"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                        <option value="Fattening" @if( $data->kategori == 'Fattening') selected @endif>Fattening</option>
+                                        <option value="Breeding" @if( $data->kategori == 'Breeding') selected @endif>Breeding</option>
+                                        <option value="Anakan" @if( $data->kategori == 'Anakan') selected @endif>Anakan</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Keterangan</label>
+                                    <textarea name="keterangan" id="edit_keterangan" rows="3"
+                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">{{ $data->keterangan }}</textarea>
+                                </div>
+
+                                <div class="flex flex-col gap-2">
+                                    <label class="block">Foto Hewan</label>
+                                    <img id="edit-preview-hewan"
+                                        class="mt-2 max-h-40 rounded border border-gray-300 object-contain"
+                                        src="{{ asset('storage/' . $data->foto) }}" />
+                                    <label for="edit-foto"
+                                        class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
+                                        <x-feathericon-upload />
+                                        Browse Files
+                                        <input type="file" id="edit-foto" name="foto" class="hidden" onchange="previewFoto(event)"/>
+                                    </label>
+                                    <script>
+                                        function previewFoto(event) {
+                                            const image = document.getElementById('edit-preview-hewan');
+                                            const file = event.target.files[0];
+                                            if (file) {
+                                                image.src = URL.createObjectURL(file);
+                                                image.style.display = 'block';
+                                            } else {
+                                                image.style.display = 'none';
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                                <button type="submit"
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                        </form>
+                        <button class="btn btn-ghost w-full" onclick="closeEditModal()" type="button">Batal</button>
+                    </div>
+                </dialog>
 
                 <!-- Modal Rekam Bobot -->
                 <dialog id="rekamModal" class="modal">
@@ -126,23 +230,26 @@
             </div>
             <div class="grid grid-cols-2 gap-x-8">
                 <!-- Kolom Kiri -->
-                <div class="grid grid-cols-2 ">
-                    <p class="font-medium">Nama Hewan</p>
-                    <p class="text-start">: {{ $data->nama_hewan }}</p>
-                    <p>Foto Hewan</p>
-                    <img src="{{ asset('storage/'.$data->foto) }}" alt="">
+                <div class="grid grid-cols-2">
+                    <p class="font-medium">Foto Hewan</p>
+                    <img class="object-cover w-full" src="{{ asset('storage/'.$data->foto) }}" alt="foto-hewan">
                 </div>
 
 
                 <!-- Kolom Kanan -->
-                <div class="grid grid-cols-3 gap-y-2">
-                    <p class="font-medium">Jenis Hewan</p>
-                    <p class="text-start">:</p>
-                    <p>{{ $data->jenis_hewan }}</p>
-
-                    <p class="font-medium">Tanggal Lahir</p>
-                    <p class="text-start">:</p>
-                    <p>{{ $data->tanggal_lahir }}</p>
+                <div class="flex flex-col">
+                    <div class="grid grid-cols-2">
+                        <p class="font-medium">Nama Hewan</p>
+                        <p class="text-start">: {{ $data->nama_hewan }}</p>
+                    </div>
+                    <div class="grid grid-cols-2">
+                        <p class="font-medium">Jenis Hewan</p>
+                        <p>: {{ $data->jenis_hewan }}</p>
+                    </div>
+                    <div class="grid grid-cols-2">
+                        <p class="font-medium">Tanggal Lahir</p>
+                        <p>: {{ $data->tanggal_lahir }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -404,6 +511,11 @@
             });
 
             modal.showModal();
+        }
+
+        function closeEditModal() {
+            document.getElementById('editHewanModal').close();
+            document.getElementById('editForm').reset();
         }
         </script>
     </section>
