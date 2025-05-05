@@ -48,7 +48,7 @@ class KatalogController extends Controller
         ]);
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-            $fileName = $request->bobot . $katalog->id . '.' . $file->extension();
+            $fileName = $this->quickRandom() . $katalog->id_katalog . '.' . $file->extension();
             $path = $file->storeAs('fotoKatalog', $fileName, 'public');
             $katalog->update([
                 'foto' => $path
@@ -72,7 +72,7 @@ class KatalogController extends Controller
                 File::delete($pathLama);
             }
             $file = $request->file('foto');
-            $fileName = $request->bobot . $katalog->id . '.' . $file->extension();
+            $fileName = $this->quickRandom() . $katalog->id_katalog . '.' . $file->extension();
             $path = $file->storeAs('fotoKatalog', $fileName, 'public');
             $katalog->update([
                 'foto' => $path
@@ -84,7 +84,17 @@ class KatalogController extends Controller
     public function destroy($id)
     {
         $katalog = Katalog::findOrFail($id);
+        $foto = storage_path('app/public/' . $katalog->foto);
+        if (File::exists($foto)) {
+            File::delete($foto);
+        }
         $katalog->delete();
         return redirect('/admin/katalog');
+    }
+
+    public static function quickRandom($length = 16)
+    {
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
     }
 }
