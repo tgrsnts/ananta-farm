@@ -5,7 +5,7 @@
     @endphp
 
     <div class="flex flex-col justify-between h-full pb-4">
-        <div class="flex flex-col">
+        <div class="flex flex-col gap-1">
             <div class="flex w-64  h-20 justify-center">
                 <a href="/" class="flex items-center gap-2 whitespace-nowrap text-2xl">
                     <img class="h-8" src="{{ asset('assets/image/logo-navbar.png') }}" alt="">
