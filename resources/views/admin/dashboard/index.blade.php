@@ -3,19 +3,68 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <section id="dashboard" class="min-h-screen font-poppins w-full flex gap-4 p-4 pb-20 bg-slate-50">
-        {{-- <div class="w-full gap-4 bg-white p-4 rounded-lg shadow-md">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-semibold">Dashboard</div>
+    <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col gap-4 p-4 pb-20 bg-slate-50">
+        <div class="grid grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-full">
+                <h2 class="text-2xl font-semibold mb-4">Total Sapi</h2>
+                <p class="text-3xl font-bold">{{ $total_sapi }}</p>
             </div>
-        </div> --}}
-        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-1/2">
-            <h2 class="text-2xl font-semibold mb-4">Data Sapi</h2>
-            <canvas id="sapiChart" class="w-full"></canvas>
+            <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-full">
+                <h2 class="text-2xl font-semibold mb-4">Total Kambing</h2>
+                <p class="text-3xl font-bold">{{ $total_kambing }}</p>
+            </div>
+            <!-- Total Sapi Sakit -->
+            <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-full">
+                <h2 class="text-2xl font-semibold mb-4">Total Sapi Sakit</h2>
+                <p class="text-3xl font-bold">{{ $sapi_sakit }}</p>
+            </div>
+            <!-- Total Kambing Sakit -->
+            <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-full">
+                <h2 class="text-2xl font-semibold mb-4">Total Kambing Sakit</h2>
+                <p class="text-3xl font-bold">{{ $kambing_sakit }}</p>
+            </div>
+
         </div>
-        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-1/2">
-            <h2 class="text-2xl font-semibold mb-4">Data Kambing</h2>
-            <canvas id="kambingChart" class="w-full"></canvas>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-full">
+                <h2 class="text-2xl font-semibold mb-4">Data Sapi</h2>
+                <canvas id="sapiChart" class="w-full"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md flex flex-col w-full">
+                <h2 class="text-2xl font-semibold mb-4">Data Kambing</h2>
+                <canvas id="kambingChart" class="w-full"></canvas>
+            </div>
+        </div>
+
+        <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
+            <p class="text-lg font-semibold">Riwayat Rekam Bobot</p>
+            <div class="overflow-x-auto">
+                <table class="table rounded-lg">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tanggal</th>
+                            <th>Bobot</th>
+                            <th>PJ</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($rekam_bobot as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->tanggal }}</td>
+                                <td>{{ $item->bobot }}</td>
+                                <td>{{ $item->user->nama }}</td>
+                                <td class="flex gap-1">
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+            </div>
         </div>
 
         <!-- Chart.js CDN -->
