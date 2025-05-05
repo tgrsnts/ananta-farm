@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-
+@section('title', 'Profile Saya')
 @section('content')
     <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col p-4 pb-20 bg-slate-50">
         <div class="flex flex-col bg-white p-4 w-full rounded-lg shadow-md">
@@ -14,14 +14,14 @@
                         <img id="foto-preview" class="w-full aspect-square object-cover rounded-md"
                             src="{{ $user->foto ? asset('storage/' . $user->foto) : asset('assets/image/avatar-biru.jpg') }}"
                             alt="Foto Profil" />
-                    
+
                         <!-- Tombol Ubah -->
                         <label id="ubah-foto-label"
                             class="w-full flex items-center justify-center rounded-md bg-green-normal hover:bg-green-normal-hover cursor-pointer py-2 px-4 text-white focus:outline-none focus:ring focus:ring-green-normal">
                             Ubah Foto
                             <input type="file" id="foto" name="foto" class="hidden" onchange="handleFotoChange(event)" />
                         </label>
-                    
+
                         <!-- Tombol Simpan & Batal (awal disembunyikan) -->
                         <div id="foto-action-buttons" class="w-full flex gap-2 hidden">
                             <button type="submit"
@@ -32,32 +32,32 @@
                     </div>
                     <script>
                         let originalSrc = document.getElementById('foto-preview').src;
-                    
+
                         function handleFotoChange(event) {
                             const file = event.target.files[0];
                             const preview = document.getElementById('foto-preview');
                             const label = document.getElementById('ubah-foto-label');
                             const buttons = document.getElementById('foto-action-buttons');
-                    
+
                             if (file) {
                                 preview.src = URL.createObjectURL(file);
                                 label.classList.add('hidden');
                                 buttons.classList.remove('hidden');
                             }
                         }
-                    
+
                         function resetFotoPreview() {
                             const preview = document.getElementById('foto-preview');
                             const fileInput = document.getElementById('foto');
                             const label = document.getElementById('ubah-foto-label');
                             const buttons = document.getElementById('foto-action-buttons');
-                    
+
                             fileInput.value = ''; // clear file input
                             preview.src = originalSrc;
                             buttons.classList.add('hidden');
                             label.classList.remove('hidden');
                         }
-                    </script>                                        
+                    </script>
                 </form>
                 <form method="POST" action="{{ route('admin.update.about') }}" enctype="multipart/form-data"
                     class="flex w-full">

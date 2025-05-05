@@ -1,5 +1,5 @@
 @extends('layout.main')
-
+@section('title', 'Staycation')
 @section('content')
     <!-- Hero -->
     <section class="relative w-full h-screen bg-black overflow-hidden flex items-center justify-center">

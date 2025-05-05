@@ -1,5 +1,5 @@
 @extends('layout.main')
-
+@section('title', 'Daftar Staycation')
 @section('content')
     <!-- Know About Us -->
     <section class="px-4 lg:px-40 py-20 bg-white">
@@ -176,13 +176,13 @@
                         Browse Files
                         <input type="file" id="cv" name="cv" class="hidden" accept="application/pdf" onchange="previewCV(event)" />
                     </label>
-                    
+
                 </div>
                 <script>
                     function previewCV(event) {
                         const file = event.target.files[0];
                         const preview = document.getElementById('cv-preview');
-                
+
                         if (file && file.type === 'application/pdf') {
                             preview.src = URL.createObjectURL(file);
                             preview.style.display = 'block';
@@ -192,7 +192,7 @@
                         }
                     }
                 </script>
-                                
+
                 <button type="submit"
                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Kirim</button>
             </form>

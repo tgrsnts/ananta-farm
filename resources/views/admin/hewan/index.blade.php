@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Dashboard Hewan')
 @section('style')
 <style>
     #tablehewan tbody td:nth-child(6){

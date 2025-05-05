@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-
+@section('title', 'Detail Pendaftar')
 @section('content')
     <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col gap-4 p-4 pb-20 bg-slate-50">
         <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">

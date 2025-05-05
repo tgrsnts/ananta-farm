@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-
+@section('title', 'Dashboard Katalog')
 @section('style')
 <style>
     #example tbody td:nth-child(5){

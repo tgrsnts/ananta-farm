@@ -1,5 +1,5 @@
 @extends('layout.main')
-
+@section('title', 'Home Page')
 @section('content')
 <!-- Hero -->
 <section id="hero">

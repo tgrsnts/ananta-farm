@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
     @vite('resources/css/app.css')
 
     <!-- Icons -->
@@ -47,7 +48,7 @@
                                 class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white hover:cursor-pointer">Masuk</button>
                         </div>
                         <div class="mt-2 text-center">
-                            Belum punya akun? 
+                            Belum punya akun?
                             <a href="/register"
                                 class="buttonSwitchToLoginOrRegister text-green-normal hover:text-green-normal-hover hover:underline hover:underline-green-normal-hover hover:underline-offset-4">
                                 Daftar!

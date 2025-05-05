@@ -1,5 +1,5 @@
 @extends('layout.main')
-
+@section('title', 'Katalog')
 @section('content')
     <!-- Know About Us -->
     <section class="px-4 lg:px-40 py-20 bg-white">
@@ -16,7 +16,7 @@
                     @endforeach
                 </select>
             </form>
-            
+
         </div>
 
         <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
@@ -24,17 +24,17 @@
                 <div class="flex flex-col bg-white drop-shadow-lg rounded-lg">
                     {{-- Gambar utama --}}
                     <img src="{{ asset('storage/' . $item->foto) }}" class="w-full rounded-t-lg aspect-square object-cover">
-        
+
                     {{-- Konten --}}
                     <div class="flex flex-col items-center gap-1 lg:gap-2 p-2 lg:px-4 lg:py-8">
                         {{-- Nama hewan --}}
                         <div class="flex w-full justify-center bg-yellow-normal p-1 rounded-full">
                             <p class="font-semibold text-lg">{{ $item->nama }}</p>
                         </div>
-        
+
                         {{-- Harga --}}
                         <p class="font-semibold text-green-normal text-xl">Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
-        
+
                         {{-- Info lainnya --}}
                         <div class="flex gap-4 mt-2">
                             {{-- Bobot --}}
@@ -45,7 +45,7 @@
                                 </svg>
                                 <p class="text-green-normal">{{ $item->bobot }} kg</p>
                             </div>
-        
+
                             {{-- Jenis kelamin (jika ada) --}}
                             @if(isset($item->jenis_kelamin))
                                 <div class="flex items-center gap-1">
@@ -62,7 +62,7 @@
                 </div>
             @endforeach
         </div>
-        
+
 
         {{-- <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach ($katalog as $item)

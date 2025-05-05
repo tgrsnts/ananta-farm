@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Dashboard Pendaftar')
 @section('style')
 <style>
     #tablependaftar tbody td:nth-child(8){
