@@ -48,11 +48,10 @@ Route::middleware('admin')->group(function () {
 
         Route::prefix('/hewan')->group(function () {
             Route::get('/', [HewanController::class, 'index'])->name('admin.hewan.index');
-            Route::get('/create', [HewanController::class, 'create'])->name('admin.hewan.create');
             Route::post('/', [HewanController::class, 'store'])->name('admin.hewan.store');
             Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
+            Route::post('/{id}', [HewanController::class, 'update'])->name('admin.hewan.update');
             Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
-            Route::put('/{hewan}', [HewanController::class, 'update'])->name('admin.hewan.update');
         });
 
         Route::prefix('/katalog')->group(function () {

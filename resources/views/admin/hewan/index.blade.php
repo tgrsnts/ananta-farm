@@ -39,7 +39,7 @@
                     <dialog id="addHewanModal" class="modal">
                         <div class="modal-box">
                             <h2 class="font-bold text-lg">Tambah Hewan</h2>
-                            <form action="{{ route('admin.hewan.store') }}" method="POST" class="flex flex-col gap-4">
+                            <form action="{{ route('admin.hewan.store') }}" method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex flex-col gap-2">
                                     <div class="flex flex-col gap-1">
@@ -103,6 +103,13 @@
                                         <label for="foto" class="block">Foto Hewan</label>
                                         <img id="preview-image"
                                             class="mt-2 max-h-40 rounded border border-gray-300 object-contain" />
+
+                                        <label for="foto"
+                                            class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
+                                            <x-feathericon-upload />
+                                            Browse Files
+                                            <input type="file" id="foto" name="foto" class="hidden" onchange="previewFoto(event)"/>
+                                        </label>
                                         <script>
                                             function previewFoto(event) {
                                                 const image = document.getElementById('preview-image');
@@ -115,12 +122,6 @@
                                                 }
                                             }
                                         </script>
-                                        <label for="foto"
-                                            class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
-                                            <x-feathericon-upload />
-                                            Browse Files
-                                            <input type="file" id="foto" name="foto" class="hidden" />
-                                        </label>
                                     </div>
                                 </div>
                                 <button type="submit"
@@ -240,7 +241,7 @@
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>
-                            <button class="btn btn-ghost w-full"
+                            <button class="btn btn-ghost w-full" type="button"
                                 onclick="closeRekamModal()">Batal</button>
                         </div>
                     </div>
@@ -250,11 +251,8 @@
                 <dialog id="EditHewanModal" class="modal">
                     <div class="modal-box">
                         <h2 class="font-bold text-lg">Edit Hewan</h2>
-                        <form id="editForm" action="{{ route('admin.hewan.update', ['hewan']) }}" method="POST">
+                        <form id="editForm" action="{{ route('admin.hewan.update', ['id' => '__ID__']) }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
-                            <input hidden type="text" name="hewan_id" id="edit-hewan-id">
-
                             <div class="flex flex-col gap-2">
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Nama Hewan</label>
@@ -303,21 +301,33 @@
                                 </div>
 
                                 <div class="flex flex-col gap-2">
-                                    <label for="foto" class="block">Foto Hewan</label>
+                                    <label class="block">Foto Hewan</label>
                                     <img id="edit-preview-hewan"
                                         class="mt-2 max-h-40 rounded border border-gray-300 object-contain" />
-                                    <label for="foto"
+                                    <label for="edit-foto"
                                         class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                                         <x-feathericon-upload />
                                         Browse Files
-                                        <input type="file" id="foto" name="foto" class="hidden" />
+                                        <input type="file" id="edit-foto" name="foto" class="hidden" onchange="previewFoto(event)"/>
                                     </label>
+                                    <script>
+                                        function previewFoto(event) {
+                                            const image = document.getElementById('edit-preview-hewan');
+                                            const file = event.target.files[0];
+                                            if (file) {
+                                                image.src = URL.createObjectURL(file);
+                                                image.style.display = 'block';
+                                            } else {
+                                                image.style.display = 'none';
+                                            }
+                                        }
+                                    </script>
                                 </div>
-
+                            </div>
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                         </form>
-                        <button class="btn btn-ghost w-full" onclick="closeEditHewanModal()">Batal</button>
+                        <button class="btn btn-ghost w-full" onclick="document.getElementById('EditHewanModal').close()" type="button">Batal</button>
                     </div>
                 </dialog>
             </div>
@@ -394,16 +404,6 @@
                         }
                     ]
                 })
-                function previewEditFoto(event) {
-                        const image = document.getElementById('edit-preview-image');
-                        const file = event.target.files[0];
-                        if (file) {
-                            image.src = URL.createObjectURL(file);
-                            image.style.display = 'block';
-                        } else {
-                            image.style.display = 'none';
-                        }
-                    }
 
                     function openRekamModal(button) {
                         const hewan = JSON.parse(button.getAttribute('data-hewan'));
@@ -424,7 +424,8 @@
 
                     function openEditHewanModal(button) {
                         const hewan = JSON.parse(button.getAttribute('data-hewan'));
-                        document.getElementById('edit-hewan-id').value = hewan.id_hewan;
+                        const form = document.getElementById('editForm');
+                        form.action = form.action.replace('__ID__', hewan.id_hewan);
                         document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
                         document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
                         document.getElementById('edit_jenis_kelamin').value = hewan.jenis_kelamin;
@@ -436,133 +437,10 @@
                         previewImg.src = `/storage/${hewan.foto}`;
                         previewImg.style.display = 'block';
 
-                        const form = document.getElementById('editForm');
-                        form.action = `/admin/hewan/${hewan.id_hewan}`;
-
                         document.getElementById('EditHewanModal').showModal();
                     }
             </script>
-
-            {{-- <div class="overflow-x-auto">
-                <table class="table rounded-lg">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nama Hewan</th>
-                            <th>Jenis</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Keterangan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($hewan as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nama_hewan }}</td>
-                                <td>{{ $item->jenis_hewan }}</td>
-                                <td>{{ $item->jenis_kelamin == 'L' ? 'Jantan' : 'Betina' }}</td>
-                                <td>{{ \Carbon\Carbon::parse($item->tanggal_lahir)->format('d-m-Y') }}</td>
-                                <td>{{ $item->keterangan }}</td>
-                                <td class="flex gap-1">
-                                    <a href="/admin/hewan/{{ $item->id_hewan }}"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
-                                        Detail
-                                    </a>
-
-                                    <button type="button"
-                                        class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
-                                        onclick="openRekamModal({{ $item->id_hewan }}, '{{ $item->nama_hewan }}', '1')">
-                                        Rekam
-                                    </button>
-
-
-                                    <form action="{{ route('admin.hewan.destroy', $item->id_hewan) }}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
-                                    </form>
-
-                                    <button type="button" onclick="openEditHewanModal({{ $item }})"
-                                        class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded">
-                                        Edit
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
-
-                        <script>
-                            function previewEditFoto(event) {
-                                const image = document.getElementById('edit-preview-image');
-                                const file = event.target.files[0];
-                                if (file) {
-                                    image.src = URL.createObjectURL(file);
-                                    image.style.display = 'block';
-                                } else {
-                                    image.style.display = 'none';
-                                }
-                            }
-
-                            function openRekamModal(hewanId, namaHewan, userId) {
-                                document.getElementById('hewan_id_bobot').value = hewanId;
-                                document.getElementById('nama_hewan_bobot').value = namaHewan;
-                                document.getElementById('user_id_bobot').value = userId;
-                                document.getElementById('hewan_id_penyakit').value = hewanId;
-                                document.getElementById('nama_hewan_penyakit').value = namaHewan;
-                                document.getElementById('user_id_penyakit').value = userId;
-
-                                document.getElementById('rekamModal').showModal();
-                            }
-
-                            function closeRekamModal() {
-                                document.getElementById('rekamModal').close();
-                                document.getElementById('rekamBobotForm').reset();
-                                document.getElementById('rekamPenyakitForm').reset();
-                            }
-
-                            function openEditHewanModal(hewan) {
-                                document.getElementById('edit-hewan-id').value = hewan.id_hewan;
-                                document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
-                                document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
-                                document.getElementById('edit_jenis_kelamin').value = hewan.jenis_kelamin;
-                                document.getElementById('edit_tanggal_lahir').value = hewan.tanggal_lahir;
-                                document.getElementById('edit_kategori').value = hewan.kategori;
-                                document.getElementById('edit_keterangan').value = hewan.keterangan;
-
-                                const previewImg = document.getElementById('edit-preview-hewan');
-                                previewImg.src = `/storage/${hewan.foto}`;
-                                previewImg.style.display = 'block';
-
-                                const form = document.getElementById('editForm');
-                                form.action = `/admin/hewan/${hewan.id_hewan}`;
-
-                                document.getElementById('EditHewanModal').showModal();
-                            }
-                        </script>
-                    </tbody>
-                </table>
-
-            </div> --}}
         </div>
     </section>
 
-    <script>
-        function tambahHewan() {
-            Swal.fire({
-                title: 'Apakah anda ingin menambah hewan?',
-                text: 'Kode Hewan akan terbuat secara otomatis!',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Tambah',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.hewan.create') }}";
-                }
-            });
-        }
-    </script>
 @endsection

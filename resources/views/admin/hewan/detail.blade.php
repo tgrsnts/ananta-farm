@@ -126,12 +126,13 @@
             </div>
             <div class="grid grid-cols-2 gap-x-8">
                 <!-- Kolom Kiri -->
-                <div class="grid grid-cols-3 gap-y-2">
+                <div class="grid grid-cols-2 ">
                     <p class="font-medium">Nama Hewan</p>
-                    <p class="text-start">:</p>
-                    <p>{{ $data->nama_hewan }}</p>
-
+                    <p class="text-start">: {{ $data->nama_hewan }}</p>
+                    <p>Foto Hewan</p>
+                    <img src="{{ asset('storage/'.$data->foto) }}" alt="">
                 </div>
+
 
                 <!-- Kolom Kanan -->
                 <div class="grid grid-cols-3 gap-y-2">

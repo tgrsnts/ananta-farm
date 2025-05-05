@@ -12,14 +12,15 @@ class Hewan extends Model
 {
     protected $table = 'hewan';
     protected $primaryKey = 'id_hewan';
-    // protected $fillable = [
-    //     'kandang_id',
-    //     'jenis_hewan',
-    //     'tanggal_lahir',
-    //     'jenis_kelamin',
-    //     'foto',
-    //     'keterangan'
-    // ];
+    protected $fillable = [
+        'nama_hewan',
+        'jenis_hewan',
+        'kategori',
+        'jenis_kelamin',
+        'tanggal_lahir',
+        'keterangan',
+        'foto'
+    ];
     protected $guarded = ['id_hewan'];
 
     public function rekam_bobot(): HasMany
