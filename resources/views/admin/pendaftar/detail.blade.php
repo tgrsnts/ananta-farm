@@ -18,7 +18,7 @@
                             <option value="selesai" @selected(old('status', $data->status ?? '') == 'selesai')>Selesai</option>
                         </select>
                         <button type="submit"
-                            class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                            class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                     </form>
                 </div>
             </div>

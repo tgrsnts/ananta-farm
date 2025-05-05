@@ -12,7 +12,7 @@
             </button>
         </div> --}}
 
-        <button id="sidebarToggle" class="text-white hover:text-slate-300 text-2xl focus:outline-none z-10">
+        <button id="sidebarToggle" class="text-white hover:text-slate-300 text-2xl focus:outline-none z-10 hover:cursor-pointer">
             ☰
         </button>
 

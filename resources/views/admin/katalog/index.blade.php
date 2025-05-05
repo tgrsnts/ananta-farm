@@ -37,7 +37,7 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Data Katalog</div>
                 <div class="flex gap-2">
-                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
+                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md hover:cursor-pointer"
                         {{-- onclick="tambahKatalog()" --}} onclick="document.getElementById('addKatalogModal').showModal()">
                         Tambah Data
                     </button>
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                                 <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                             </form>
                             <button class="btn btn-ghost w-full"
                                 onclick="document.getElementById('addKatalogModal').close()">Batal</button>
@@ -164,7 +164,7 @@
                                     </label>
                                 </div>
                                 <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                             </form>
                             <button class="btn btn-ghost w-full"
                                 onclick="document.getElementById('editKatalogModal').close()">Batal</button>
@@ -259,12 +259,12 @@
                                 return `
                                     <div class="flex gap-1">
                                         <button type="button"
-                                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
                                             onclick="openDetailModal(${row.id_katalog})">
                                             Detail
                                         </button>
                                         <button type="button"
-                                            class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md"
+                                            class="bg-green-normal hover:bg-green-normal-hover text-white px-4 p-2 rounded-md hover:cursor-pointer"
                                             onclick="openEditModal(${row.id_katalog}, '${row.nama}', '${row.jenis}', '${row.bobot}', '${row.harga}', '${row.foto}')">
                                             Edit
                                         </button>
@@ -273,7 +273,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">Hapus</button>
                                         </form>
                                     </div>
                                 `;

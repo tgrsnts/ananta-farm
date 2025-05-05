@@ -31,7 +31,7 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Data Hewan</div>
                 <div class="flex gap-2">
-                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
+                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md hover:cursor-pointer"
                          onclick="document.getElementById('addHewanModal').showModal()">
                         Tambah Data
                     </button>
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                             </form>
                             <button class="btn btn-ghost w-full"
                                 onclick="document.getElementById('addHewanModal').close()">Batal</button>
@@ -140,10 +140,10 @@
                         <!-- Tombol -->
                         <div class="flex mb-2">
                             <button id="button-bobot" onclick="showForm('bobot')" type="button"
-                                class="w-full p-2 font-semibold text-white bg-green-normal hover:bg-green-normal border border-green-normal">Rekam
+                                class="w-full p-2 font-semibold text-white bg-green-normal hover:bg-green-normal border border-green-normal hover:cursor-pointer">Rekam
                                 Bobot</button>
                             <button id="button-penyakit" onclick="showForm('penyakit')" type="button"
-                                class="w-full p-2 font-semibold hover:text-white hover:bg-green-normal border border-green-normal">Rekam
+                                class="w-full p-2 font-semibold hover:text-white hover:bg-green-normal border border-green-normal hover:cursor-pointer">Rekam
                                 Penyakit</button>
                         </div>
                         <script>
@@ -207,7 +207,7 @@
                                     </div>
                                 </div>
                                 <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                             </form>
                             <button class="btn btn-ghost w-full"
                                 onclick="closeRekamModal()">Batal</button>
@@ -240,7 +240,7 @@
                                     </div>
                                 </div>
                                 <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                             </form>
                             <button class="btn btn-ghost w-full" type="button"
                                 onclick="closeRekamModal()">Batal</button>
@@ -345,7 +345,7 @@
                                 </div>
                             </div>
                                 <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                         </form>
                         <button class="btn btn-ghost w-full" onclick="document.getElementById('EditHewanModal').close()" type="button">Batal</button>
                     </div>
@@ -408,17 +408,17 @@
                                 const hewanJson = JSON.stringify(data).replace(/"/g, '&quot;');
                                 return `
                                     <a href="/admin/hewan/${row.id_hewan}">
-                                        <button class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">Detail</button>
+                                        <button class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md hover:cursor-pointer">Detail</button>
                                     </a>
-                                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md" onclick="openRekamModal(this)" data-hewan="${hewanJson}">Rekam</button>
+                                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md hover:cursor-pointer" onclick="openRekamModal(this)" data-hewan="${hewanJson}">Rekam</button>
                                     <form action="/admin/hewan/${row.id_hewan}" method="POST"
                                         onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">Hapus</button>
                                     </form>
-                                    <button type="button" class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded" onclick="openEditHewanModal(this)" data-hewan="${hewanJson}">Edit</button>
+                                    <button type="button" class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded hover:cursor-pointer" onclick="openEditHewanModal(this)" data-hewan="${hewanJson}">Edit</button>
                                 `;
                             }
                         }

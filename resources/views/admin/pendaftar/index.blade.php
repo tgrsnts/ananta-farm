@@ -115,7 +115,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">Hapus</button>
+                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">Hapus</button>
                                     </form>
                                 `
                             }
