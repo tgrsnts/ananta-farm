@@ -29,6 +29,7 @@
                 Hewan
             </a>
 
+            @if (Auth::user()->role != 2)
             <a href="/admin/katalog"
                 class="{{ Request::is('admin/katalog*') ? 'text-green-normal bg-white' : 'text-white' }} font-poppins font-semibold flex items-center w-full py-4 pl-16 pr-8 leading-tight transition-all rounded-r-lg outline-none text-start hover:bg-white hover:text-green-normal focus:bg-white focus:text-green-normal active:bg-white active:text-green-normal">
                 <div class="flex w-6 h-6 mr-4 items-center justify-center">
@@ -44,6 +45,7 @@
                 </div>
                 Pendaftar
             </a>
+            @endif
 
             {{-- <a href="/admin/staycation" class="{{ $currentRoute == 'admin/staycation' ? 'text-green-normal bg-white' : 'text-white' }} font-poppins font-semibold flex items-center w-full py-4 pl-16 pr-8 leading-tight transition-all rounded-r-lg outline-none text-start hover:bg-white hover:text-green-normal focus:bg-white focus:text-green-normal active:bg-white active:text-green-normal">
                 <div class="flex w-6 h-6 mr-4 items-center justify-center">

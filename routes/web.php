@@ -39,6 +39,25 @@ Route::post('/magang', [PendaftarController::class, 'store'])->name('magang.stor
 
 Route::middleware('admin')->group(function () {
     Route::prefix('/admin')->group(function () {
+        Route::middleware('superadmin')->group(function () {
+            Route::prefix('/katalog')->group(function () {
+                Route::get('/', [KatalogController::class, 'index_admin'])->name('admin.katalog.index');
+                Route::get('/create', [KatalogController::class, 'create'])->name('admin.katalog.create');
+                Route::post('/', [KatalogController::class, 'store'])->name('admin.katalog.store');
+                Route::post('/{id}', [KatalogController::class, 'update'])->name('admin.katalog.update');
+                Route::get('/{katalog}', [KatalogController::class, 'show'])->name('admin.katalog.show');
+                Route::delete('/{id}', [KatalogController::class, 'destroy'])->name('admin.katalog.destroy');
+            });
+
+            Route::prefix('/pendaftar')->group(function () {
+                Route::get('/', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
+                Route::get('/create', [PendaftarController::class, 'create'])->name('admin.pendaftar.create');
+                Route::post('/update/{id}', [PendaftarController::class, 'updateStatus'])->name('admin.pendaftar.status');
+                Route::post('/', [PendaftarController::class, 'store'])->name('admin.pendaftar.store');
+                Route::get('/{pendaftar}', [PendaftarController::class, 'show'])->name('admin.pendaftar.show');
+                Route::delete('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
+            });
+        });
         Route::get('/', [DashboardController::class, 'index'])->middleware('admin');
 
         Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
@@ -52,24 +71,6 @@ Route::middleware('admin')->group(function () {
             Route::get('/{hewan}', [HewanController::class, 'show'])->name('admin.hewan.show');
             Route::post('/{id}', [HewanController::class, 'update'])->name('admin.hewan.update');
             Route::delete('/{id}', [HewanController::class, 'destroy'])->name('admin.hewan.destroy');
-        });
-
-        Route::prefix('/katalog')->group(function () {
-            Route::get('/', [KatalogController::class, 'index_admin'])->name('admin.katalog.index');
-            Route::get('/create', [KatalogController::class, 'create'])->name('admin.katalog.create');
-            Route::post('/', [KatalogController::class, 'store'])->name('admin.katalog.store');
-            Route::post('/{id}', [KatalogController::class, 'update'])->name('admin.katalog.update');
-            Route::get('/{katalog}', [KatalogController::class, 'show'])->name('admin.katalog.show');
-            Route::delete('/{id}', [KatalogController::class, 'destroy'])->name('admin.katalog.destroy');
-        });
-
-        Route::prefix('/pendaftar')->group(function () {
-            Route::get('/', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
-            Route::get('/create', [PendaftarController::class, 'create'])->name('admin.pendaftar.create');
-            Route::post('/update/{id}', [PendaftarController::class, 'updateStatus'])->name('admin.pendaftar.status');
-            Route::post('/', [PendaftarController::class, 'store'])->name('admin.pendaftar.store');
-            Route::get('/{pendaftar}', [PendaftarController::class, 'show'])->name('admin.pendaftar.show');
-            Route::delete('/{id}', [PendaftarController::class, 'destroy'])->name('admin.pendaftar.destroy');
         });
 
         Route::prefix('/profile')->group(function () {
