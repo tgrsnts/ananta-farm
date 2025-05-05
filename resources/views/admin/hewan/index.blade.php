@@ -271,12 +271,31 @@
 
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Jenis Kelamin</label>
+                                    <div class="flex gap-4">
+                                        <div class="flex gap-2">
+                                            <input id="edit_jenis_kelamin_1" type="radio" value="L"
+                                                name="jenis_kelamin"
+                                                class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                                required>
+                                            <label for="edit_jenis_kelamin_1">Jantan</label>
+                                        </div>
+                                        <div class="flex gap-2">
+                                            <input id="edit_jenis_kelamin_2" type="radio" value="P"
+                                                name="jenis_kelamin"
+                                                class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                                required>
+                                            <label for="edit_jenis_kelamin_2">Betina</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <div class="flex flex-col gap-1">
+                                    <label class="block">Jenis Kelamin</label>
                                     <select name="jenis_kelamin" id="edit_jenis_kelamin"
                                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
-                                        <option value="L">Laki-laki</option>
-                                        <option value="P">Perempuan</option>
+                                        <option value="L">Jantan</option>
+                                        <option value="P">Betina</option>
                                     </select>
-                                </div>
+                                </div> --}}
 
                                 <div class="flex flex-col gap-1">
                                     <label class="block">Tanggal Lahir</label>
@@ -428,7 +447,11 @@
                         form.action = form.action.replace('__ID__', hewan.id_hewan);
                         document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
                         document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
-                        document.getElementById('edit_jenis_kelamin').value = hewan.jenis_kelamin;
+                        if (hewan.jenis_kelamin === "L") {
+                            document.getElementById("edit_jenis_kelamin_1").checked = true;
+                        } else if (hewan.jenis_kelamin === "P") {
+                            document.getElementById("edit_jenis_kelamin_2").checked = true;
+                        }
                         document.getElementById('edit_tanggal_lahir').value = hewan.tanggal_lahir;
                         document.getElementById('edit_kategori').value = hewan.kategori;
                         document.getElementById('edit_keterangan').value = hewan.keterangan;
