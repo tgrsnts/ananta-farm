@@ -257,7 +257,7 @@
                             data: null,
                             render: function(data, type, row) {
                                 return `
-                                    <div class="flex gap-1">
+                                    <div class="flex justify-center gap-1">
                                         <button type="button"
                                             class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md hover:cursor-pointer"
                                             onclick="openDetailModal(${row.id_katalog})">
