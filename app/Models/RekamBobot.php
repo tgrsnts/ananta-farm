@@ -25,7 +25,7 @@ class RekamBobot extends Model
     }
     public function hewan(): BelongsTo
     {
-        return $this->belongsTo(Hewan::class, 'user_id', 'id_user');
+        return $this->belongsTo(Hewan::class, 'hewan_id', 'id_hewan');
     }
 
 }
