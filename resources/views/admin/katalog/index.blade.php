@@ -4,6 +4,7 @@
 <style>
     #example tbody td:nth-child(5){
         display: flex;
+        justify-content: center;
         gap: calc(var(--spacing) * 4);
     }
     .dataTables_wrapper .dataTables_filter {
@@ -199,7 +200,7 @@
                             <th>Bobot</th>
                             <th>Harga</th>
                             {{-- <th>Foto</th> --}}
-                            <th>Aksi</th>
+                            <th class="flex justify-center">Aksi</th>
                         </tr>
                     </thead>
                 </table>
