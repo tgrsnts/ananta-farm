@@ -64,6 +64,7 @@ Route::middleware('admin')->group(function () {
         Route::post('/rekam-bobot-update', [RekamBobotController::class, 'update'])->name('admin.rekam-bobot.update');
         Route::delete('/rekam-bobot/{id}', [RekamBobotController::class, 'destroy'])->name('admin.rekam-bobot.destroy');
         Route::post('/rekam-penyakit', [RekamPenyakitController::class, 'store'])->name('admin.rekam-penyakit.store');
+        Route::delete('/rekam-penyakit/{id}', [RekamPenyakitController::class, 'destroy'])->name('admin.rekam-penyakit.destroy');
         Route::post('/sembuh/{id}', [RekamPenyakitController::class, 'sembuh'])->name('admin.hewan.sembuh');
         Route::post('/perlakuan', [RekamPenyakitController::class, 'storePerlakuan'])->name('admin.perlakuan');
 

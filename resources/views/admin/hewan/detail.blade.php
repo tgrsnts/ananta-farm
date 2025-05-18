@@ -494,8 +494,15 @@
                                                 '{{ $item->awal_sakit }}',
                                                 '{{ json_encode($item->perlakuan) }}'
                                             )">
-                                            Detail Perlakuan
+                                            Detail
                                         </button>
+                                        <form action="{{ route('admin.rekam-penyakit.destroy', $item->id_riwayat_penyakit) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
+                                                Hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

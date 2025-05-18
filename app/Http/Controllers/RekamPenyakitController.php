@@ -43,4 +43,10 @@ class RekamPenyakitController extends Controller
         ]);
         return redirect()->back()->with('hewan', 'Perlakuan Berhasil Direkam');
     }
+
+    public function destroy($id){
+        $penyakit = RiwayatPenyakit::findOrFail($id);
+        $penyakit->delete();
+        return redirect()->back()->with('hewan', 'Penyakit Berhasil Dihapus');
+    }
 }
