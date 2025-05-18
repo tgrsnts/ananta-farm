@@ -35,7 +35,7 @@ class RekamPenyakitController extends Controller
         ]);
         $penyakit = RiwayatPenyakit::findOrFail($request->perlakuan_id);
         if($penyakit->sembuh){
-            return redirect()->back()->with('gagal', 'Hewan Sudah Sembuh');
+            return redirect()->back()->with('gagal', 'Penyakit Sudah Sembuh');
         }
         PerlakuanPenyakit::create([
             'riwayat_penyakit_id' => $request->perlakuan_id,
