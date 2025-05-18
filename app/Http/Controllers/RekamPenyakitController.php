@@ -18,7 +18,7 @@ class RekamPenyakitController extends Controller
             'awal_sakit' => $request->awal_sakit,
             'nama_penyakit' => $request->nama_penyakit
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('hewan', 'Penyakit Berhasil Direkam');
     }
 
     public function sembuh($id){
@@ -26,7 +26,7 @@ class RekamPenyakitController extends Controller
         $riwayat->update([
             'sembuh' => now()
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('hewan', 'Data Telah Disimpan');
     }
 
     public function storePerlakuan(Request $request){
@@ -37,6 +37,6 @@ class RekamPenyakitController extends Controller
             'riwayat_penyakit_id' => $request->perlakuan_id,
             'perlakuan' => $request->perlakuan
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('hewan', 'Perlakuan Berhasil Direkam');
     }
 }

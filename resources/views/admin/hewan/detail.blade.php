@@ -518,5 +518,17 @@
             document.getElementById('editForm').reset();
         }
         </script>
+        @if (session('hewan'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        toast: true,
+                        position: 'top-end',
+                        title: '{{ session("hewan") }}',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                </script>
+            @endif
     </section>
 @endsection
