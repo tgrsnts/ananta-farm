@@ -26,6 +26,21 @@ class RekamBobotController extends Controller
         return redirect()->back()->with('hewan', 'Bobot Berhasil Direkam');
     }
 
+    public function update(Request $request){
+        $rekam = RekamBobot::findOrFail($request->id_rekamBobot);
+        $user = Auth::user();
+        $data = $request->validate([
+            "tanggal" => "required",
+            "bobot" => "required"
+        ]);
+        $rekam->update([
+            'tangal' => $request->tanggal,
+            'bobot' => $request->bobot,
+            'user_id' => $user->id_user
+        ]);
+        return redirect()->back()->with('hewan', 'Bobot Berhasil Diubah');
+    }
+
     public function destroy($id){
         $rekam = RekamBobot::findOrFail($id);
         $rekam->delete();

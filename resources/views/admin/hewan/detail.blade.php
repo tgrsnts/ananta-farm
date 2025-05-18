@@ -114,6 +114,40 @@
                     </div>
                 </dialog>
 
+                <dialog id="editRekamModal" class="modal">
+                    <div id="edit-form-bobot" class="modal-box">
+                            <h2 class="font-bold text-lg">Rekam Bobot</h2>
+                            <form id="editrekamBobotForm" action="{{ route('admin.rekam-bobot.update') }}" method="POST"
+                                class="flex flex-col gap-4">
+                                @csrf
+                                <input hidden type="text" name="id_rekamBobot" id="edit_id_rekamBobot">
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Nama Hewan</label>
+                                        <input disabled type="text" id="edit_nama_hewan_bobot"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Tanggal</label>
+                                        <input type="date" name="tanggal" id="edit_tanggal_bobot"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Bobot</label>
+                                        <input type="text" name="bobot" id="edit_bobot_bobot"
+                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            required>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                            </form>
+                            <button class="btn btn-ghost w-full"
+                                onclick="closeEditRekamModal()">Batal</button>
+                        </div>
+                </dialog>
+
                 <!-- Modal Rekam Bobot -->
                 <dialog id="rekamModal" class="modal">
                     <div class="modal-box">
@@ -274,6 +308,20 @@
 
                     document.getElementById('rekamModal').showModal();
                 }
+
+                function openEditRekamBobot(id_rekam, bobot, tanggal, nama_hewan){
+                    document.getElementById('edit_id_rekamBobot').value = id_rekam;
+                    document.getElementById('edit_nama_hewan_bobot').value = nama_hewan;
+                    document.getElementById('edit_tanggal_bobot').value = tanggal;
+                    document.getElementById('edit_bobot_bobot').value = bobot;
+                    document.getElementById('editRekamModal').showModal();
+                }
+
+                function closeEditRekamModal() {
+                    document.getElementById('editRekamModal').close();
+                    document.getElementById('editrekamBobotForm').reset();
+                }
+
                 function closeRekamModal() {
                     document.getElementById('rekamModal').close();
                     document.getElementById('rekamBobotForm').reset();
@@ -388,6 +436,10 @@
                                     <td>{{ $item->bobot }}</td>
                                     <td>{{ $item->user->nama }}</td>
                                     <td class="flex gap-1">
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md hover:cursor-pointer"
+                                            onclick="openEditRekamBobot({{ $item->id_rekamBobot }}, '{{ $item->bobot }}', '{{ $item->tanggal }}', '{{ $data->nama_hewan }}')">
+                                            Edit
+                                        </button>
                                         <form action="{{ route('admin.rekam-bobot.destroy', $item->id_rekamBobot) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -491,6 +543,8 @@
             </div>
         </dialog>
         <script>
+
+
             function bukaModalPerlakuan(idPenyakit ,namaPenyakit, awalSakit, perlakuanJson) {
             const modal = document.getElementById('detailPerlakuanModal');
             document.getElementById('hewan_id_perlakuan').value = idPenyakit;

@@ -61,6 +61,7 @@ Route::middleware('admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->middleware('admin');
 
         Route::post('/rekam-bobot', [RekamBobotController::class, 'store'])->name('admin.rekam-bobot.store');
+        Route::post('/rekam-bobot-update', [RekamBobotController::class, 'update'])->name('admin.rekam-bobot.update');
         Route::delete('/rekam-bobot/{id}', [RekamBobotController::class, 'destroy'])->name('admin.rekam-bobot.destroy');
         Route::post('/rekam-penyakit', [RekamPenyakitController::class, 'store'])->name('admin.rekam-penyakit.store');
         Route::post('/sembuh/{id}', [RekamPenyakitController::class, 'sembuh'])->name('admin.hewan.sembuh');
