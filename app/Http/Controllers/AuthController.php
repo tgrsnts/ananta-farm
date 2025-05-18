@@ -22,6 +22,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('admin/');
         }
+        return back()->with('email', 'Email atau Password Salah')->onlyInput('email');
     }
 
     public function logout(Request $request){
