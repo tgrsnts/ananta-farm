@@ -62,9 +62,10 @@
                 Profil
             </a> --}}
 
-            <form action="{{ route('admin.logout') }}" method="POST">
+            <form action="{{ route('admin.logout') }}" method="POST" id="logout-form">
                 @csrf
-                <button type="submit"
+                <button type="button"
+                    onclick="validatelogout()"
                     class="text-white font-poppins font-semibold flex items-center w-full py-4 pl-16 pr-8 leading-tight transition-all rounded-r-lg outline-none text-start hover:bg-white hover:text-green-normal focus:bg-white focus:text-green-normal active:bg-white active:text-green-normal">
                     <div class="flex w-6 h-6 mr-4 items-center justify-center">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -86,4 +87,20 @@
            </flex>
         </a>
     </div>
+    <script>
+        function validatelogout(){
+            Swal.fire({
+                title: 'Apakah anda yakin ingin logout?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yakin',
+                cancelButtonColor: '#fb2c36',
+                confirmButtonColor: '#157c74'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+    </script>
 </nav>
