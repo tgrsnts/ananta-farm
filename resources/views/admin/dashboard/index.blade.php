@@ -37,13 +37,14 @@
         </div>
 
         <div class="w-full flex flex-col gap-4 bg-white p-4 rounded-lg shadow-md">
-            <p class="text-lg font-semibold">Riwayat Rekam Bobot</p>
+            <p class="text-lg font-semibold">Riwayat Rekam Bobot Terkini</p>
             <div class="overflow-x-auto">
                 <table class="table rounded-lg">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Tanggal</th>
+                            <th>Nama Hewan</th>
                             <th>Bobot</th>
                             <th>PJ</th>
                             <th>Aksi</th>
@@ -54,10 +55,15 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->tanggal }}</td>
+                                <td>{{ $item->hewan->nama_hewan }}</td>
                                 <td>{{ $item->bobot }}</td>
                                 <td>{{ $item->user->nama }}</td>
                                 <td class="flex gap-1">
-
+                                    <a href="{{ route('admin.hewan.show', $item->hewan->id_hewan) }}">
+                                        <button class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md hover:cursor-pointer">
+                                            Lihat Detail
+                                        </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
