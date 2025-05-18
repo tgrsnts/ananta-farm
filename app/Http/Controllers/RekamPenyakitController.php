@@ -26,6 +26,7 @@ class RekamPenyakitController extends Controller
         $riwayat->update([
             'sembuh' => now()
         ]);
+        return redirect()->back();
     }
 
     public function storePerlakuan(Request $request){
