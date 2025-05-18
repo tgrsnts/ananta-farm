@@ -440,7 +440,7 @@
                                             onclick="openEditRekamBobot({{ $item->id_rekamBobot }}, '{{ $item->bobot }}', '{{ $item->tanggal }}', '{{ $data->nama_hewan }}')">
                                             Edit
                                         </button>
-                                        <form action="{{ route('admin.rekam-bobot.destroy', $item->id_rekamBobot) }}" method="POST">
+                                        <form action="{{ route('admin.rekam-bobot.destroy', $item->id_rekamBobot) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus rekaman ini?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
@@ -496,7 +496,7 @@
                                             )">
                                             Detail
                                         </button>
-                                        <form action="{{ route('admin.rekam-penyakit.destroy', $item->id_riwayat_penyakit) }}" method="POST">
+                                        <form action="{{ route('admin.rekam-penyakit.destroy', $item->id_riwayat_penyakit) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus riwayat ini?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
