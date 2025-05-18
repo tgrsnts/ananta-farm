@@ -382,13 +382,19 @@
                         </thead>
                         <tbody>
                             @foreach ($data->rekam_bobot as $item)
-                                <tr>
+                            <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->bobot }}</td>
                                     <td>{{ $item->user->nama }}</td>
                                     <td class="flex gap-1">
-
+                                        <form action="{{ route('admin.rekam-bobot.destroy', $item->id_rekamBobot) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
+                                                Hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

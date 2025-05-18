@@ -26,5 +26,9 @@ class RekamBobotController extends Controller
         return redirect()->back()->with('hewan', 'Bobot Berhasil Direkam');
     }
 
-
+    public function destroy($id){
+        $rekam = RekamBobot::findOrFail($id);
+        $rekam->delete();
+        return redirect()->back()->with('hewan', 'Data Berhasil Dihapus');
+    }
 }
