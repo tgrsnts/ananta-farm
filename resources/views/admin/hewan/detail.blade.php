@@ -519,16 +519,28 @@
         }
         </script>
         @if (session('hewan'))
-                <script>
-                    Swal.fire({
-                        icon: 'success',
-                        toast: true,
-                        position: 'top-end',
-                        title: '{{ session("hewan") }}',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                </script>
-            @endif
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    toast: true,
+                    position: 'top-end',
+                    title: '{{ session("hewan") }}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
+        @if (session('gagal'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    toast: true,
+                    position: 'top-end',
+                    title: '{{ session("gagal") }}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
     </section>
 @endsection
