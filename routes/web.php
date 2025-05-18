@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('auth.login');
-})->middleware('login');
+})->middleware('login')->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -90,3 +90,4 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::post('/authenticate', [AuthController::class, 'login'])->name('admin.login');
+Route::post('/register', [AuthController::class, 'register'])->name('admin.register');
