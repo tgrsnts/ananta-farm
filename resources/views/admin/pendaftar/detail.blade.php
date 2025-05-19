@@ -10,13 +10,25 @@
                         class="flex gap-2">
                         @csrf
                         <label for="status" class="flex items-center">Status:</label>
-                        <select name="status" id="status"
-                            class="w-auto px-2 py-3 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
-                            <option value="pending" @selected(old('status', $data->status ?? '') == 'pending')>Pending</option>
-                            <option value="diterima" @selected(old('status', $data->status ?? '') == 'diterima')>Diterima</option>
-                            <option value="tidak_diterima" @selected(old('status', $data->status ?? '') == 'tidak_diterima')>Tidak Diterima</option>
-                            <option value="selesai" @selected(old('status', $data->status ?? '') == 'selesai')>Selesai</option>
-                        </select>
+                        <div class="relative w-full">
+                            <select name="status" id="status"
+                                class="appearance-none w-full px-4 py-3 pr-10 border border-slate-400 focus:outline-none focus:ring-2 focus:ring-green-normal rounded-lg text-sm lg:text-base text-slate-700 bg-white">
+                                <option value="pending" @selected(old('status', $data->status ?? '') == 'pending')>Pending</option>
+                                <option value="diterima" @selected(old('status', $data->status ?? '') == 'diterima')>Diterima</option>
+                                <option value="tidak_diterima" @selected(old('status', $data->status ?? '') == 'tidak_diterima')>Tidak Diterima</option>
+                                <option value="selesai" @selected(old('status', $data->status ?? '') == 'selesai')>Selesai</option>
+                            </select>
+
+                            <!-- Custom Chevron -->
+                            <div
+                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+                                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M5.516 7.548a.5.5 0 0 1 .707-.032L10 11.066l3.777-3.55a.5.5 0 1 1 .684.73l-4.09 3.843a.5.5 0 0 1-.684 0L5.548 8.22a.5.5 0 0 1-.032-.707z" />
+                                </svg>
+                            </div>
+                        </div>
+
                         <button type="submit"
                             class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                     </form>
@@ -108,7 +120,7 @@
                     icon: 'success',
                     toast: true,
                     position: 'top-end',
-                    title: '{{ session("success") }}',
+                    title: '{{ session('success') }}',
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -120,7 +132,7 @@
                     icon: 'error',
                     toast: true,
                     position: 'top-end',
-                    title: '{{ session("gagal") }}',
+                    title: '{{ session('gagal') }}',
                     showConfirmButton: false,
                     timer: 2000
                 });
