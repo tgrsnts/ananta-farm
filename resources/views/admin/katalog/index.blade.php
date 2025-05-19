@@ -245,8 +245,7 @@
                     },
                     data: $katalog,
                     columns: [{
-                            data: 'nama' qwertyuiop+
-                            
+                            data: 'nama'    
                         },
                         {
                             data: 'jenis',
