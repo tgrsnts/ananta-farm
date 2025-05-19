@@ -9,6 +9,7 @@
 
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="font-poppins">
@@ -27,7 +28,7 @@
                         @csrf
                         <div class="flex flex-col">
                             <label for="username-register">Email</label>
-                            <input name="email" type="text" id="username-register" placeholder="Masukkan username"
+                            <input name="email" type="text" id="username-register" placeholder="Masukkan email" value="{{ old('email') }}"
                                 class="w-full text-xl p-4 rounded-md bg-gray-100 focus:outline-none focus:ring focus:ring-green-normal border-1 border-slate-400 focus:border-green-normal">
                         </div>
                         <div class="flex flex-col">
@@ -58,7 +59,30 @@
                 </div>
             </div>
         </div>
-
+        @if (session('email'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    toast: true,
+                    position: 'top-end',
+                    title: 'Email atau Password Salah',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    toast: true,
+                    position: 'top-end',
+                    title: '{{ session("success") }}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            </script>
+        @endif
     </main>
 
     <!-- Main JS  -->

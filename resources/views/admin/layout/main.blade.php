@@ -12,7 +12,6 @@
 
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 

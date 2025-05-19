@@ -48,7 +48,7 @@ class HewanController extends Controller
                 'foto' => $path
             ]);
         }
-        return redirect()->back();
+        return redirect()->back()->with('hewan', 'Data Berhasil Ditambah');
     }
 
     /**
@@ -87,7 +87,7 @@ class HewanController extends Controller
                 'foto' => $path
             ]);
         }
-        return redirect()->back();
+        return redirect()->back()->with('hewan', 'Data Berhasil Diubah');
     }
 
     /**
@@ -97,7 +97,7 @@ class HewanController extends Controller
     {
         $hewan = Hewan::findOrFail($id);
         $hewan->delete();
-        return redirect()->route('admin.hewan.index');
+        return redirect()->back()->with('hewan', 'Data Berhasil Dihapus');
     }
 
     public static function quickRandom($length = 16)

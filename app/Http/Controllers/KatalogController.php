@@ -54,7 +54,7 @@ class KatalogController extends Controller
                 'foto' => $path
             ]);
         }
-        return redirect('/admin/katalog');
+        return redirect()->back()->with('katalog', 'Data Berhasil Ditambah');
     }
 
     public function update(Request $request, $id)
@@ -78,7 +78,7 @@ class KatalogController extends Controller
                 'foto' => $path
             ]);
         }
-        return redirect()->route('admin.katalog.index');
+        return redirect()->back()->with('katalog', 'Data Berhasil Diubah');
     }
 
     public function destroy($id)
@@ -89,7 +89,7 @@ class KatalogController extends Controller
             File::delete($foto);
         }
         $katalog->delete();
-        return redirect('/admin/katalog');
+        return redirect()->back()->with('katalog', 'Data Berhasil Dihapus');
     }
 
     public static function quickRandom($length = 16)

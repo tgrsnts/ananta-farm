@@ -99,12 +99,18 @@ class PendaftarController extends Controller
                     $magang->update([
                         'status' => 'diterima'
                     ]);
+                    return redirect()->back()->with('success', 'Status Berhasil Diubah');
                 }
                 break;
             case 'tidak_diterima':
-                $magang->update([
-                    'status' => 'tidak_diterima'
-                ]);
+                if($magang->status == 'diterima' || $magang->status == 'selesai'){
+                    break;
+                }else{
+                    $magang->update([
+                        'status' => 'tidak_diterima'
+                    ]);
+                    return redirect()->back()->with('success', 'Status Berhasil Diubah');
+                }
                 break;
             case 'selesai':
                 if($magang->status == 'pending' || $magang->status == 'tidak_diterima'){
@@ -115,12 +121,13 @@ class PendaftarController extends Controller
                     $magang->update([
                         'status' => 'selesai'
                     ]);
+                    return redirect()->back()->with('success', 'Status Berhasil Diubah');
                 }
                 break;
             default:
                 break;
         }
-        return redirect('/admin/pendaftar');
+        return redirect()->back()->with('gagal', 'Status Gagal Diubah');
 
     }
 

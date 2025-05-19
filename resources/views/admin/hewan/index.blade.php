@@ -109,10 +109,10 @@
                                             class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                                             <x-feathericon-upload />
                                             Browse Files
-                                            <input type="file" id="foto" name="foto" class="hidden" onchange="previewFoto(event)"/>
+                                            <input type="file" id="foto" name="foto" class="hidden" onchange="previewFotoTambah(event)"/>
                                         </label>
                                         <script>
-                                            function previewFoto(event) {
+                                            function previewFotoTambah(event) {
                                                 const image = document.getElementById('preview-image');
                                                 const file = event.target.files[0];
                                                 if (file) {
@@ -464,6 +464,18 @@
                         document.getElementById('EditHewanModal').showModal();
                     }
             </script>
+            @if (session('hewan'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        toast: true,
+                        position: 'top-end',
+                        title: '{{ session("hewan") }}',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                </script>
+            @endif
         </div>
     </section>
 

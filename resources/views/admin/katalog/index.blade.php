@@ -321,23 +321,17 @@
                     document.getElementById('editKatalogModal').showModal();
                 }
             </script>
-
+            @if (session('katalog'))
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        toast: true,
+                        position: 'top-end',
+                        title: '{{ session("katalog") }}',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                </script>
+            @endif
     </section>
-
-    <script>
-        function tambahKatalog() {
-            Swal.fire({
-                title: 'Apakah anda ingin menambah katalog?',
-                text: 'Kode Katalog akan terbuat secara otomatis!',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Tambah',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "{{ route('admin.katalog.create') }}";
-                }
-            });
-        }
-    </script>
 @endsection

@@ -11,6 +11,7 @@
 
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/f87eaab4e6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="font-poppins">
@@ -25,6 +26,7 @@
 
     <!-- Main JS  -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+
 
     <!-- Tailwind Config -->
     {{-- <script src="{{ asset('assets/js/tailwind.config.js') }}"></script>     --}}
