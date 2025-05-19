@@ -1,35 +1,45 @@
 @extends('admin.layout.main')
 @section('title', 'Dashboard Katalog')
 @section('style')
-<style>
-    #example tbody td:nth-child(5){
-        display: flex;
-        justify-content: center;
-        gap: calc(var(--spacing) * 4);
-    }
-    .dataTables_wrapper .dataTables_filter {
-        margin-bottom: calc(var(--spacing) * 8) !important;
-    }
-    #example tbody td:nth-child(5) img {
-        width: calc(var(--spacing) * 36);
-        height: calc(var(--spacing) * 24);
-        object-fit: cover;
-    }
-    .dataTables_wrapper .dataTables_filter input {
-        border: 1px solid #aaa;
-        border-radius: 3px;
-        padding: 5px;
-        background-color: transparent;
-        color: inherit;
-        margin-left: 10px !important;
-    }
-    .dataTables_wrapper .dataTables_paginate {
-        margin-top: calc(var(--spacing) * 8) !important;
-    }
-    .dataTables_wrapper .dataTables_info {
-        margin-top: calc(var(--spacing) * 8) !important;
-    }
-</style>
+    <style>
+        #example {
+            margin: 0 auto !important;
+            width: 100% !important;
+        }
+
+        #example tbody td:nth-child(5) {
+            display: flex;
+            justify-content: center;
+            gap: calc(var(--spacing) * 4);
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: calc(var(--spacing) * 8) !important;
+        }
+
+        #example tbody td:nth-child(5) img {
+            width: calc(var(--spacing) * 36);
+            height: calc(var(--spacing) * 24);
+            object-fit: cover;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: transparent;
+            color: inherit;
+            margin-left: 10px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            margin-top: calc(var(--spacing) * 8) !important;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            margin-top: calc(var(--spacing) * 8) !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -38,7 +48,8 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Data Katalog</div>
                 <div class="flex gap-2">
-                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md hover:cursor-pointer"
+                    <button type="button"
+                        class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md hover:cursor-pointer"
                         {{-- onclick="tambahKatalog()" --}} onclick="document.getElementById('addKatalogModal').showModal()">
                         Tambah Data
                     </button>
@@ -191,20 +202,18 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto m-4">
-                <table id="example" class="table rounded-lg row-border w-full">
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Jenis</th>
-                            <th>Bobot</th>
-                            <th>Harga</th>
-                            {{-- <th>Foto</th> --}}
-                            <th class="flex justify-center">Aksi</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <table id="example" class="table rounded-lg row-border w-full">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Jenis</th>
+                        <th>Bobot</th>
+                        <th>Harga</th>
+                        {{-- <th>Foto</th> --}}
+                        <th class="flex justify-center w-full">Aksi</th>
+                    </tr>
+                </thead>
+            </table>
 
 
             <script>
@@ -236,7 +245,8 @@
                     },
                     data: $katalog,
                     columns: [{
-                            data: 'nama'
+                            data: 'nama' qwertyuiop+
+                            
                         },
                         {
                             data: 'jenis',
