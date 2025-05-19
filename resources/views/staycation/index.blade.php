@@ -38,9 +38,8 @@
     <!-- Know About Us -->
     <section class="px-4 lg:px-40 py-20 bg-white">
         <div class="mx-auto flex flex-col gap-24 items-center justify-center">
-            <div class="flex gap-12 justify-center">
-                {{-- <img src="" alt=""> --}}
-                <div class="bg-gray-400 w-1/3 h-80"></div>
+            <div class="flex gap-12 items-center justify-center">
+                <img src="{{ asset('assets/image/IMG_3381.JPG') }}" class="w-1/3 h-60 object-cover shadow-md" alt="">
                 <div class="flex flex-col w-1/2 gap-8">
                     <h3 class="text-green-normal text-xl lg:text-3xl font-bold">Mengapa Staycation?
                     </h3>
@@ -53,8 +52,7 @@
 
                 </div>
             </div>
-            <div class="flex gap-12 justify-center">
-
+            <div class="flex gap-12 items-center justify-center">
                 <div class="flex flex-col w-1/2 gap-8">
                     <h3 class="text-green-normal text-xl lg:text-3xl font-bold">Kok Staycation?
                     </h3>
@@ -72,8 +70,9 @@
                         dunia peternakan dan memahami industri ini dengan lebih baik.
                     </p>
                 </div>
-                {{-- <img src="" alt=""> --}}
-                <div class="bg-gray-400 w-1/3 h-80"></div>
+                <img src="{{ asset('assets/image/IMG_0158.jpeg') }}"
+                    class="w-1/3 h-60 object-cover shadow-md">
+
             </div>
 
             <div class="flex flex-col gap-8 justify-center">
