@@ -8,11 +8,11 @@
                 <div>
 
                     <button type="button" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
-                    onclick="document.getElementById('editHewanModal').showModal()">
+                        onclick="document.getElementById('editHewanModal').showModal()">
                         Edit Data
                     </button>
                     <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md"
-                    onclick="openRekamModal({{ $data->id_hewan }}, '{{ $data->nama_hewan }}')">
+                        onclick="openRekamModal({{ $data->id_hewan }}, '{{ $data->nama_hewan }}')">
                         Rekam Data
                     </button>
                 </div>
@@ -20,7 +20,8 @@
                 <dialog id="editHewanModal" class="modal">
                     <div class="modal-box">
                         <h2 class="font-bold text-lg">Edit Hewan</h2>
-                        <form id="editForm" action="{{ route('admin.hewan.update', $data->id_hewan) }}" method="POST" enctype="multipart/form-data">
+                        <form id="editForm" action="{{ route('admin.hewan.update', $data->id_hewan) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="flex flex-col gap-2">
                                 <div class="flex flex-col gap-1">
@@ -34,8 +35,10 @@
                                     <label class="block">Jenis Hewan</label>
                                     <select name="jenis_hewan" id="edit_jenis_hewan"
                                         class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
-                                        <option value="Sapi"  @if( $data->jenis_hewan == 'Sapi') selected @endif>Sapi</option>
-                                        <option value="Kambing"  @if( $data->jenis_hewan == 'Kambing') selected @endif>Kambing</option>
+                                        <option value="Sapi" @if ($data->jenis_hewan == 'Sapi') selected @endif>Sapi
+                                        </option>
+                                        <option value="Kambing" @if ($data->jenis_hewan == 'Kambing') selected @endif>Kambing
+                                        </option>
                                     </select>
                                 </div>
 
@@ -43,70 +46,71 @@
                                     <label class="block">Jenis Kelamin</label>
                                     <div class="flex gap-4">
                                         <div class="flex gap-2">
-                                            <input id="jenis_kelamin_1" type="radio" value="L"
-                                                name="jenis_kelamin"
+                                            <input id="jenis_kelamin_1" type="radio" value="L" name="jenis_kelamin"
                                                 class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                                @if( $data->jenis_kelamin == 'L') checked @endif
-                                                required>
+                                                @if ($data->jenis_kelamin == 'L') checked @endif required>
                                             <label for="jenis_kelamin_1">Jantan</label>
                                         </div>
                                         <div class="flex gap-2">
-                                            <input id="jenis_kelamin_2" type="radio" value="P"
-                                                name="jenis_kelamin"
+                                            <input id="jenis_kelamin_2" type="radio" value="P" name="jenis_kelamin"
                                                 class="border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                                @if( $data->jenis_kelamin == 'P') checked @endif
-                                                required>
+                                                @if ($data->jenis_kelamin == 'P') checked @endif required>
                                             <label for="jenis_kelamin_1">Betina</label>
                                         </div>
                                     </div>
 
-                                <div class="flex flex-col gap-1">
-                                    <label class="block">Tanggal Lahir</label>
-                                    <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir"
-                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg" value="{{ $data->tanggal_lahir }}">
-                                </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Tanggal Lahir</label>
+                                        <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir"
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                            value="{{ $data->tanggal_lahir }}">
+                                    </div>
 
-                                <div class="flex flex-col gap-1">
-                                    <label class="block">Kategori</label>
-                                    <select name="kategori" id="edit_kategori"
-                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
-                                        <option value="Fattening" @if( $data->kategori == 'Fattening') selected @endif>Fattening</option>
-                                        <option value="Breeding" @if( $data->kategori == 'Breeding') selected @endif>Breeding</option>
-                                        <option value="Anakan" @if( $data->kategori == 'Anakan') selected @endif>Anakan</option>
-                                    </select>
-                                </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Kategori</label>
+                                        <select name="kategori" id="edit_kategori"
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                                            <option value="Fattening" @if ($data->kategori == 'Fattening') selected @endif>
+                                                Fattening</option>
+                                            <option value="Breeding" @if ($data->kategori == 'Breeding') selected @endif>
+                                                Breeding</option>
+                                            <option value="Anakan" @if ($data->kategori == 'Anakan') selected @endif>Anakan
+                                            </option>
+                                        </select>
+                                    </div>
 
-                                <div class="flex flex-col gap-1">
-                                    <label class="block">Keterangan</label>
-                                    <textarea name="keterangan" id="edit_keterangan" rows="3"
-                                        class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">{{ $data->keterangan }}</textarea>
-                                </div>
+                                    <div class="flex flex-col gap-1">
+                                        <label class="block">Keterangan</label>
+                                        <textarea name="keterangan" id="edit_keterangan" rows="3"
+                                            class="w-full p-2 border-1 border-slate-400 focus:outline focus:outline-green-normal rounded-lg">{{ $data->keterangan }}</textarea>
+                                    </div>
 
-                                <div class="flex flex-col gap-2">
-                                    <label class="block">Foto Hewan</label>
-                                    <img id="edit-preview-hewan"
-                                        class="mt-2 max-h-40 rounded border border-gray-300 object-contain"
-                                        src="{{ asset('storage/' . $data->foto) }}" />
-                                    <label for="edit-foto"
-                                        class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
-                                        <x-feathericon-upload />
-                                        Browse Files
-                                        <input type="file" id="edit-foto" name="foto" class="hidden" onchange="previewFoto(event)"/>
-                                    </label>
-                                    <script>
-                                        function previewFoto(event) {
-                                            const image = document.getElementById('edit-preview-hewan');
-                                            const file = event.target.files[0];
-                                            if (file) {
-                                                image.src = URL.createObjectURL(file);
-                                                image.style.display = 'block';
-                                            } else {
-                                                image.style.display = 'none';
+                                    <div class="flex flex-col gap-2">
+                                        <label class="block">Foto Hewan</label>
+                                        <img id="edit-preview-hewan"
+                                            class="mt-2 max-h-40 rounded border border-gray-300 object-contain"
+                                            src="{{ asset('storage/' . $data->foto) }}" />
+                                        <label for="edit-foto"
+                                            class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
+                                            <x-feathericon-upload />
+                                            Browse Files
+                                            <input type="file" id="edit-foto" name="foto" class="hidden"
+                                                onchange="previewFoto(event)" />
+                                        </label>
+                                        <script>
+                                            function previewFoto(event) {
+                                                const image = document.getElementById('edit-preview-hewan');
+                                                const file = event.target.files[0];
+                                                if (file) {
+                                                    image.src = URL.createObjectURL(file);
+                                                    image.style.display = 'block';
+                                                } else {
+                                                    image.style.display = 'none';
+                                                }
                                             }
-                                        }
-                                    </script>
+                                        </script>
+                                    </div>
                                 </div>
-                            </div>
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                         </form>
@@ -116,36 +120,35 @@
 
                 <dialog id="editRekamModal" class="modal">
                     <div id="edit-form-bobot" class="modal-box">
-                            <h2 class="font-bold text-lg">Rekam Bobot</h2>
-                            <form id="editrekamBobotForm" action="{{ route('admin.rekam-bobot.update') }}" method="POST"
-                                class="flex flex-col gap-4">
-                                @csrf
-                                <input hidden type="text" name="id_rekamBobot" id="edit_id_rekamBobot">
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex flex-col gap-1">
-                                        <label class="block">Nama Hewan</label>
-                                        <input disabled type="text" id="edit_nama_hewan_bobot"
-                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
-                                    </div>
-                                    <div class="flex flex-col gap-1">
-                                        <label class="block">Tanggal</label>
-                                        <input type="date" name="tanggal" id="edit_tanggal_bobot"
-                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                            required>
-                                    </div>
-                                    <div class="flex flex-col gap-1">
-                                        <label class="block">Bobot</label>
-                                        <input type="text" name="bobot" id="edit_bobot_bobot"
-                                            class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
-                                            required>
-                                    </div>
+                        <h2 class="font-bold text-lg">Rekam Bobot</h2>
+                        <form id="editrekamBobotForm" action="{{ route('admin.rekam-bobot.update') }}" method="POST"
+                            class="flex flex-col gap-4">
+                            @csrf
+                            <input hidden type="text" name="id_rekamBobot" id="edit_id_rekamBobot">
+                            <div class="flex flex-col gap-2">
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Nama Hewan</label>
+                                    <input disabled type="text" id="edit_nama_hewan_bobot"
+                                        class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
                                 </div>
-                                <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
-                            </form>
-                            <button class="btn btn-ghost w-full"
-                                onclick="closeEditRekamModal()">Batal</button>
-                        </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Tanggal</label>
+                                    <input type="date" name="tanggal" id="edit_tanggal_bobot"
+                                        class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                        required>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="block">Bobot</label>
+                                    <input type="text" name="bobot" id="edit_bobot_bobot"
+                                        class="w-full p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg"
+                                        required>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
+                        </form>
+                        <button class="btn btn-ghost w-full" onclick="closeEditRekamModal()">Batal</button>
+                    </div>
                 </dialog>
 
                 <!-- Modal Rekam Bobot -->
@@ -223,8 +226,7 @@
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>
-                            <button class="btn btn-ghost w-full"
-                                onclick="closeRekamModal()">Batal</button>
+                            <button class="btn btn-ghost w-full" onclick="closeRekamModal()">Batal</button>
                         </div>
 
                         <!-- Form Rekam Penyakit -->
@@ -256,8 +258,7 @@
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full">Simpan</button>
                             </form>
-                            <button class="btn btn-ghost w-full"
-                                onclick="closeRekamModal()">Batal</button>
+                            <button class="btn btn-ghost w-full" onclick="closeRekamModal()">Batal</button>
                         </div>
                     </div>
                 </dialog>
@@ -266,7 +267,7 @@
                 <!-- Kolom Kiri -->
                 <div class="grid grid-cols-2">
                     <p class="font-medium">Foto Hewan</p>
-                    <img class="object-cover w-full" src="{{ asset('storage/'.$data->foto) }}" alt="foto-hewan">
+                    <img class="object-cover w-full" src="{{ asset('storage/' . $data->foto) }}" alt="foto-hewan">
                 </div>
 
 
@@ -309,7 +310,7 @@
                     document.getElementById('rekamModal').showModal();
                 }
 
-                function openEditRekamBobot(id_rekam, bobot, tanggal, nama_hewan){
+                function openEditRekamBobot(id_rekam, bobot, tanggal, nama_hewan) {
                     document.getElementById('edit_id_rekamBobot').value = id_rekam;
                     document.getElementById('edit_nama_hewan_bobot').value = nama_hewan;
                     document.getElementById('edit_tanggal_bobot').value = tanggal;
@@ -430,20 +431,25 @@
                         </thead>
                         <tbody>
                             @foreach ($data->rekam_bobot as $item)
-                            <tr>
+                                <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->bobot }}</td>
                                     <td>{{ $item->user->nama }}</td>
                                     <td class="flex gap-1">
-                                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md hover:cursor-pointer"
+                                        <button type="submit"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md hover:cursor-pointer"
                                             onclick="openEditRekamBobot({{ $item->id_rekamBobot }}, '{{ $item->bobot }}', '{{ $item->tanggal }}', '{{ $data->nama_hewan }}')">
                                             Edit
                                         </button>
-                                        <form action="{{ route('admin.rekam-bobot.destroy', $item->id_rekamBobot) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus rekaman ini?')">
+                                        <form id="form-delete-rekam-bobot-{{ $item->id_rekamBobot }}"
+                                            action="{{ route('admin.rekam-bobot.destroy', $item->id_rekamBobot) }}"
+                                            method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
+                                            <button type="button"
+                                                onclick="validateDelete('form-delete-rekam-bobot-{{ $item->id_riwayat_penyakit }}')"
+                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
                                                 Hapus
                                             </button>
                                         </form>
@@ -478,15 +484,16 @@
                                         @if ($item->sembuh)
                                             {{ $item->sembuh }}
                                         @else
-                                            <form action="{{ route('admin.hewan.sembuh', $item->id_riwayat_penyakit) }}" method="POST">
+                                            <form action="{{ route('admin.hewan.sembuh', $item->id_riwayat_penyakit) }}"
+                                                method="POST">
                                                 @csrf
-                                                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">Sembuh</button>
+                                                <button type="submit"
+                                                    class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">Sembuh</button>
                                             </form>
                                         @endif
                                     </td>
                                     <td class="flex gap-1">
-                                        <button
-                                            type="button"
+                                        <button type="button"
                                             class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md"
                                             onclick="bukaModalPerlakuan(
                                                 '{{ $item->id_riwayat_penyakit }}',
@@ -496,10 +503,14 @@
                                             )">
                                             Detail
                                         </button>
-                                        <form action="{{ route('admin.rekam-penyakit.destroy', $item->id_riwayat_penyakit) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus riwayat ini?')">
+                                        <form id="form-delete-{{ $item->id_riwayat_penyakit }}"
+                                            action="{{ route('admin.rekam-penyakit.destroy', $item->id_riwayat_penyakit) }}"
+                                            method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
+                                            <button type="button"
+                                                onclick="validateDelete('form-delete-{{ $item->id_riwayat_penyakit }}')"
+                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">
                                                 Hapus
                                             </button>
                                         </form>
@@ -522,68 +533,86 @@
                             @csrf
                             <input hidden type="text" name="perlakuan_id" id="hewan_id_perlakuan">
                             <label class="flex items-center" for="perlakuan_input">Perlakuan: </label>
-                            <input type="text" id="perlakuan_input" name="perlakuan" class="p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
-                            <button class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full" type="submit">Tambah</button>
+                            <input type="text" id="perlakuan_input" name="perlakuan"
+                                class="p-2 border border-slate-400 focus:outline focus:outline-green-normal rounded-lg">
+                            <button
+                                class="p-2 px-8 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full"
+                                type="submit">Tambah</button>
                         </form>
                     </div>
                 </div>
-              <div class="flex flex-col gap-2">
-                <p><strong>Nama Penyakit:</strong> <span id="modal_nama_penyakit"></span></p>
-                <p><strong>Awal Sakit:</strong> <span id="modal_awal_sakit"></span></p>
+                <div class="flex flex-col gap-2">
+                    <p><strong>Nama Penyakit:</strong> <span id="modal_nama_penyakit"></span></p>
+                    <p><strong>Awal Sakit:</strong> <span id="modal_awal_sakit"></span></p>
 
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Tanggal</th>
-                      <th>Perlakuan</th>
-                    </tr>
-                  </thead>
-                  <tbody id="modal_tbody">
-                    <!-- Diisi via JS -->
-                  </tbody>
-                </table>
-              </div>
-              <form method="dialog">
-                <button class="btn btn-ghost w-full mt-4">Tutup</button>
-              </form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tanggal</th>
+                                <th>Perlakuan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal_tbody">
+                            <!-- Diisi via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <form method="dialog">
+                    <button class="btn btn-ghost w-full mt-4">Tutup</button>
+                </form>
             </div>
         </dialog>
         <script>
+            function bukaModalPerlakuan(idPenyakit, namaPenyakit, awalSakit, perlakuanJson) {
+                const modal = document.getElementById('detailPerlakuanModal');
+                document.getElementById('hewan_id_perlakuan').value = idPenyakit;
+                document.getElementById('modal_nama_penyakit').textContent = namaPenyakit;
+                document.getElementById('modal_awal_sakit').textContent = awalSakit;
 
+                let tbody = document.getElementById('modal_tbody');
+                tbody.innerHTML = ''; // kosongkan dulu
 
-            function bukaModalPerlakuan(idPenyakit ,namaPenyakit, awalSakit, perlakuanJson) {
-            const modal = document.getElementById('detailPerlakuanModal');
-            document.getElementById('hewan_id_perlakuan').value = idPenyakit;
-            document.getElementById('modal_nama_penyakit').textContent = namaPenyakit;
-            document.getElementById('modal_awal_sakit').textContent = awalSakit;
-
-            let tbody = document.getElementById('modal_tbody');
-            tbody.innerHTML = ''; // kosongkan dulu
-
-            let perlakuan = JSON.parse(perlakuanJson);
-            perlakuan.forEach((item, index) => {
-                const tanggalPerlakuan = new Date(item.created_at);
-                const year = tanggalPerlakuan.getFullYear();
-                const month = String(tanggalPerlakuan.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
-                const day = String(tanggalPerlakuan.getDate()).padStart(2, '0');
-                const formatted = `${year}-${month}-${day}`;
-                tbody.innerHTML += `
+                let perlakuan = JSON.parse(perlakuanJson);
+                perlakuan.forEach((item, index) => {
+                    const tanggalPerlakuan = new Date(item.created_at);
+                    const year = tanggalPerlakuan.getFullYear();
+                    const month = String(tanggalPerlakuan.getMonth() + 1).padStart(2, '0'); // bulan dimulai dari 0
+                    const day = String(tanggalPerlakuan.getDate()).padStart(2, '0');
+                    const formatted = `${year}-${month}-${day}`;
+                    tbody.innerHTML += `
                     <tr>
                         <td>${index + 1}</td>
                         <td>${formatted}</td>
                         <td>${item.perlakuan}</td>
                     </tr>
                 `;
-            });
+                });
 
-            modal.showModal();
-        }
+                modal.showModal();
+            }
 
-        function closeEditModal() {
-            document.getElementById('editHewanModal').close();
-            document.getElementById('editForm').reset();
-        }
+            function validateDelete(formId) {
+                Swal.fire({
+                    title: 'Apakah Anda yakin ingin menghapus data ini?',
+                    text: 'Tindakan ini tidak dapat dibatalkan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal',
+                    cancelButtonColor: '#fb2c36',
+                    confirmButtonColor: '#157c74'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById(formId).submit();
+                    }
+                });
+            }
+
+            function closeEditModal() {
+                document.getElementById('editHewanModal').close();
+                document.getElementById('editForm').reset();
+            }
         </script>
         @if (session('hewan'))
             <script>
@@ -591,7 +620,7 @@
                     icon: 'success',
                     toast: true,
                     position: 'top-end',
-                    title: '{{ session("hewan") }}',
+                    title: '{{ session('hewan') }}',
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -603,7 +632,7 @@
                     icon: 'error',
                     toast: true,
                     position: 'top-end',
-                    title: '{{ session("gagal") }}',
+                    title: '{{ session('gagal') }}',
                     showConfirmButton: false,
                     timer: 2000
                 });

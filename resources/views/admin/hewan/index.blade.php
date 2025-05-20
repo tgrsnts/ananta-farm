@@ -1,29 +1,33 @@
 @extends('admin.layout.main')
 @section('title', 'Dashboard Hewan')
 @section('style')
-<style>
-    #tablehewan tbody td:nth-child(6){
-        display: flex;
-        gap: calc(var(--spacing) * 2);
-    }
-    .dataTables_wrapper .dataTables_filter {
-        margin-bottom: calc(var(--spacing) * 8) !important;
-    }
-    .dataTables_wrapper .dataTables_filter input {
-        border: 1px solid #aaa;
-        border-radius: 3px;
-        padding: 5px;
-        background-color: transparent;
-        color: inherit;
-        margin-left: 10px !important;
-    }
-    .dataTables_wrapper .dataTables_paginate {
-        margin-top: calc(var(--spacing) * 8) !important;
-    }
-    .dataTables_wrapper .dataTables_info {
-        margin-top: calc(var(--spacing) * 8) !important;
-    }
-</style>
+    <style>
+        #tablehewan tbody td:nth-child(6) {
+            display: flex;
+            gap: calc(var(--spacing) * 2);
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: calc(var(--spacing) * 8) !important;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: transparent;
+            color: inherit;
+            margin-left: 10px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            margin-top: calc(var(--spacing) * 8) !important;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            margin-top: calc(var(--spacing) * 8) !important;
+        }
+    </style>
 @endsection
 @section('content')
     <section id="dashboard" class="min-h-screen font-poppins w-full flex gap-4 p-4 pb-20 bg-slate-50">
@@ -31,8 +35,9 @@
             <div class="flex justify-between items-center">
                 <div class="text-xl font-semibold">Data Hewan</div>
                 <div class="flex gap-2">
-                    <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md hover:cursor-pointer"
-                         onclick="document.getElementById('addHewanModal').showModal()">
+                    <button type="button"
+                        class="bg-green-normal hover:bg-green-normal-hover text-white px-4 py-2 rounded-md hover:cursor-pointer"
+                        onclick="document.getElementById('addHewanModal').showModal()">
                         Tambah Data
                     </button>
 
@@ -40,7 +45,8 @@
                     <dialog id="addHewanModal" class="modal">
                         <div class="modal-box">
                             <h2 class="font-bold text-lg">Tambah Hewan</h2>
-                            <form action="{{ route('admin.hewan.store') }}" method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
+                            <form action="{{ route('admin.hewan.store') }}" method="POST" class="flex flex-col gap-4"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex flex-col gap-2">
                                     <div class="flex flex-col gap-1">
@@ -109,7 +115,8 @@
                                             class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                                             <x-feathericon-upload />
                                             Browse Files
-                                            <input type="file" id="foto" name="foto" class="hidden" onchange="previewFotoTambah(event)"/>
+                                            <input type="file" id="foto" name="foto" class="hidden"
+                                                onchange="previewFotoTambah(event)" />
                                         </label>
                                         <script>
                                             function previewFotoTambah(event) {
@@ -209,8 +216,7 @@
                                 <button type="submit"
                                     class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                             </form>
-                            <button class="btn btn-ghost w-full"
-                                onclick="closeRekamModal()">Batal</button>
+                            <button class="btn btn-ghost w-full" onclick="closeRekamModal()">Batal</button>
                         </div>
 
                         <!-- Form Rekam Penyakit -->
@@ -252,7 +258,8 @@
                 <dialog id="EditHewanModal" class="modal">
                     <div class="modal-box">
                         <h2 class="font-bold text-lg">Edit Hewan</h2>
-                        <form id="editForm" action="{{ route('admin.hewan.update', ['id' => '__ID__']) }}" method="POST" enctype="multipart/form-data">
+                        <form id="editForm" action="{{ route('admin.hewan.update', ['id' => '__ID__']) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="flex flex-col gap-2">
                                 <div class="flex flex-col gap-1">
@@ -328,7 +335,8 @@
                                         class="flex gap-2 items-center justify-center rounded-md border border-green-normal hover:bg-green-light-active cursor-pointer py-2 px-4 text-green-normal hover:bg-background focus:outline-none focus:ring focus:ring-green-normal">
                                         <x-feathericon-upload />
                                         Browse Files
-                                        <input type="file" id="edit-foto" name="foto" class="hidden" onchange="previewFoto(event)"/>
+                                        <input type="file" id="edit-foto" name="foto" class="hidden"
+                                            onchange="previewFoto(event)" />
                                     </label>
                                     <script>
                                         function previewFoto(event) {
@@ -344,10 +352,11 @@
                                     </script>
                                 </div>
                             </div>
-                                <button type="submit"
-                                    class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
+                            <button type="submit"
+                                class="p-2 rounded-md bg-green-normal hover:bg-green-normal-hover text-white w-full hover:cursor-pointer">Simpan</button>
                         </form>
-                        <button class="btn btn-ghost w-full" onclick="document.getElementById('EditHewanModal').close()" type="button">Batal</button>
+                        <button class="btn btn-ghost w-full" onclick="document.getElementById('EditHewanModal').close()"
+                            type="button">Batal</button>
                     </div>
                 </dialog>
             </div>
@@ -380,18 +389,23 @@
                         }
                     },
                     data: $hewan,
-                    columns: [
-                        { data: 'nama_hewan', name: 'nama_hewan' },
-                        { data: 'jenis_hewan', name: 'jenis_hewan' },
+                    columns: [{
+                            data: 'nama_hewan',
+                            name: 'nama_hewan'
+                        },
+                        {
+                            data: 'jenis_hewan',
+                            name: 'jenis_hewan'
+                        },
                         {
                             data: 'jenis_kelamin',
-                            render: function (data) {
+                            render: function(data) {
                                 return data === 'L' ? 'Jantan' : 'Betina';
                             }
                         },
                         {
                             data: 'tanggal_lahir',
-                            render: function (data) {
+                            render: function(data) {
                                 const date = new Date(data);
                                 const year = date.getFullYear();
                                 const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -399,23 +413,25 @@
                                 return `${year}-${month}-${day}`;
                             }
                         },
-                        { data: 'keterangan', name: 'keterangan' },
+                        {
+                            data: 'keterangan',
+                            name: 'keterangan'
+                        },
                         {
                             data: null,
                             orderable: false,
                             searchable: false,
-                            render: function(data,type,row) {
+                            render: function(data, type, row) {
                                 const hewanJson = JSON.stringify(data).replace(/"/g, '&quot;');
                                 return `
                                     <a href="/admin/hewan/${row.id_hewan}">
                                         <button class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md hover:cursor-pointer">Detail</button>
                                     </a>
                                     <button type="button" class="bg-green-normal hover:bg-green-normal-hover text-white p-2 rounded-md hover:cursor-pointer" onclick="openRekamModal(this)" data-hewan="${hewanJson}">Rekam</button>
-                                    <form action="/admin/hewan/${row.id_hewan}" method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus hewan ini?')">
+                                    <form id="delete-form-${row.id_hewan}" action="/admin/pendaftar/${row.id_hewan}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"
+                                        <button type="button" onclick="validateDelete(delete-form-${row.id_hewan})"
                                             class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">Hapus</button>
                                     </form>
                                     <button type="button" class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded hover:cursor-pointer" onclick="openEditHewanModal(this)" data-hewan="${hewanJson}">Edit</button>
@@ -425,44 +441,61 @@
                     ]
                 })
 
-                    function openRekamModal(button) {
-                        const hewan = JSON.parse(button.getAttribute('data-hewan'));
-                        document.getElementById('hewan_id_bobot').value = hewan.id_hewan;
-                        document.getElementById('nama_hewan_bobot').value = hewan.nama_hewan;
-                        document.getElementById('hewan_id_penyakit').value = hewan.id_hewan;
-                        document.getElementById('nama_hewan_penyakit').value = hewan.nama_hewan;
-
-
-                        document.getElementById('rekamModal').showModal();
-                    }
-
-                    function closeRekamModal() {
-                        document.getElementById('rekamModal').close();
-                        document.getElementById('rekamBobotForm').reset();
-                        document.getElementById('rekamPenyakitForm').reset();
-                    }
-
-                    function openEditHewanModal(button) {
-                        const hewan = JSON.parse(button.getAttribute('data-hewan'));
-                        const form = document.getElementById('editForm');
-                        form.action = form.action.replace('__ID__', hewan.id_hewan);
-                        document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
-                        document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
-                        if (hewan.jenis_kelamin === "L") {
-                            document.getElementById("edit_jenis_kelamin_1").checked = true;
-                        } else if (hewan.jenis_kelamin === "P") {
-                            document.getElementById("edit_jenis_kelamin_2").checked = true;
+                function validateDelete(formId) {
+                    Swal.fire({
+                        title: 'Apakah Anda yakin ingin menghapus data ini?',
+                        text: 'Tindakan ini tidak dapat dibatalkan!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal',
+                        cancelButtonColor: '#fb2c36',
+                        confirmButtonColor: '#157c74'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById(formId).submit();
                         }
-                        document.getElementById('edit_tanggal_lahir').value = hewan.tanggal_lahir;
-                        document.getElementById('edit_kategori').value = hewan.kategori;
-                        document.getElementById('edit_keterangan').value = hewan.keterangan;
+                    });
+                }
 
-                        const previewImg = document.getElementById('edit-preview-hewan');
-                        previewImg.src = `/storage/${hewan.foto}`;
-                        previewImg.style.display = 'block';
+                function openRekamModal(button) {
+                    const hewan = JSON.parse(button.getAttribute('data-hewan'));
+                    document.getElementById('hewan_id_bobot').value = hewan.id_hewan;
+                    document.getElementById('nama_hewan_bobot').value = hewan.nama_hewan;
+                    document.getElementById('hewan_id_penyakit').value = hewan.id_hewan;
+                    document.getElementById('nama_hewan_penyakit').value = hewan.nama_hewan;
 
-                        document.getElementById('EditHewanModal').showModal();
+
+                    document.getElementById('rekamModal').showModal();
+                }
+
+                function closeRekamModal() {
+                    document.getElementById('rekamModal').close();
+                    document.getElementById('rekamBobotForm').reset();
+                    document.getElementById('rekamPenyakitForm').reset();
+                }
+
+                function openEditHewanModal(button) {
+                    const hewan = JSON.parse(button.getAttribute('data-hewan'));
+                    const form = document.getElementById('editForm');
+                    form.action = form.action.replace('__ID__', hewan.id_hewan);
+                    document.getElementById('edit_nama_hewan').value = hewan.nama_hewan;
+                    document.getElementById('edit_jenis_hewan').value = hewan.jenis_hewan;
+                    if (hewan.jenis_kelamin === "L") {
+                        document.getElementById("edit_jenis_kelamin_1").checked = true;
+                    } else if (hewan.jenis_kelamin === "P") {
+                        document.getElementById("edit_jenis_kelamin_2").checked = true;
                     }
+                    document.getElementById('edit_tanggal_lahir').value = hewan.tanggal_lahir;
+                    document.getElementById('edit_kategori').value = hewan.kategori;
+                    document.getElementById('edit_keterangan').value = hewan.keterangan;
+
+                    const previewImg = document.getElementById('edit-preview-hewan');
+                    previewImg.src = `/storage/${hewan.foto}`;
+                    previewImg.style.display = 'block';
+
+                    document.getElementById('EditHewanModal').showModal();
+                }
             </script>
             @if (session('hewan'))
                 <script>
@@ -470,7 +503,7 @@
                         icon: 'success',
                         toast: true,
                         position: 'top-end',
-                        title: '{{ session("hewan") }}',
+                        title: '{{ session('hewan') }}',
                         showConfirmButton: false,
                         timer: 2000
                     });

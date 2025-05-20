@@ -245,7 +245,7 @@
                     },
                     data: $katalog,
                     columns: [{
-                            data: 'nama'    
+                            data: 'nama'
                         },
                         {
                             data: 'jenis',
@@ -278,13 +278,12 @@
                                             onclick="openEditModal(${row.id_katalog}, '${row.nama}', '${row.jenis}', '${row.bobot}', '${row.harga}', '${row.foto}')">
                                             Edit
                                         </button>
-                                        <form action="/admin/katalog/${row.id_katalog}" method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus katalog ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">Hapus</button>
-                                        </form>
+                                        <form id="delete-form-${row.id_katalog}" action="/admin/katalog/${row.id_katalog}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" onclick="validateDelete(delete-form-${row.id_katalog})"
+                                            class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">Hapus</button>
+                                    </form>
                                     </div>
                                 `;
                             }
@@ -319,6 +318,23 @@
 
                     document.getElementById('editKatalogModal').showModal();
                 }
+
+                function validateDelete(formId) {
+                    Swal.fire({
+                        title: 'Apakah Anda yakin ingin menghapus data ini?',
+                        text: 'Tindakan ini tidak dapat dibatalkan!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal',
+                        cancelButtonColor: '#fb2c36',
+                        confirmButtonColor: '#157c74'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById(formId).submit();
+                        }
+                    });
+                }
             </script>
             @if (session('katalog'))
                 <script>
@@ -326,7 +342,7 @@
                         icon: 'success',
                         toast: true,
                         position: 'top-end',
-                        title: '{{ session("katalog") }}',
+                        title: '{{ session('katalog') }}',
                         showConfirmButton: false,
                         timer: 2000
                     });

@@ -1,29 +1,33 @@
 @extends('admin.layout.main')
 @section('title', 'Dashboard Pendaftar')
 @section('style')
-<style>
-    #tablependaftar tbody td:nth-child(8){
-        display: flex;
-        gap: calc(var(--spacing) * 2);
-    }
-    .dataTables_wrapper .dataTables_filter {
-        margin-bottom: calc(var(--spacing) * 8) !important;
-    }
-    .dataTables_wrapper .dataTables_filter input {
-        border: 1px solid #aaa;
-        border-radius: 3px;
-        padding: 5px;
-        background-color: transparent;
-        color: inherit;
-        margin-left: 10px !important;
-    }
-    .dataTables_wrapper .dataTables_paginate {
-        margin-top: calc(var(--spacing) * 8) !important;
-    }
-    .dataTables_wrapper .dataTables_info {
-        margin-top: calc(var(--spacing) * 8) !important;
-    }
-</style>
+    <style>
+        #tablependaftar tbody td:nth-child(8) {
+            display: flex;
+            gap: calc(var(--spacing) * 2);
+        }
+
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: calc(var(--spacing) * 8) !important;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            padding: 5px;
+            background-color: transparent;
+            color: inherit;
+            margin-left: 10px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate {
+            margin-top: calc(var(--spacing) * 8) !important;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            margin-top: calc(var(--spacing) * 8) !important;
+        }
+    </style>
 @endsection
 @section('content')
     <section id="dashboard" class="min-h-screen font-poppins w-full flex flex-col p-4 pb-20 bg-slate-50">
@@ -62,32 +66,40 @@
                         }
                     },
                     data: $pendaftar,
-                    columns: [
-                        {data: 'nama', name: 'nama'},
+                    columns: [{
+                            data: 'nama',
+                            name: 'nama'
+                        },
                         {
                             data: 'nomor_whatsapp',
-                            render: data => `<a href="https://wa.me/${data.replace('+','')}" target="_blank">${data}</a>`
+                            render: data =>
+                                `<a href="https://wa.me/${data.replace('+','')}" target="_blank">${data}</a>`
                         },
                         {
                             data: 'instagram',
                             render: data => `<a href="https://instagram.com/${data}" target="_blank">${data}</a>`
                         },
-                        { data: 'jenis_kelamin', render: data => data === 'L' ? 'Laki-laki' : 'Perempuan' },
+                        {
+                            data: 'jenis_kelamin',
+                            render: data => data === 'L' ? 'Laki-laki' : 'Perempuan'
+                        },
                         {
                             data: 'tanggal_lahir',
-                            render: function (data) {
-                                    const date = new Date(data);
-                                    const year = date.getFullYear();
-                                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                                    const day = String(date.getDate()).padStart(2, '0');
-                                    return `${year}-${month}-${day}`;
-                                }
+                            render: function(data) {
+                                const date = new Date(data);
+                                const year = date.getFullYear();
+                                const month = String(date.getMonth() + 1).padStart(2, '0');
+                                const day = String(date.getDate()).padStart(2, '0');
+                                return `${year}-${month}-${day}`;
+                            }
                         },
-                        { data: 'instansi' },
+                        {
+                            data: 'instansi'
+                        },
                         {
                             data: 'status',
-                            render: function (data) {
-                                switch(data){
+                            render: function(data) {
+                                switch (data) {
                                     case 'diterima':
                                         return 'Diterima';
                                     case 'tidak_diterima':
@@ -99,22 +111,22 @@
                                     default:
                                         return 'Status Tidak Dikenal'
                                 }
-                            } },
+                            }
+                        },
                         {
                             data: null,
                             orderable: false,
                             searchable: false,
-                            render:  function(data, type, row){
+                            render: function(data, type, row) {
                                 return `
                                     <a href="/admin/pendaftar/${row.id_daftar_magang}"
                                         class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md">
                                         Detail
                                     </a>
-                                    <form action="/admin/pendaftar/${row.id_daftar_magang}"
-                                        onsubmit="return confirm('Yakin ingin menghapus pendaftar ini?')">
+                                    <form id="delete-form-${row.id_daftar_magang}" action="/admin/pendaftar/${row.id_daftar_magang}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"
+                                        <button type="button" onclick="validateDelete(delete-form-${row.id_daftar_magang})"
                                             class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md hover:cursor-pointer">Hapus</button>
                                     </form>
                                 `
@@ -123,6 +135,23 @@
 
                     ]
                 })
+
+                function validateDelete(formId) {
+                    Swal.fire({
+                        title: 'Apakah Anda yakin ingin menghapus data ini?',
+                        text: 'Tindakan ini tidak dapat dibatalkan!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal',
+                        cancelButtonColor: '#fb2c36',
+                        confirmButtonColor: '#157c74'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById(formId).submit();
+                        }
+                    });
+                }
             </script>
 
             {{-- <div class="overflow-x-auto">
