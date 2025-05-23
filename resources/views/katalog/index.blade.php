@@ -10,7 +10,7 @@
                 <div class="relative w-full">
                     <select name="jenis" onchange="this.form.submit()"
                         class="appearance-none w-full p-2 pr-10 border border-green-normal text-sm lg:text-lg text-green-normal rounded-lg bg-white">
-                        <option value="" disabled {{ request('jenis') ? '' : 'selected' }}>Pilih Hewan</option>
+                        <option value="" {{ request('jenis') ? '' : 'selected' }}>Pilih Hewan</option>
                         @foreach ($jenis_hewan as $jenis)
                             <option value="{{ $jenis }}" {{ request('jenis') == $jenis ? 'selected' : '' }}>
                                 {{ ucfirst($jenis) }}
