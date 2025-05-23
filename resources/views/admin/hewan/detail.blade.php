@@ -329,6 +329,7 @@
                     document.getElementById('rekamPenyakitForm').reset();
                 }
                 const bobotData = @json($data->rekam_bobot);
+                bobotData.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
                 const labels = bobotData.map(item => {
                     const date = new Date(item.tanggal);
                     const year = date.getFullYear();

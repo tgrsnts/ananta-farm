@@ -25,12 +25,12 @@ class Hewan extends Model
 
     public function rekam_bobot(): HasMany
     {
-        return $this->hasMany(RekamBobot::class, 'hewan_id', 'id_hewan');
+        return $this->hasMany(RekamBobot::class, 'hewan_id', 'id_hewan')->orderByDesc('created_at');
     }
 
     public function riwayat_penyakit(): HasMany
     {
-        return $this->hasMany(RiwayatPenyakit::class, 'hewan_id', 'id_hewan');
+        return $this->hasMany(RiwayatPenyakit::class, 'hewan_id', 'id_hewan')->orderByDesc('created_at');
     }
 
     public function getRouteKeyName()

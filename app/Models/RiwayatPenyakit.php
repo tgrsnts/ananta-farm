@@ -25,6 +25,6 @@ class RiwayatPenyakit extends Model
 
     public function perlakuan(): HasMany
     {
-        return $this->hasMany(PerlakuanPenyakit::class, 'riwayat_penyakit_id', 'id_riwayat_penyakit');
+        return $this->hasMany(PerlakuanPenyakit::class, 'riwayat_penyakit_id', 'id_riwayat_penyakit')->orderByDesc('created_at');
     }
 }
