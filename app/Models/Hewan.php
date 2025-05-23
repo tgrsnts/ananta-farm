@@ -25,7 +25,7 @@ class Hewan extends Model
 
     public function rekam_bobot(): HasMany
     {
-        return $this->hasMany(RekamBobot::class, 'hewan_id', 'id_hewan')->orderByDesc('created_at');
+        return $this->hasMany(RekamBobot::class, 'hewan_id', 'id_hewan')->orderByDesc('tanggal');
     }
 
     public function riwayat_penyakit(): HasMany
